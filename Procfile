@@ -1,1 +1,1 @@
-web: gunicorn cockapoo-cafe.wsgi
+web: gunicorn cafe2021.wsgi
