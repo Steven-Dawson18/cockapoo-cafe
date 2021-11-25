@@ -10,9 +10,7 @@ assignees: ''
 As a **role** I can **capability** so that **receive benefit**
 
 ## Acceptance Criteria
-* Acceptance criteria 1
-* Acceptance criteria 2
-* Acceptance criteria 3
+* When I **action** This happens **outcome**
 
 ## Tasks
 - [ ] Task 1
