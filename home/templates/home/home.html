@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% load static%}
+
+{% block content %}
+
+    <header>
+        <div class="row justify-content-center">
+            <div id="top">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <div class="left-content">
+                                <div class="inner-content">
+                                    <h4>CockapooCafe</h4>
+                                    <h6>THE PAWFECT EXPERIENCE</h6>
+                                    <div class="main-white-button">
+                                        <a href="#" class="active">Make A Reservation</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="carouselExampleSlidesOnly" class="col-lg-8 carousel slide" data-bs-ride="carousel">
+                            <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                    <img src="{% static 'images/cockapoo-cafe.jpeg' %}" class="d-block w-100" alt="Dog pic">
+                                </div>
+                                <div class="carousel-item">
+                                    <img src="{% static 'images/cockapoo-cafe-2.jpeg' %}" class="d-block w-100" alt="Dog pic 2">
+                                </div>
+                                <div class="carousel-item">
+                                    <img src="{% static 'images/cockapoo-cafe4.jpeg' %}" class="d-block w-100" alt="Dog pic 3">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+{% endblock %}
