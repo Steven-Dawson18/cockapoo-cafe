@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% load static%}
+
+{% block content %}
+
+{% for menu in object_list %}
+<h1>One of out finest and most popular coffees is the {{ menu.name }} coffee at £{{ menu.price }} it's a great choice</h1>
+{% empty %}
+<li>No menus yet.</li>
+{% endfor %}
+    
+
+    <hr>
+
+    <div class="col-12 mt-3 left">
+        <div class="row">
+            {% for menu in menu_list %}
+            <div class="col-md-4">
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <div class="image-container">
+                            {% if "placeholder" in menu.image.url %}
+                            <img class="card-img-top"
+                                src="https://codeinstitute.s3.amazonaws.com/fullstack/blog/default.jpg">
+                                <hr>
+                                {% for menu in object_list %}
+                                    <h1>One of out finest and most popular coffees is the {{ menu.name }} coffee at £{{ menu.price }} it's a great choice</h1>
+                                    {% empty %}
+                                    <li>No menus yet.</li>
+                                {% endfor %}
+    
+                            {% else %}
+                            <img class="card-img-top" src=" {{ menu.image.url }}">
+                            {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            {% endfor %}
+
+{% endblock %}

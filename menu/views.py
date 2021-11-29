@@ -1,3 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
+from django.views import generic, View
+from .models import Menu
 
-# Create your views here.
+
+class MenuList(generic.ListView):
+    model = Menu
+    queryset = Menu.objects.filter(status=1).order_by('-created_on')
+    template_name = 'menu/menu.html'
+    paginate_by = 6

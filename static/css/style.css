@@ -88,6 +88,35 @@ banner
   transition: all .3s;
 }
 
+.nav-bg-col {
+    background-color: #fb5849;
+    }
+    
+    footer {
+    background-color: #fb5849;
+    margin-top: 20px;
+    text-align: center;
+    padding-top: .5rem;
+    padding-bottom: .5rem;
+    }
+    
+    nav {
+    margin-bottom: 20px;;
+    }
+    
+    .foot-img {
+    height: 10%;
+    text-align: center;
+    }
+    
+    .carouselExampleSlidesOnly img {
+    height: 100%
+    }
+    
+    .socials i {
+        color: black;
+    }
+
 .main-white-button a:hover {
   opacity: 0.9;
 }
@@ -101,31 +130,7 @@ banner
     text-align: center;
     padding: 25% 0px;
     }
-}
-
-.nav-bg-col {
-background-color: #fb5849;
-}
-
-footer {
-background-color: #fb5849;
-margin-top: 20px;
-text-align: center;
-}
-
-nav {
-margin-bottom: 20px;;
-}
-
-.foot-img {
-height: 10%;
-text-align: center;
-}
-
-.carouselExampleSlidesOnly img {
-height: 100%
-}
-
-.socials i {
-    color: black;
+    footer p {
+        font-size: 12px;
+    }
 }
