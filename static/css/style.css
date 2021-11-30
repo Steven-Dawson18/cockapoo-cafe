@@ -134,3 +134,21 @@ banner
         font-size: 12px;
     }
 }
+
+/* 
+---------------------------------------------
+Menu
+--------------------------------------------- 
+*/
+
+.menu-title {
+  text-align: center;
+  padding: 20px;
+  color: #fb5849;
+}
+
+.menu-btn {
+  background-color: #fb5849;
+  color: #fff;
+  border-color: #fb5849;
+}
