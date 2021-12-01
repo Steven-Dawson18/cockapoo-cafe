@@ -59,3 +59,41 @@ class ColdDrinks(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class Sandwich(models.Model):
+    """
+    Models for Sandwiches Menu
+    """
+    name = models.CharField(max_length=200)
+    description = models.TextField(blank=False)
+    image = CloudinaryField('image', default='placeholder')
+    price = models.FloatField()
+    status = models.IntegerField(choices=STATUS, default=0)
+    created_on = models.DateTimeField(auto_now_add=True)
+    updated_on = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        ordering = ["-created_on"]
+
+    def __str__(self):
+        return self.name
+
+
+class Cake(models.Model):
+    """
+    Models for Cakes Menu
+    """
+    name = models.CharField(max_length=200)
+    description = models.TextField(blank=False)
+    image = CloudinaryField('image', default='placeholder')
+    price = models.FloatField()
+    status = models.IntegerField(choices=STATUS, default=0)
+    created_on = models.DateTimeField(auto_now_add=True)
+    updated_on = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        ordering = ["-created_on"]
+
+    def __str__(self):
+        return self.name

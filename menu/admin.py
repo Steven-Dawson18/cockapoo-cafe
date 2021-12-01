@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Menu, HotDrinks, ColdDrinks
+from .models import Menu, HotDrinks, ColdDrinks, Sandwich, Cake
 
 
 @admin.register(Menu)
@@ -20,6 +20,22 @@ class HotDrinksAdmin(admin.ModelAdmin):
 
 @admin.register(ColdDrinks)
 class ColdDrinksAdmin(admin.ModelAdmin):
+
+    list_filter = ('status', 'created_on')
+    list_display = ('name', 'description', 'price', 'status', 'created_on')
+    search_fields = ['name']
+
+
+@admin.register(Sandwich)
+class SandwichAdmin(admin.ModelAdmin):
+
+    list_filter = ('status', 'created_on')
+    list_display = ('name', 'description', 'price', 'status', 'created_on')
+    search_fields = ['name']
+
+
+@admin.register(Cake)
+class CakeAdmin(admin.ModelAdmin):
 
     list_filter = ('status', 'created_on')
     list_display = ('name', 'description', 'price', 'status', 'created_on')
