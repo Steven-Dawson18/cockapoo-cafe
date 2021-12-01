@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from django.views import generic, View
-from .models import Menu, HotDrinks
+from .models import Menu, HotDrinks, ColdDrinks
 
 
 class MenuList(generic.ListView):
@@ -14,3 +14,9 @@ class HotDrinksList(generic.ListView):
     model = HotDrinks
     queryset = HotDrinks.objects.filter(status=1).order_by('-created_on')
     template_name = 'menu/hot-drinks.html'
+
+
+class ColdDrinksList(generic.ListView):
+    model = ColdDrinks
+    queryset = ColdDrinks.objects.filter(status=1).order_by('-created_on')
+    template_name = 'menu/cold-drinks.html'
