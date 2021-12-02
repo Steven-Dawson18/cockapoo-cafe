@@ -151,4 +151,26 @@ Menu
   background-color: #fb5849;
   color: #fff;
   border-color: #fb5849;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+/* 
+---------------------------------------------
+Contact
+--------------------------------------------- 
+*/
+
+.contact-information {
+  background-color: #fb5849;
+  border: 1px solid #fb5849;
+  color: white;
+  padding: 30px;
+  border-radius: 8px;
+}
+
+.contact-form {
+  padding: 20px;
+  background-color: white;
+  margin-bottom: 2rem;
 }

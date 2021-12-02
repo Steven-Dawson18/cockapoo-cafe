@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+
+<section class="mt-50 mb-100">
+    <div class="container">
+        <!-- Contact Information -->
+        <div class="row">
+            <div class="col-12 col-md-4">
+                <div class="contact-information">
+                    <h5>Address</h5>
+                    <p>Cockapoo Cafe</p>
+                    <p>101 Lord Street, Fleetwood</p>
+                    <p>FY7 7ZZ</p>
+                    <h5>Phone</h5>
+                    <p>098 765 43210</p>
+                    <h5>Email</h5>
+                    <p class="mb-0">admin@cockapoocafe.com</p>
+                </div>
+            </div>
+            <!-- Contact Form -->
+            <div class="col-12 col-md-8">
+                <div class="contact-form">
+            <!-- Section Heading -->
+                    <div class="section-heading">
+                        <h2>Get In Touch</h2>
+                        <div class="line"></div>
+                    </div>
+            
+                    <form class="contact-form" onsubmit="return sendMail(this);" method="POST">
+                        {% csrf_token %}
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <input type="text" name="message-name" class="form-control mb-30" placeholder="Your Name" required>
+                            </div>
+                            <div class="col-lg-6">
+                                <input type="email" name="message-email" class="form-control mb-30" placeholder="Your Email" required>
+                            </div>
+                            <div class="col-12">
+                                <textarea name="message" class="form-control mb-30" placeholder="Your Message" required></textarea>
+                            </div>
+                            <div class="col-12">
+                                <button type="submit" class="menu-btn">Send Message</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+  </div>
+</section>
+
+
+
+
+{% endblock %}
