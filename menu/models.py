@@ -10,6 +10,7 @@ class Menu(models.Model):
     Models for menu
     """
     name = models.CharField(max_length=200)
+    slug = models.SlugField(max_length=200, default=name)
     description = models.TextField(blank=False)
     image = CloudinaryField('image', default='placeholder')
     status = models.IntegerField(choices=STATUS, default=0)
@@ -28,6 +29,7 @@ class HotDrinks(models.Model):
     Models for Hot Drinks Menu
     """
     name = models.CharField(max_length=200)
+    slug = models.SlugField(max_length=200, default=name)
     description = models.TextField(blank=False)
     image = CloudinaryField('image', default='placeholder')
     price = models.FloatField()
@@ -47,6 +49,7 @@ class ColdDrinks(models.Model):
     Models for Cold Drinks Menu
     """
     name = models.CharField(max_length=200)
+    slug = models.SlugField(max_length=200, default=name)
     description = models.TextField(blank=False)
     image = CloudinaryField('image', default='placeholder')
     price = models.FloatField()
@@ -66,6 +69,7 @@ class Sandwich(models.Model):
     Models for Sandwiches Menu
     """
     name = models.CharField(max_length=200)
+    slug = models.SlugField(max_length=200, default=name)
     description = models.TextField(blank=False)
     image = CloudinaryField('image', default='placeholder')
     price = models.FloatField()
@@ -85,6 +89,7 @@ class Cake(models.Model):
     Models for Cakes Menu
     """
     name = models.CharField(max_length=200)
+    slug = models.SlugField(max_length=200, default=name)
     description = models.TextField(blank=False)
     image = CloudinaryField('image', default='placeholder')
     price = models.FloatField()
