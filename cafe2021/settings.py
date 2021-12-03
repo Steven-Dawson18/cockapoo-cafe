@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'cloudinary',
     'menu.apps.MenuConfig',
     'home.apps.HomeConfig',
+    'review.apps.ReviewConfig',
 ]
 
 MIDDLEWARE = [
