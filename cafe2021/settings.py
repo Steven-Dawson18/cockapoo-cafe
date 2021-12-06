@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'menu.apps.MenuConfig',
     'home.apps.HomeConfig',
     'review.apps.ReviewConfig',
+    'reservation.apps.ReservationConfig',
 ]
 
 MIDDLEWARE = [
