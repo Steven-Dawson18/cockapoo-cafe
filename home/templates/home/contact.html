@@ -30,14 +30,14 @@
                         <div class="line"></div>
                     </div>
             
-                    <form class="contact-form" onsubmit="return sendMail(this);" method="POST">
+                    <form class="contact-form" onsubmit="event.preventDefault(); return sendMail(this);" method="POST">
                         {% csrf_token %}
                         <div class="row">
                             <div class="col-lg-6">
                                 <input type="text" name="message-name" class="form-control mb-30" placeholder="Your Name" required>
                             </div>
                             <div class="col-lg-6">
-                                <input type="email" name="message-email" class="form-control mb-30" placeholder="Your Email" required>
+                                <input type="email" name="emailaddress" class="form-control mb-30" placeholder="Your Email" required>
                             </div>
                             <div class="col-12">
                                 <textarea name="message" class="form-control mb-30" placeholder="Your Message" required></textarea>

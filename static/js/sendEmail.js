@@ -5,7 +5,7 @@ function sendMail(contactForm) {
         from_name: contactForm.name.value
     };
 
-    emailjs.send('service_evux4oc', 'cafe', templateParams)
+    emailjs.send('service_evux4oc', 'Cafe', templateParams)
 
         .then(function(response) {
         console.log('SUCCESS!', response.status, response.text);

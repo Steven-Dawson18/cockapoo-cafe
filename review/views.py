@@ -1,6 +1,9 @@
 from django.shortcuts import render
+from django.views import generic, View
+from .models import Review
 
 
-def review(request):
-    return render(request, "review/review.html")
-    
+class ReviewList(generic.ListView):
+    model = Review
+    queryset = Review.objects.filter(status=1).order_by('-created_on')
+    template_name = 'review/review.html'
