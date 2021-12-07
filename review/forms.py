@@ -3,6 +3,6 @@ from django import forms
 
 
 class ReviewForm(forms.ModelForm):
-    class meta:
+    class Meta:
         model = Review
-        fields = ('body',)
+        fields = ('title', 'body',)

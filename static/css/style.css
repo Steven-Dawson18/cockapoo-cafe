@@ -203,17 +203,17 @@ Review
   margin: 0 auto;
 }
 
-/* .review-form {
-  height: 100px;
+.review-form {
   width: 60%;
   margin: 0 auto;
+  padding: 20px;
   border: 2px solid #fb5849;
 }
 
 #reviewer {
   color: #fb5849;
   text-align: center;
-} */
+}
 
 .title {
   color: #fb5849;
