@@ -175,6 +175,10 @@ Contact
   margin-bottom: 2rem;
 }
 
+#map {
+  height: 100%;
+}
+
 /* #map {
   width: fit-content;
   border: 5px solid #fb5849;
@@ -196,4 +200,21 @@ Review
 
 .review {
   margin: 0 auto;
+}
+
+/* .review-form {
+  height: 100px;
+  width: 60%;
+  margin: 0 auto;
+  border: 2px solid #fb5849;
+}
+
+#reviewer {
+  color: #fb5849;
+  text-align: center;
+} */
+
+.title {
+  color: #fb5849;
+  text-align: center;
 }

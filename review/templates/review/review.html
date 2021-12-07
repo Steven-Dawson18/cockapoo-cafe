@@ -2,11 +2,13 @@
 
 {% load static%}
 
+{% load crispy_forms_tags %}
+
 {% block content %}
 
 {% for review in review_list %}
 
-<h1>Review Page</h1>
+<h1 class="title">Review Page</h1>
 
 <div class="card mb-0 col-8 review">
     <div class="row g-0">
@@ -27,6 +29,13 @@
       </div>
     </div>
   </div>
+  <!-- <h3>Leave a Review:</h3>
+  <p id="reviewer">Posting as: {{ user.username }}</p>
+  <form method="post" class="review-form">
+      {{ review_form | crispy }}
+      {% csrf_token %}
+      <button type="submit" class="menu-btn">Submit</button>
+  </form> -->
 
 {% endfor %}
 
