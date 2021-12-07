@@ -153,6 +153,7 @@ Menu
   border-color: #fb5849;
   padding: 10px;
   border-radius: 5px;
+  margin-bottom: 10px;
 }
 
 /* 
@@ -216,5 +217,18 @@ Review
 
 .title {
   color: #fb5849;
+  text-align: center;
+}
+
+/* 
+---------------------------------------------
+Authentication
+--------------------------------------------- 
+*/
+
+.auth {
+  width: 60%;
+  margin: 0 auto;
+  border: 2px solid #fb5849;
   text-align: center;
 }
