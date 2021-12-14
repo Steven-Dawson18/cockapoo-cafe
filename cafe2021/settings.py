@@ -26,6 +26,7 @@ TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ.get('SECRET_KEY')
+GOOGLE_MAPS_API = os.environ.get('GOOGLE_MAPS_API')
 
 # SECURITY WARNING: keep the Google Maps API key used in production secret!
 # GOOGLE_MAPS_API = os.environ.get('GOOGLE_MAPS_API')

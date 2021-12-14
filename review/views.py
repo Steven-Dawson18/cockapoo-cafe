@@ -116,5 +116,16 @@ class CreateReview(generic.ListView):
 
         return HttpResponseRedirect('/review')
 
-    # def updateReview(request):
-        
+    def approveReview(self, request):
+
+        # review_list = Review.objects.filter(status=0)
+        # review_form = ReviewForm(data=request.POST)
+
+        review_list = Review.objects.filter(status=0)
+        review_form = ReviewForm(data=request.POST)
+
+        if review_form.is_valid():
+            review_form.instance.author = request.user
+            review = review_form.save(commit=False)
+            status = 1
+            review.save()
