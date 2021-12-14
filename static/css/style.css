@@ -8,9 +8,9 @@ banner
     padding-top: 100px;
   } */
 
-  .container-fluid {
-    padding-left: 0;
-    padding-right: 0;
+.container-fluid {
+  padding-left: 0;
+  padding-right: 0;
 }
 
 #top .col-lg-4,
@@ -188,11 +188,22 @@ Contact
   overflow: auto;
 } */
 
+#map {
+  height: 400px;
+  /* The height is 400 pixels */
+  width: 100%;
+  /* The width is the width of the web page */
+  border: 5px solid #fb5849;
+}
+
 h3 {
   color: #fb5849;
   text-align: center;
 }
 
+#location {
+  text-align: center;
+}
 /* 
 ---------------------------------------------
 Review
@@ -200,7 +211,7 @@ Review
 */
 
 .review {
-  margin: 0 auto;
+  margin: 20px auto;
 }
 
 .review-form {
@@ -208,6 +219,11 @@ Review
   margin: 0 auto;
   padding: 20px;
   border: 2px solid #fb5849;
+  text-align: center;
+}
+
+.review-form input, textarea {
+  width: 80%;
 }
 
 #reviewer {
@@ -218,6 +234,11 @@ Review
 .title {
   color: #fb5849;
   text-align: center;
+}
+
+.leave-review {
+  text-align: center;
+  margin-top: 20px;
 }
 
 /* 

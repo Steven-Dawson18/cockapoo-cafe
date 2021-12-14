@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% load static%}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+{% if reviewed %}
+  <div class="alert alert-success" role="alert">
+      Your comment is awaiting approval
+  </div>
+  {% else %}
+  {% if user.is_authenticated %}
+    <h3>Leave a Review:</h3>
+    <p id="reviewer">Posting as: {{ user.username }}</p>
+    <form method="post" class="review-form">
+        {{ review_form.as_p }}
+        {% csrf_token %}
+        <button type="submit" class="menu-btn">Submit</button>
+    </form>
+
+  {% endif %}
+{% endif %}
+
+{% endblock %}

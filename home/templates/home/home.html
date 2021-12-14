@@ -15,7 +15,11 @@
                                     <h4>CockapooCafe</h4>
                                     <h6>THE PAWFECT EXPERIENCE</h6>
                                     <div class="main-white-button">
-                                        <a href="#" class="active">Make A Reservation</a>
+                                        {% if user.is_authenticated %}
+                                        <a href="{% url 'reservation' %}" class="active">Make A Reservation</a>
+                                        {% else %}
+                                        <a href="{% url 'account_signup' %}" class="active">Register</a>
+                                        {% endif %}
                                     </div>
                                 </div>
                             </div>

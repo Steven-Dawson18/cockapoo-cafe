@@ -7,7 +7,11 @@
 {% block content %}
 
   <h1 class="title">Review Page</h1>
-
+  {% if user.is_authenticated %}
+    <p class="leave-review"><a class="menu-btn" href="{% url 'create_review' %}">Leave a Review</a></p>
+  {% else %}
+    <p class="leave-review"><a class="menu-btn" href="{% url 'account_signup' %}">Leave a Review</a></p>
+  {% endif %}
 {% for review in review_list %}
 
 <div class="card mb-0 col-8 review">
@@ -15,7 +19,7 @@
       <div class="col-md-4">
          <!-- The image URL goes in the src attribute -->
          {% if "review_placeholder" in review.image.url %}
-         <img src="https://codeinstitute.s3.amazonaws.com/fullstack/blog/default.jpg" width="100%">
+         <img src="../../../static/images/placeholder.jpeg" width="100%">
          {% else %}
          <img src=" {{ review.image.url }} " width="100%">
          {% endif %}
@@ -33,14 +37,27 @@
 {% endfor %}
 
 {% if user.is_authenticated %}
-  <h3>Leave a Review:</h3>
-  <p id="reviewer">Posting as: {{ user.username }}</p>
-  <form method="post" class="review-form">
-      {{ review_form.as_p }}
-      {% csrf_token %}
-      <button type="submit" class="menu-btn">Submit</button>
-  </form>
-  
+  <p class="leave-review"><a class="menu-btn" href="{% url 'create_review' %}">Leave a Review</a></p>
+{% else %}
+  <p class="leave-review"><a class="menu-btn" href="{% url 'account_signup' %}">Leave a Review</a></p>
 {% endif %}
+
+<!-- {% if reviewed %}
+  <div class="alert alert-success" role="alert">
+      Your comment is awaiting approval
+  </div>
+  {% else %}
+  {% if user.is_authenticated %}
+    <h3>Leave a Review:</h3>
+    <p id="reviewer">Posting as: {{ user.username }}</p>
+    <form method="post" class="review-form">
+        {{ review_form.as_p }}
+        {% csrf_token %}
+        <button type="submit" class="menu-btn">Submit</button>
+    </form>
+   
+  {% endif %}
+{% endif %} -->
+
 
 {% endblock %}
