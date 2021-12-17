@@ -1,53 +1,43 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect, reverse
 from django.views import generic, View
+from django.views.generic import ListView
+from django.views.generic.edit import CreateView, DeleteView, UpdateView
+from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Review
 from .forms import ReviewForm
 from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
+from django.urls import reverse_lazy
 
 
-class ReviewList(generic.ListView):
+class ReviewListView(ListView):
     model = Review
     queryset = Review.objects.filter(status=1).order_by('-created_on')
     template_name = 'review/review.html'
 
-    # def get(self, request, *args, **kwargs):
-    #     review_list = Review.objects.filter(status=1)
 
-    #     return render(
-    #         request,
-    #         "review/review.html",
-    #         {
-    #             "review_list": review_list,
-    #             "reviewed": False,
-    #             "review_form": ReviewForm()
-    #         },
-    #     )
+class ReviewCreateView(LoginRequiredMixin, CreateView):
+    model = Review
+    fields = ['title', 'body', 'image']
+    template_name = 'review/create_review.html'
+    success_message = "Review created, will be approve soon"
+    success_url = '/review/'
 
-    # def post(self, request):
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
 
-    #     review_list = Review.objects.filter(status=1)
-    #     review_form = ReviewForm(data=request.POST)
 
-    #     if review_form.is_valid():
-    #         review_form.instance.author = request.user
-    #         review = review_form.save(commit=False)
-    #         review.save()
+class ReviewUpdateView(LoginRequiredMixin, UpdateView):
+    model = Review
+    fields = ['title', 'body', 'image']
+    template_name = 'review/update_review.html'
+    success_message = "Review created, will be approve soon"
+    success_url = reverse_lazy('review')
 
-    #         return render(
-    #         request,
-    #         "review/review.html",
-    #         {
-    #             "review_list": review_list,
-    #             "reviewed": True,
-    #             "review_form": ReviewForm()
-    #         },
-    #     )
-    #     else:
-    #         review_form = ReviewForm()
-
-    #     return HttpResponseRedirect('/review')
+    def getObject(request, id):
+        review = get_object_or_404(Review, id=pk)
 
 
 class ManageReviewList(generic.ListView):
@@ -73,59 +63,17 @@ class ManageReviewList(generic.ListView):
         return render(request, 'manage_reviews.html', context)
 
 
-class CreateReview(generic.ListView):
+class ApproveReview(generic.ListView):
 
-    model = Review
-    # queryset = Review.objects.filter(status=0).order_by('-created_on')
-    template_name = 'review/create_review.html'
+    queryset = Review.objects.filter(status=0).order_by('-created_on')
 
-    def get(self, request, *args, **kwargs):
-        review_list = Review.objects.filter(status=1)
+    def approveReview(self, request, *args, **kwargs):
 
-        return render(
-            request,
-            "review/create_review.html",
-            {
-                "review_list": review_list,
-                "reviewed": False,
-                "review_form": ReviewForm()
-            },
-        )
-
-    def post(self, request):
-
-        review_list = Review.objects.filter(status=1)
+        review_id = Review.get_object_or_404(review_id)
         review_form = ReviewForm(data=request.POST)
+        review_form.instance.author = request.user
+        review = review_form.save(commit=False)
+        status = 1
+        review.save()
 
-        if review_form.is_valid():
-            review_form.instance.author = request.user
-            review = review_form.save(commit=False)
-            review.save()
-
-            return render(
-            request,
-            "review/review.html",
-            {
-                "review_list": review_list,
-                "reviewed": True,
-                "review_form": ReviewForm()
-            },
-        )
-        else:
-            review_form = ReviewForm()
-
-        return HttpResponseRedirect('/review')
-
-    def approveReview(self, request):
-
-        # review_list = Review.objects.filter(status=0)
-        # review_form = ReviewForm(data=request.POST)
-
-        review_list = Review.objects.filter(status=0)
-        review_form = ReviewForm(data=request.POST)
-
-        if review_form.is_valid():
-            review_form.instance.author = request.user
-            review = review_form.save(commit=False)
-            status = 1
-            review.save()
+        return HttpResponseRedirect('manage_review')
