@@ -28,10 +28,8 @@
               <h5 class="card-title">{{ review.title }}</h5>
               <p class="card-text">{{ review.body }}</p>
               <p class="card-text"><small class="text-muted">{{ review.author }} | {{ review.created_on }}</small></p>
-              <a href="{% url 'approve_review' %}" class="menu-btn">Approve Review</a>
+              <a href="{% url 'approve_review' %}" class="menu-btn" name="approve">Approve Review</a>
               <a class="menu-btn">Reject Review</a>
-              <a class="menu-btn">Update Review</a>
-              <a class="menu-btn">Delete Review</a>
             </div>
           </div>
         </div>

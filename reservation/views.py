@@ -1,17 +1,25 @@
 from django.shortcuts import render
-# from django.contrib.auth.mixins import LoginRequiredMixin
-# from django.views.generic.edit import CreateView
-# from myapp.models import Author
+from django.views import generic
+from django.views.generic import ListView
+from django.views.generic.edit import CreateView, DeleteView, UpdateView
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.urls import reverse_lazy
+from .models import Reservation, Reservation_Choices
 
 
-# class AuthorCreate(LoginRequiredMixin, CreateView):
-#     model = Author
-#     fields = ['name']
-
-#     def form_valid(self, form):
-#         form.instance.created_by = self.request.user
-#         return super().form_valid(form)
+class ReservationListView(ListView):
+    model = Reservation
+    fields = ['first_name', 'last_name', 'email', 'phone', 'time', 'datetime', 'information']
+    template_name = 'reservation/reservation.html'
 
 
-def reservation(request):
-    return render(request, "reservation/reservation.html")
+class ReservationCreateView(LoginRequiredMixin, CreateView):
+    model = Reservation
+    fields = ['first_name', 'last_name', 'email', 'phone', 'time', 'datetime', 'information']
+    template_name = 'reservation/create_reservation.html'
+    success_message = "Reservation created, will be approve soon"
+    success_url = reverse_lazy('reservation')
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)

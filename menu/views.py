@@ -7,7 +7,6 @@ class MenuList(generic.ListView):
     model = Menu
     queryset = Menu.objects.filter(status=1).order_by('-created_on')
     template_name = 'menu/menu.html'
-    paginate_by = 6
 
 
 class HotDrinksList(generic.ListView):

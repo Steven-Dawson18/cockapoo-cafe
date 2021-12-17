@@ -6,4 +6,26 @@
 
 <h1>Reservations Page</h1>
 <h3>Here You Can Make A Reservation Or Just walkin to our cafe</h3>
+<a class="menu-btn" href="{% url 'create_reservation' %}">Make a reservation</a>
+
+{% for res in object_list %}
+    
+<div class="row row-cols-1 row-cols-md-2 g-4 justify-content-center">
+    <div class="col">
+        <div class="card">
+            <div class="card-body text-center">
+                <h5 class="card-title">{{ res.first_name }} {{ res.last_name }}</h5>
+                <p class="card-text">{{ res.information }}</p>
+                <p class="card-text">{{ res.time }}</p>
+                <p class="card-text">{{ res.datetime }}</p>
+                <p class="card-text">{{ res.sent_date }}</p>
+                <p class="card-text">{{ res.approved_date }}</p>
+            </div>
+        </div>
+        <hr>
+    </div>
+</div>
+
+{% endfor %}
+
 {% endblock %}
