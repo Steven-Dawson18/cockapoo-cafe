@@ -33,11 +33,15 @@ class ReviewUpdateView(LoginRequiredMixin, UpdateView):
     model = Review
     fields = ['title', 'body', 'image']
     template_name = 'review/update_review.html'
-    success_message = "Review created, will be approve soon"
+    success_message = "Review has been updated"
     success_url = reverse_lazy('review')
 
-    def getObject(request, id):
-        review = get_object_or_404(Review, id=pk)
+
+class ReviewDeleteView(DeleteView):
+    model = Review
+    template_name = 'review/delete_review.html'
+    success_message = "Review has been deleted"
+    success_url = reverse_lazy('review')
 
 
 class ManageReviewList(generic.ListView):

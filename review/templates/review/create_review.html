@@ -18,6 +18,7 @@
         {{ form.as_p }}
         {% csrf_token %}
         <button type="submit" class="menu-btn">Submit</button>
+        <a class="menu-btn" href="{% url 'review' %}">Cancel</a>
     </form>
 
   {% endif %}

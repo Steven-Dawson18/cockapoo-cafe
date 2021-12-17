@@ -38,7 +38,7 @@
           {%if review.author == request.user%}
             <a class="menu-btn">Reject Review</a>
             <a href="{% url 'update_review' review.id %}" class="menu-btn">Update Review</a>
-            <a class="menu-btn">Delete Review</a>
+            <a href="{% url 'delete_review' review.id %}" class="menu-btn">Delete Review</a>
           {%endif%}
         </div>
       </div>
