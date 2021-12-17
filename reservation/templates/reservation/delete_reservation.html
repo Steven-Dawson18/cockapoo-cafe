@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% load static%}
+
+{% block content %}
+
+<form method="post">{% csrf_token %}
+    <p>Are you sure you want to delete "{{ res.id }}"?</p>
+    <input type="submit" value="Confirm">
+    <a class="menu-btn" href="{% url 'reservation' %}">Cancel</a>
+    
+</form>
+
+
+{% endblock %}

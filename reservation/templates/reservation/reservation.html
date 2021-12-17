@@ -20,6 +20,8 @@
                 <p class="card-text">{{ res.datetime }}</p>
                 <p class="card-text">{{ res.sent_date }}</p>
                 <p class="card-text">{{ res.approved_date }}</p>
+                <a href="{% url 'update_reservation' res.id %}" class="menu-btn">Update Review</a>
+                <a href="{% url 'delete_reservation' res.id %}" class="menu-btn">Delete Review</a>
             </div>
         </div>
         <hr>
