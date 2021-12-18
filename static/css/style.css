@@ -103,6 +103,18 @@ banner
     nav {
     margin-bottom: 20px;;
     }
+
+    .sticky {
+      position: sticky;
+      top: 0px; /* When the element reaches top: 10px, it becomes fixed. */
+      z-index: 100;
+    }
+
+    .stickyfoot {
+      position: sticky;
+      bottom: 0px; /* When the element reaches top: 10px, it becomes fixed. */
+      z-index: 100;
+    }
     
     .foot-img {
     height: 10%;
@@ -180,14 +192,6 @@ Contact
   height: 100%;
 }
 
-/* #map {
-  width: fit-content;
-  border: 5px solid #fb5849;
-  border-radius: 10px;
-  margin: 20px auto;
-  overflow: auto;
-} */
-
 #map {
   height: 400px;
   /* The height is 400 pixels */
@@ -251,5 +255,20 @@ Authentication
   width: 60%;
   margin: 0 auto;
   border: 2px solid #fb5849;
+  text-align: center;
+}
+
+/*
+---------------------------------------------
+Reservation
+--------------------------------------------- 
+*/
+
+#make-reservation-btn {
+  text-align: center;
+  margin: 20px auto;
+}
+
+.no-reservation-text {
   text-align: center;
 }

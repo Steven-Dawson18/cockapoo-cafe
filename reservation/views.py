@@ -33,7 +33,7 @@ class ReservationUpdateView(LoginRequiredMixin, UpdateView):
     success_url = reverse_lazy('reservation')
 
 
-class ReservationDeleteView(DeleteView):
+class ReservationDeleteView(LoginRequiredMixin, DeleteView):
     model = Reservation
     fields = ['first_name', 'last_name', 'email', 'phone', 'time', 'datetime', 'information']
     template_name = 'reservation/delete_reservation.html'

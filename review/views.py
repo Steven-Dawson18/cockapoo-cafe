@@ -32,7 +32,7 @@ class ReviewUpdateView(LoginRequiredMixin, UpdateView):
     success_url = reverse_lazy('review')
 
 
-class ReviewDeleteView(DeleteView):
+class ReviewDeleteView(LoginRequiredMixin, DeleteView):
     model = Review
     template_name = 'review/delete_review.html'
     success_message = "Review has been deleted"
