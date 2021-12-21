@@ -20,6 +20,14 @@ class ReservationCreateView(LoginRequiredMixin, CreateView):
     success_message = "Reservation created, will be approve soon"
     success_url = reverse_lazy('reservation')
 
+    # Adapted from stackoverflow
+    def get_form(self, form_class=None):
+        '''add date picker in forms'''
+        from django.forms.widgets import SelectDateWidget
+        form = super(ReservationCreateView, self).get_form(form_class)
+        form.fields['datetime'].widget = SelectDateWidget()
+        return form
+
     def form_valid(self, form):
         form.instance.user = self.request.user
         return super().form_valid(form)
