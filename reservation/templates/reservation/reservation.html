@@ -4,7 +4,7 @@
 
 {% block content %}
     <div class=" container no-reservation-text">
-        <h3>Here You Can Make A Reservation Or Just walkin to our cafe</h3>
+        <h3>Here You Can Make A Reservation Or Just walk in to our cafe</h3>
         <p>You visit us by just walking in or you can guarantee a table by clicking the button below to make a reservation at the Cockapoo Cafe.</p>
         <p id="make-reservation-btn"><a class="menu-btn" href="{% url 'create_reservation' %}">Make a reservation</a></p>
         <h3>Your Reservations are:</h3>
@@ -34,9 +34,9 @@
                         <p class="card-text"> On: {{ res.datetime }}</p>
                         <p class="card-text"><strong>Important info:</strong> {{ res.information }}</p>
                         <p class="card-text">Date reservation made: {{ res.sent_date }}</p>
-                        <p class="card-text">Date reservation approved: {{ res.accepted_date }}</p>
-                        <a href="{% url 'update_reservation' res.id %}" class="menu-btn">Update Review</a>
-                        <a href="{% url 'delete_reservation' res.id %}" class="menu-btn">Delete Review</a>
+                        <!-- <p class="card-text">Date reservation approved: {{ res.accepted_date }}</p> -->
+                        <a href="{% url 'update_reservation' res.id %}" class="menu-btn">Update Reservation</a>
+                        <a href="{% url 'delete_reservation' res.id %}" class="menu-btn">Delete Reservation</a>
                     </div>
                 </div>
                 <hr>

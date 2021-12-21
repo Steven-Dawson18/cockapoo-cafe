@@ -8,7 +8,7 @@
 <div class="row">
   <div class="coll-12 auth">
 
-    <h1 class="title">{% trans "Sign Up" %}</h1>
+    <h1 class="title">{% trans "Register" %}</h1>
 
     <p>{% blocktrans %}Already have an account? Then please <a href="{{ login_url }}">sign in</a>.{% endblocktrans %}</p>
 
@@ -18,7 +18,8 @@
       {% if redirect_field_value %}
       <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
       {% endif %}
-      <button class="menu-btn" type="submit">{% trans "Sign Up" %} &raquo;</button>
+      <button class="menu-btn" type="submit">{% trans "Register" %} &raquo;</button>
+      <a class="menu-btn cancel-btn" href="{% url 'home' %}">Cancel</a>
     </form>
 
   </div>

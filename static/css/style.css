@@ -162,15 +162,24 @@ Menu
 .menu-btn {
   background-color: #fb5849;
   color: #fff;
-  border-color: #fb5849;
+  border: 1px solid #fb5849;
   padding: 10px;
   border-radius: 5px;
   margin-bottom: 10px;
+  margin-right: 5px;
+  text-decoration: none;
+}
+
+.menu-btn:hover{
+  background-color: #fff;
+  color: #fb5849;
+  border: 1px solid #fb5849;
 }
 
 .cancel-btn {
-  padding: 15px;
+  padding: 13px;
   text-decoration: none;
+  margin-bottom: 10px;
 }
 
 /* 
@@ -279,6 +288,14 @@ Reservation
 }
 
 .reservation-form {
+  width: 60%;
+  margin: 0 auto;
+  padding: 20px;
+  border: 2px solid #fb5849;
+  text-align: center;
+}
+
+.delete-form {
   width: 60%;
   margin: 0 auto;
   padding: 20px;

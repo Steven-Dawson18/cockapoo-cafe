@@ -4,9 +4,9 @@
 
 {% block content %}
 
-<form method="post">{% csrf_token %}
-    <p>Are you sure you want to delete "{{ res.id }}"?</p>
-    <input type="submit" value="Confirm">
+<form class="delete-form" method="post">{% csrf_token %}
+    <p>Are you sure you want to delete your reservation?</p>
+    <input class="menu-btn" type="submit" value="Confirm">
     <a class="menu-btn cancel-btn" href="{% url 'reservation' %}">Cancel</a>
     
 </form>
