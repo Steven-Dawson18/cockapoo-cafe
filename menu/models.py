@@ -53,7 +53,7 @@ class ColdDrinks(models.Model):
     description = models.TextField(blank=False)
     image = CloudinaryField('image', default='placeholder')
     price = models.FloatField()
-    status = models.IntegerField(choices=STATUS, default=0)
+    status = models.IntegerField(choices=STATUS, default=1)
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)
 

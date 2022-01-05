@@ -6,17 +6,11 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 from .models import Menu, HotDrinks, ColdDrinks, Sandwich, Cake
 
-
+# menu options
 class MenuListView(ListView):
     model = Menu
     queryset = Menu.objects.filter(status=1).order_by('-created_on')
     template_name = 'menu/menu.html'
-
-
-# class HotDrinksList(generic.ListView):
-#     model = HotDrinks
-#     queryset = HotDrinks.objects.filter(status=1).order_by('-created_on')
-#     template_name = 'menu/hot-drinks.html'
 
 
 class ColdDrinksList(generic.ListView):
@@ -36,7 +30,7 @@ class CakeList(generic.ListView):
     queryset = Cake.objects.filter(status=1).order_by('-created_on')
     template_name = 'menu/cakes.html'
 
-
+# Hot drinks menu
 class HotDrinksListView(ListView):
     model = HotDrinks
     queryset = HotDrinks.objects.filter(status=1).order_by('-created_on')
@@ -64,3 +58,33 @@ class HotdrinksDeleteView(LoginRequiredMixin, DeleteView):
     template_name = 'menu/delete-hot-drink.html'
     success_message = "Drink has been deleted"
     success_url = reverse_lazy('hot-drinks')
+
+
+# Cold drinks menu
+class ColdDrinksListView(ListView):
+    model = ColdDrinks
+    queryset = ColdDrinks.objects.filter(status=1).order_by('-created_on')
+    template_name = 'menu/cold-drinks.html'
+
+
+class ColdDrinksCreateView(LoginRequiredMixin, CreateView):
+    model = ColdDrinks
+    fields = ['name', 'description', 'image', 'price']
+    template_name = 'menu/create_colddrink.html'
+    success_message = "Drink created"
+    success_url = reverse_lazy('cold-drinks')
+
+
+class ColdDrinksUpdateView(LoginRequiredMixin, UpdateView):
+    model = ColdDrinks
+    fields = ['name', 'description', 'image', 'price']
+    template_name = 'menu/update_colddrink.html'
+    success_message = "Drink has been updated"
+    success_url = reverse_lazy('cold-drinks')
+
+
+class ColdDrinksDeleteView(LoginRequiredMixin, DeleteView):
+    model = ColdDrinks
+    template_name = 'menu/delete-cold-drink.html'
+    success_message = "Drink has been deleted"
+    success_url = reverse_lazy('cold-drinks')

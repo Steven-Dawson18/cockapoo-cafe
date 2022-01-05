@@ -7,17 +7,19 @@
         <h2>Cockapoo Cafe</h2>
         <h3>Cold Drinks Menu</h3>
     </div>
-
+    <p class="create-item-btn"><a class="menu-btn" href="{% url 'create-cold-drinks' %}">Create a New Drink</a></p>
     {% for drink in colddrinks_list %}
     
     <div class="row row-cols-1 row-cols-md-2 g-4 justify-content-center">
         <div class="col">
             <div class="card">
-                <img src="{{ drink.image.url }}" class="card-img-top" alt="Mocha Coffee picture">
+                <img src="{{ drink.image.url }}" class="card-img-top" alt="Drink picture">
                 <div class="card-body text-center">
                     <h5 class="card-title">{{ drink.name }}</h5>
                     <p class="card-text">{{ drink.description }}</p>
                     <p class="card-text">£{{ drink.price }}</p>
+                    <a href="{% url 'update-cold-drink' drink.id %}" class="menu-btn">Update Drink</a>
+                    <a href="{% url 'delete-cold-drink' drink.id %}" class="menu-btn">Delete Drink</a>
                 </div>
             </div>
             <hr>
