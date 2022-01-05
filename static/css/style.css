@@ -159,6 +159,11 @@ Menu
   color: #fb5849;
 }
 
+.create-item-btn {
+  text-align: center;
+  margin-top: 20px;
+}
+
 .menu-btn {
   background-color: #fb5849;
   color: #fff;
@@ -180,6 +185,10 @@ Menu
   padding: 13px;
   text-decoration: none;
   margin-bottom: 10px;
+}
+
+.menu-cards {
+  display: inline-block;
 }
 
 /* 

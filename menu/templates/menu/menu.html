@@ -5,7 +5,7 @@
 {% block content %}
 
     <h2 class="menu-title">Cockapoo Cafe Menu</h2>
-
+<!-- 
     {% for menu in menu_list %}
 
         <div class="row row-cols-1 row-cols-md-2 g-4 justify-content-center">
@@ -22,7 +22,53 @@
             </div>
         </div>
 
-    {% endfor %}
+    {% endfor %} -->
 
+    <div class="row row-cols-1 row-cols-md-2 g-4 justify-content-center">
+        <div class="col">
+            <div class="card">
+                <img src="{% static 'images/mocha.jpeg' %}" class="card-img-top" alt="Mocha Coffee picture">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Hot Drinks Menu</h5>
+                    <p class="card-text">Here you will find a menu of the hot drinks</p>
+                    <a class="menu-btn" href="{% url 'hot-drinks' %}">Menu</a>
+                </div>
+            </div>
+            <hr>
+        </div>
+        <div class="col">
+            <div class="card">
+                <img src="{% static 'images/strawberry-milkshake.jpeg' %}" class="card-img-top" alt="Milkshake picture">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Cold Drinks Menu</h5>
+                    <p class="card-text">Here you will find a selection of cold drinks on offer at the Cockapoo Cafe</p>
+                    <a class="menu-btn" href="#">Menu</a>
+                </div>
+            </div>
+            <hr>
+        </div>
+        <div class="col">
+            <div class="card">
+                <img src="{% static 'images/club-sandwich.jpeg' %}" class="card-img-top" alt="Club Sandwich picture">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Sandwich Menu</h5>
+                    <p class="card-text">Here you will find a selection of sandwiches on offer at the Cockapoo Cafe</p>
+                    <a class="menu-btn" href="#">Menu</a>
+                </div>
+            </div>
+            <hr>
+        </div>
+        <div class="col">
+            <div class="card">
+                <img src="{% static 'images/carrot-cake.jpeg' %}" class="card-img-top" alt="Carrot Cake picture">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Cakes Menu</h5>
+                    <p class="card-text">Here you will find a selection of cakes available at the Cockapoo Cafe</p>
+                    <a class="menu-btn" href="#">Menu</a>
+                </div>
+            </div>
+            <hr>
+        </div>
+    </div>
 
 {% endblock %}
