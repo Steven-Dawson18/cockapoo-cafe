@@ -13,22 +13,22 @@ class MenuListView(ListView):
     template_name = 'menu/menu.html'
 
 
-class ColdDrinksList(generic.ListView):
-    model = ColdDrinks
-    queryset = ColdDrinks.objects.filter(status=1).order_by('-created_on')
-    template_name = 'menu/cold-drinks.html'
+# class ColdDrinksList(generic.ListView):
+#     model = ColdDrinks
+#     queryset = ColdDrinks.objects.filter(status=1).order_by('-created_on')
+#     template_name = 'menu/cold-drinks.html'
 
 
-class SandwichList(generic.ListView):
-    model = Sandwich
-    queryset = Sandwich.objects.filter(status=1).order_by('-created_on')
-    template_name = 'menu/snacks.html'
+# class SandwichList(generic.ListView):
+#     model = Sandwich
+#     queryset = Sandwich.objects.filter(status=1).order_by('-created_on')
+#     template_name = 'menu/snacks.html'
 
 
-class CakeList(generic.ListView):
-    model = Cake
-    queryset = Cake.objects.filter(status=1).order_by('-created_on')
-    template_name = 'menu/cakes.html'
+# class CakeList(generic.ListView):
+#     model = Cake
+#     queryset = Cake.objects.filter(status=1).order_by('-created_on')
+#     template_name = 'menu/cakes.html'
 
 # Hot drinks menu
 class HotDrinksListView(ListView):
@@ -88,3 +88,63 @@ class ColdDrinksDeleteView(LoginRequiredMixin, DeleteView):
     template_name = 'menu/delete-cold-drink.html'
     success_message = "Drink has been deleted"
     success_url = reverse_lazy('cold-drinks')
+
+
+# Sandwich menu
+class SandwichesListView(ListView):
+    model = Sandwich
+    queryset = Sandwich.objects.filter(status=1).order_by('-created_on')
+    template_name = 'menu/sandwich.html'
+
+
+class SandwichesCreateView(LoginRequiredMixin, CreateView):
+    model = Sandwich
+    fields = ['name', 'description', 'image', 'price']
+    template_name = 'menu/create_sandwich.html'
+    success_message = "sandwich created"
+    success_url = reverse_lazy('sandwich')
+
+
+class SandwichesUpdateView(LoginRequiredMixin, UpdateView):
+    model = Sandwich
+    fields = ['name', 'description', 'image', 'price']
+    template_name = 'menu/update_sandwich.html'
+    success_message = "sandwich has been updated"
+    success_url = reverse_lazy('sandwich')
+
+
+class SandwichesDeleteView(LoginRequiredMixin, DeleteView):
+    model = Sandwich
+    template_name = 'menu/delete-sandwich.html'
+    success_message = "sandwich has been deleted"
+    success_url = reverse_lazy('sandwich')
+
+
+# Cakes menu
+class CakesListView(ListView):
+    model = Cake
+    queryset = Cake.objects.filter(status=1).order_by('-created_on')
+    template_name = 'menu/cake.html'
+
+
+class CakesCreateView(LoginRequiredMixin, CreateView):
+    model = Cake
+    fields = ['name', 'description', 'image', 'price']
+    template_name = 'menu/create_cake.html'
+    success_message = "Cake created"
+    success_url = reverse_lazy('cakes')
+
+
+class CakesUpdateView(LoginRequiredMixin, UpdateView):
+    model = Cake
+    fields = ['name', 'description', 'image', 'price']
+    template_name = 'menu/update_cake.html'
+    success_message = "Cake has been updated"
+    success_url = reverse_lazy('cakes')
+
+
+class CakesDeleteView(LoginRequiredMixin, DeleteView):
+    model = Cake
+    template_name = 'menu/delete-cake.html'
+    success_message = "Cake has been deleted"
+    success_url = reverse_lazy('cakes')

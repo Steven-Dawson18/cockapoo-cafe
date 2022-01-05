@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% load static%}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+  {% if user.is_authenticated %}
+    <h3>Update Cake:</h3>
+    <form method="post" class="review-form">
+        {{ form.as_p }}
+        {% csrf_token %}
+        <button type="submit" class="menu-btn">Submit</button>
+        <a class="menu-btn" href="{% url 'cakes' %}">Cancel</a>
+    </form>
+  {% endif %}
+
+
+{% endblock %}

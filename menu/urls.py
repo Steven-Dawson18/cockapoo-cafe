@@ -3,7 +3,6 @@ from . import views
 
 urlpatterns = [
     path('', views.MenuListView.as_view(), name="menu"),
-    # path('menulist/', views.MenuList.as_view(), name="menu-list"),
     path('hot-drinks/', views.HotDrinksListView.as_view(), name="hot-drinks"),
     path('create-hot-drinks/', views.HotdrinksCreateView.as_view(), name="create-hot-drinks"),
     path('update-hot-drinks/<pk>/', views.HotdrinksUpdateView.as_view(), name="update-hot-drink"),
@@ -12,6 +11,12 @@ urlpatterns = [
     path('create-cold-drinks/', views.ColdDrinksCreateView.as_view(), name="create-cold-drinks"),
     path('update-cold-drinks/<pk>/', views.ColdDrinksUpdateView.as_view(), name="update-cold-drink"),
     path('delete-cold-drinks/<pk>/', views.ColdDrinksDeleteView.as_view(), name="delete-cold-drink"),
-    path('sandwiches/', views.SandwichList.as_view(), name="Sandwich"),
-    path('cakes/', views.CakeList.as_view(), name="cakes"),
+    path('sandwich/', views.SandwichesListView.as_view(), name="sandwich"),
+    path('create-sandwich/', views.SandwichesCreateView.as_view(), name="create-sandwich"),
+    path('update-sandwich/<pk>/', views.SandwichesUpdateView.as_view(), name="update-sandwich"),
+    path('delete-sandwich/<pk>/', views.SandwichesDeleteView.as_view(), name="delete-sandwich"),
+    path('cakes/', views.CakesListView.as_view(), name="cakes"),
+    path('create-cake/', views.CakesCreateView.as_view(), name="create-cake"),
+    path('update-cake/<pk>/', views.CakesUpdateView.as_view(), name="update-cake"),
+    path('delete-cake/<pk>/', views.CakesDeleteView.as_view(), name="delete-cake"),
 ]
