@@ -1,5 +1,6 @@
 from django.db import models
 from cloudinary.models import CloudinaryField
+from django.contrib.auth.models import User
 
 
 STATUS = ((0, "Draft"), (1, "Published"))
@@ -36,9 +37,13 @@ class HotDrinks(models.Model):
     status = models.IntegerField(choices=STATUS, default=1)
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)
+    likes = models.ManyToManyField(User, related_name='hot_drink_item')
 
     class Meta:
         ordering = ["-created_on"]
+
+    def total_likes(self):
+        return self.likes.count()
 
     def __str__(self):
         return self.name
@@ -56,6 +61,7 @@ class ColdDrinks(models.Model):
     status = models.IntegerField(choices=STATUS, default=1)
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)
+    likes = models.ManyToManyField(User, related_name='cold_drink_item')
 
     class Meta:
         ordering = ["-created_on"]
@@ -76,6 +82,7 @@ class Sandwich(models.Model):
     status = models.IntegerField(choices=STATUS, default=1)
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)
+    likes = models.ManyToManyField(User, related_name='sandwich_item')
 
     class Meta:
         ordering = ["-created_on"]
@@ -96,6 +103,7 @@ class Cake(models.Model):
     status = models.IntegerField(choices=STATUS, default=1)
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)
+    likes = models.ManyToManyField(User, related_name='cake_item')
 
     class Meta:
         ordering = ["-created_on"]

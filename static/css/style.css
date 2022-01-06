@@ -311,3 +311,17 @@ Reservation
   border: 2px solid #fb5849;
   text-align: center;
 }
+
+/*
+---------------------------------------------
+Like functionality
+--------------------------------------------- 
+*/
+
+.like-btn {
+  width: fit-content;
+}
+
+.like {
+  display: inline-block;
+}

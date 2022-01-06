@@ -30,13 +30,19 @@
                             <a href="{% url 'update-hot-drink' drink.id %}" class="menu-btn">Update Drink</a>
                             <a href="{% url 'delete-hot-drink' drink.id %}" class="menu-btn">Delete Drink</a>
                         {% endif %}
+                        {% if user.is_authenticated %}
+                            <a href="{% url 'like-hot-drink' drink.id %}"class="menu-btn like-btn">Like <i class="fab fa-gratipay"></i></a>
+                        {% endif %}
+                        <i class="fab fa-gratipay"> </i>- {{ drink.total_likes }} Likes
                     </div>
+                    
                 </div>
                 <hr>
             </div>
         </div>
 
     {% endfor %}
-   
+
+    <p class="create-item-btn"><a class="menu-btn" href="{% url 'menu' %}">Back to Main Menu</a></p>
 
 {% endblock %}

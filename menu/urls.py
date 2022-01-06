@@ -19,4 +19,5 @@ urlpatterns = [
     path('create-cake/', views.CakesCreateView.as_view(), name="create-cake"),
     path('update-cake/<pk>/', views.CakesUpdateView.as_view(), name="update-cake"),
     path('delete-cake/<pk>/', views.CakesDeleteView.as_view(), name="delete-cake"),
+    path('like/<pk>', views.LikeView, name="like-hot-drink"),
 ]
