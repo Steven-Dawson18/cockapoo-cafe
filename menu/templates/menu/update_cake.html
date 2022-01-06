@@ -8,7 +8,7 @@
 
   {% if user.is_authenticated %}
     <h3>Update Cake:</h3>
-    <form method="post" class="review-form">
+    <form method="post" enctype="multipart/form-data" class="review-form">
         {{ form.as_p }}
         {% csrf_token %}
         <button type="submit" class="menu-btn">Submit</button>

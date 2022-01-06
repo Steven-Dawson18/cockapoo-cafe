@@ -7,7 +7,10 @@
         <h2>Cockapoo Cafe</h2>
     <h3>Hot Drinks Menu</h3>
     </div>
+    {% if request.user.is_superuser %}
     <p class="create-item-btn"><a class="menu-btn" href="{% url 'create-hot-drinks' %}">Create a New Drink</a></p>
+    {% endif %}
+    
     {% for drink in hotdrinks_list %}
 
         <div class="row row-cols-1 row-cols-md-2 g-4 justify-content-center">
@@ -23,8 +26,10 @@
                         <h5 class="card-title">{{ drink.name }}</h5>
                         <p class="card-text">{{ drink.description }}</p>
                         <p class="card-text">£{{ drink.price }}</p>
-                        <a href="{% url 'update-hot-drink' drink.id %}" class="menu-btn">Update Drink</a>
-                        <a href="{% url 'delete-hot-drink' drink.id %}" class="menu-btn">Delete Drink</a>
+                        {% if request.user.is_superuser %}
+                            <a href="{% url 'update-hot-drink' drink.id %}" class="menu-btn">Update Drink</a>
+                            <a href="{% url 'delete-hot-drink' drink.id %}" class="menu-btn">Delete Drink</a>
+                        {% endif %}
                     </div>
                 </div>
                 <hr>
