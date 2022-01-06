@@ -63,6 +63,12 @@ class ColdDrinksListView(ListView):
     queryset = ColdDrinks.objects.filter(status=1).order_by('-created_on')
     template_name = 'menu/cold-drinks.html'
 
+    def get_context(self):
+        item = get_object_or_404(ColdDrinks, id=self.pk)
+        total_likes = item.total_likes()
+        context["total_likes"] = total_likes
+        return context
+
 
 class ColdDrinksCreateView(LoginRequiredMixin, CreateView):
     model = ColdDrinks
@@ -87,11 +93,22 @@ class ColdDrinksDeleteView(LoginRequiredMixin, DeleteView):
     success_url = reverse_lazy('cold-drinks')
 
 
+def ColdLikeView(request, pk):
+    colddrink = get_object_or_404(ColdDrinks, id=pk)
+    colddrink.likes.add(request.user)
+    return HttpResponseRedirect(reverse('cold-drinks'))
+
+
 # Sandwich menu
 class SandwichesListView(ListView):
     model = Sandwich
     queryset = Sandwich.objects.filter(status=1).order_by('-created_on')
     template_name = 'menu/sandwich.html'
+
+    def SandwichLikeView(request, pk):
+        cake = get_object_or_404(Sandwich, id=pk)
+        cake.likes.add(request.user)
+        return HttpResponseRedirect(reverse('sandwich'))
 
 
 class SandwichesCreateView(LoginRequiredMixin, CreateView):
@@ -117,11 +134,23 @@ class SandwichesDeleteView(LoginRequiredMixin, DeleteView):
     success_url = reverse_lazy('sandwich')
 
 
+def SandwichLikeView(request, pk):
+    sandwich = get_object_or_404(Sandwich, id=pk)
+    sandwich.likes.add(request.user)
+    return HttpResponseRedirect(reverse('sandwich'))
+
+
 # Cakes menu
 class CakesListView(ListView):
     model = Cake
     queryset = Cake.objects.filter(status=1).order_by('-created_on')
     template_name = 'menu/cake.html'
+
+    def get_context(self):
+        item = get_object_or_404(Cake, id=self.pk)
+        total_likes = item.total_likes()
+        context["total_likes"] = total_likes
+        return context
 
 
 class CakesCreateView(LoginRequiredMixin, CreateView):
@@ -145,3 +174,9 @@ class CakesDeleteView(LoginRequiredMixin, DeleteView):
     template_name = 'menu/delete-cake.html'
     success_message = "Cake has been deleted"
     success_url = reverse_lazy('cakes')
+
+
+def CakeLikeView(request, pk):
+    cake = get_object_or_404(Cake, id=pk)
+    cake.likes.add(request.user)
+    return HttpResponseRedirect(reverse('cakes'))

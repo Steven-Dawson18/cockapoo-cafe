@@ -20,4 +20,7 @@ urlpatterns = [
     path('update-cake/<pk>/', views.CakesUpdateView.as_view(), name="update-cake"),
     path('delete-cake/<pk>/', views.CakesDeleteView.as_view(), name="delete-cake"),
     path('like/<pk>', views.LikeView, name="like-hot-drink"),
+    path('cold-like/<pk>', views.ColdLikeView, name="like-cold-drink"),
+    path('cake-like/<pk>', views.CakeLikeView, name="like-cake"),
+    path('sandwich-like/<pk>', views.SandwichLikeView, name="like-sandwich"),
 ]

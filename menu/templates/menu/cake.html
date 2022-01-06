@@ -24,7 +24,11 @@
                     {% if request.user.is_superuser %}
                         <a href="{% url 'update-cake' cake.id %}" class="menu-btn">Update Cake</a>
                         <a href="{% url 'delete-cake' cake.id %}" class="menu-btn">Delete Cake</a>
-                        {% endif %}
+                    {% endif %}
+                    {% if user.is_authenticated %}
+                        <a href="{% url 'like-cake' cake.id %}"class="menu-btn like-btn">Like <i class="fab fa-gratipay"></i></a>
+                    {% endif %}
+                    <i class="fab fa-gratipay"> </i>- {{ cake.total_likes }} Likes
                 </div>
             </div>
             <hr>
