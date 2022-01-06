@@ -9,10 +9,8 @@ from django.http import HttpResponseRedirect
 
 
 # menu options
-class MenuListView(ListView):
-    model = Menu
-    queryset = Menu.objects.filter(status=1).order_by('-created_on')
-    template_name = 'menu/menu.html'
+def MenuList(request):
+    return render(request, "menu/menu.html")
 
 
 # Hot drinks menu
@@ -24,7 +22,12 @@ class HotDrinksListView(ListView):
     def get_context(self):
         item = get_object_or_404(HotDrinks, id=self.pk)
         total_likes = item.total_likes()
+        liked = False
+        if item.likes.filter(id=request.user.id).exists():
+            liked = True
         context["total_likes"] = total_likes
+        context["liked"] = liked
+
         return context
 
 
@@ -53,7 +56,14 @@ class HotdrinksDeleteView(LoginRequiredMixin, DeleteView):
 
 def LikeView(request, pk):
     hotdrink = get_object_or_404(HotDrinks, id=pk)
-    hotdrink.likes.add(request.user)
+    liked = False
+    if hotdrink.likes.filter(id=request.user.id).exists():
+        hotdrink.likes.remove(request.user)
+        liked = False
+    else:
+        hotdrink.likes.add(request.user)
+        liked = True
+
     return HttpResponseRedirect(reverse('hot-drinks'))
 
 

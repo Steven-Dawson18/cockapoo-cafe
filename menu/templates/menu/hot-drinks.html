@@ -21,7 +21,6 @@
                     {% else %}
                         <img src=" {{ drink.image.url }} " alt="placeholder" width="100%">
                     {% endif %}
-                    <!-- <img src="{{ drink.image.url }}" class="card-img-top" alt="Mocha Coffee picture"> -->
                     <div class="card-body text-center">
                         <h5 class="card-title">{{ drink.name }}</h5>
                         <p class="card-text">{{ drink.description }}</p>
@@ -31,7 +30,11 @@
                             <a href="{% url 'delete-hot-drink' drink.id %}" class="menu-btn">Delete Drink</a>
                         {% endif %}
                         {% if user.is_authenticated %}
-                            <a href="{% url 'like-hot-drink' drink.id %}"class="menu-btn like-btn">Like <i class="fab fa-gratipay"></i></a>
+                            {% if user.liked %}
+                                <a href="{% url 'like-hot-drink' drink.id %}"class="btn-danger like-btn">UnLike <i class="fab fa-gratipay"></i></a>
+                            {% else %}
+                                <a href="{% url 'like-hot-drink' drink.id %}"class="menu-btn like-btn">Like <i class="fab fa-gratipay"></i></a>
+                            {% endif %}
                         {% endif %}
                         <i class="fab fa-gratipay"> </i>- {{ drink.total_likes }} Likes
                     </div>
