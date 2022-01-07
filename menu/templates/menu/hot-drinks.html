@@ -31,9 +31,9 @@
                         {% endif %}
                         {% if user.is_authenticated %}
                             {% if user.liked %}
-                                <a href="{% url 'like-hot-drink' drink.id %}"class="btn-danger like-btn">UnLike <i class="fab fa-gratipay"></i></a>
+                                <a href="{% url 'like-hot-drink' drink.id %}"class="btn-danger like-btn" value="unlike">UnLike <i class="fab fa-gratipay"></i></a>
                             {% else %}
-                                <a href="{% url 'like-hot-drink' drink.id %}"class="menu-btn like-btn">Like <i class="fab fa-gratipay"></i></a>
+                                <a href="{% url 'like-hot-drink' drink.id %}"class="menu-btn like-btn" value="like">Like <i class="fab fa-gratipay"></i></a>
                             {% endif %}
                         {% endif %}
                         <i class="fab fa-gratipay"> </i>- {{ drink.total_likes }} Likes

@@ -26,7 +26,11 @@
                         <a href="{% url 'delete-sandwich' snack.id %}" class="menu-btn">Delete Sandwich</a>
                     {% endif  %}
                     {% if user.is_authenticated %}
-                        <a href="{% url 'like-sandwich' snack.id %}"class="menu-btn like-btn">Like <i class="fab fa-gratipay"></i></a>
+                        {% if user.liked %}
+                            <a href="{% url 'like-sandwich' snack.id %}"class="menu-btn like-btn">UnLike <i class="fab fa-gratipay"></i></a>
+                        {% else %}
+                            <a href="{% url 'like-sandwich' snack.id %}"class="menu-btn like-btn">Like <i class="fab fa-gratipay"></i></a>
+                        {% endif %}   
                     {% endif %}
                     <i class="fab fa-gratipay"> </i>- {{ snack.total_likes }} Likes
                 </div>

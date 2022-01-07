@@ -76,7 +76,12 @@ class ColdDrinksListView(ListView):
     def get_context(self):
         item = get_object_or_404(ColdDrinks, id=self.pk)
         total_likes = item.total_likes()
+        liked = False
+        if item.likes.filter(id=request.user.id).exists():
+            liked = True
         context["total_likes"] = total_likes
+        context["liked"] = liked
+
         return context
 
 
@@ -105,7 +110,14 @@ class ColdDrinksDeleteView(LoginRequiredMixin, DeleteView):
 
 def ColdLikeView(request, pk):
     colddrink = get_object_or_404(ColdDrinks, id=pk)
-    colddrink.likes.add(request.user)
+    liked = False
+    if colddrink.likes.filter(id=request.user.id).exists():
+        colddrink.likes.remove(request.user)
+        liked = False
+    else:
+        colddrink.likes.add(request.user)
+        liked = True
+
     return HttpResponseRedirect(reverse('cold-drinks'))
 
 
@@ -117,8 +129,14 @@ class SandwichesListView(ListView):
 
     def SandwichLikeView(request, pk):
         cake = get_object_or_404(Sandwich, id=pk)
-        cake.likes.add(request.user)
-        return HttpResponseRedirect(reverse('sandwich'))
+        total_likes = item.total_likes()
+        liked = False
+        if item.likes.filter(id=request.user.id).exists():
+            liked = True
+        context["total_likes"] = total_likes
+        context["liked"] = liked
+        
+        return context
 
 
 class SandwichesCreateView(LoginRequiredMixin, CreateView):
@@ -146,7 +164,14 @@ class SandwichesDeleteView(LoginRequiredMixin, DeleteView):
 
 def SandwichLikeView(request, pk):
     sandwich = get_object_or_404(Sandwich, id=pk)
-    sandwich.likes.add(request.user)
+    liked = False
+    if sandwich.likes.filter(id=request.user.id).exists():
+        sandwich.likes.remove(request.user)
+        liked = False
+    else:
+        sandwich.likes.add(request.user)
+        liked = True
+   
     return HttpResponseRedirect(reverse('sandwich'))
 
 
@@ -159,7 +184,12 @@ class CakesListView(ListView):
     def get_context(self):
         item = get_object_or_404(Cake, id=self.pk)
         total_likes = item.total_likes()
+        liked = False
+        if item.likes.filter(id=request.user.id).exists():
+            liked = True
         context["total_likes"] = total_likes
+        context["liked"] = liked
+        
         return context
 
 
@@ -188,5 +218,12 @@ class CakesDeleteView(LoginRequiredMixin, DeleteView):
 
 def CakeLikeView(request, pk):
     cake = get_object_or_404(Cake, id=pk)
-    cake.likes.add(request.user)
+    liked = False
+    if cake.likes.filter(id=request.user.id).exists():
+        cake.likes.remove(request.user)
+        liked = False
+    else:
+        cake.likes.add(request.user)
+        liked = True
+    
     return HttpResponseRedirect(reverse('cakes'))
