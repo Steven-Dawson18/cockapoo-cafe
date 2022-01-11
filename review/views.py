@@ -72,22 +72,8 @@ def LikeView(request, pk):
     return redirect(reverse('review'))
 
 
-def make_published(modeladmin, request, queryset):
-    queryset.update(status='1')
-
-
-# def approvedReview(request, pk):
-#     review = Review.objects.get(pk=pk)
-#     review.status = 1
-#     review.save()
-#     return HttpResponseRedirect(reverse('review'))
-
-
-# class ApproveReviewUpdateView(LoginRequiredMixin, UpdateView):
-#     model = Review
-#     fields = ['title', 'body', 'image', 'status']
-#     success_message = "Review has been approved"
-#     success_url = reverse_lazy('review')
-
-#     def statusUpdate(request, self):
-#         self.status = 1
+def approvedReview(request, pk):
+        review = Review.objects.get(pk=pk)
+        review.status = 1
+        review.save()
+        return HttpResponseRedirect(reverse('manage_review'))
