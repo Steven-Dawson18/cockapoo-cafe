@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% load static%}
+
+{% block content %}
+    <div class="menu-title">
+        <h2>Cockapoo Cafe</h2>
+        <h3>{{ cat.name }} Category</h3>
+    </div>
+    
+    {% for item in menuitem %}
+    
+    
+        <div class="row row-cols-1 row-cols-md-2 g-4 justify-content-center">
+            <div class="col">
+                <div class="card">
+                    {% if "item_placeholder" in item.image.url %}
+                        <img src="{% static 'images/menu_placeholder.jpeg' %}" alt="placeholder" width="100%">
+                    {% else %}
+                        <img src=" {{ item.image.url }} " alt="placeholder" width="100%">
+                    {% endif %}
+                    <div class="card-body text-center">
+                        <h5 class="card-title">{{ item.name }}</h5>
+                        <p class="card-text">{{ item.description }}</p>
+                        <p class="card-text">£{{ item.price }}</p>
+                        <p class="card-text">{{ item.category }}</p>
+                        {% if user.is_authenticated %}
+                            {% if user in item.likes.all %}
+                                <a href="{% url 'like-menu-item' item.id %}"class="menu-btn like-btn" value="like">UnLike <i class="fab fa-gratipay"></i></a>
+                            {% else %}
+                                <a href="{% url 'like-menu-item' item.id %}"class="menu-btn like-btn" value="like">Like <i class="fab fa-gratipay"></i></a>
+                         
+                            {% endif %}
+                        {% endif %}
+
+                        <i class="fab fa-gratipay"> </i>- {{ item.total_likes }} Likes
+                       
+                    </div>
+                    
+                </div>
+                <hr>
+            </div>
+        </div>
+
+    {% endfor %}
+    <p class="create-item-btn"><a class="menu-btn" href="{% url 'menu' %}">Back to Main Menu</a></p>
+{% endblock %}

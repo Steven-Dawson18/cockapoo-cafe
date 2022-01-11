@@ -25,7 +25,7 @@
       <div class="col-md-4">
          <!-- The image URL goes in the src attribute -->
          {% if "review_placeholder" in review.image.url %}
-         <img src="../../../static/images/placeholder.jpeg" width="100%">
+         <img src="{% static 'images/placeholder.jpeg' %}" width="100%">
          {% else %}
          <img src=" {{ review.image.url }} " width="100%">
          {% endif %}
@@ -43,8 +43,8 @@
             <a href="{% url 'delete_review' review.id %}" class="menu-btn">Delete Review</a>
           {%endif%}
           {% if user.is_authenticated %}
-            {% if user.liked %}
-                <a href="{% url 'like-review' review.id %}"class="btn-danger like-btn" value="unlike">UnLike <i class="fab fa-gratipay"></i></a>
+            {% if user in review.likes.all %}
+                <a href="{% url 'like-review' review.id %}"class="menu-btn like-btn" value="unlike">UnLike <i class="fab fa-gratipay"></i></a>
             {% else %}
                 <a href="{% url 'like-review' review.id %}"class="menu-btn like-btn" value="like">Like <i class="fab fa-gratipay"></i></a>
             {% endif %}

@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% load static%}
+
+{% block content %}
+
+    <h2 class="menu-title">Cockapoo Cafe Menu</h2>
+
+    {% if request.user.is_superuser %}
+        <p class="create-item-btn"><a class="menu-btn" href="{% url 'create-menu-item' %}">Create Menu Item</a></p>
+        
+    {% endif %}
+
+    {% for item in object_list %}
+
+    <div class="row row-cols-1 row-cols-md-2 g-4 justify-content-center">
+        <div class="col">
+            <div class="card">
+                {% if "item_placeholder" in item.image.url %}
+                    <img src="{% static 'images/menu_placeholder.jpeg' %}" alt="placeholder" width="100%">
+                {% else %}
+                    <img src=" {{ item.image.url }} " alt="placeholder" width="100%">
+                {% endif %}
+                <div class="card-body text-center">
+                    <h5 class="card-title">{{ item.name }}</h5>
+                    <p class="card-text">{{ item.description }}</p>
+                    <p class="card-text">£{{ item.price }}</p>
+                    <p class="card-text">{{ item.category }}</p>
+                    {% if request.user.is_superuser %}
+                        <a href="{% url 'update-menu-item' item.id %}" class="menu-btn">Update Item</a>
+                        <a href="{% url 'delete-menu-item' item.id %}" class="menu-btn">Delete Item</a>
+                    {% endif %}
+                    {% if user.is_authenticated %}
+                        {% if user.liked %}
+                            <a href="{% url 'like-menu-item' item.id %}"class="btn-danger like-btn" value="unlike">UnLike <i class="fab fa-gratipay"></i></a>
+                        {% else %}
+                            <a href="{% url 'like-menu-item' item.id %}"class="menu-btn like-btn" value="like">Like <i class="fab fa-gratipay"></i></a>
+                        {% endif %}
+                    {% endif %}
+                    <i class="fab fa-gratipay"> </i>- {{ item.total_likes }} Likes
+
+                </div>
+                
+            </div>
+            <hr>
+        </div>
+    </div>
+
+    {% endfor %}
+
+
+{% endblock %}

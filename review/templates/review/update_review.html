@@ -12,7 +12,7 @@
   </div>
   {% else %}
   {% if user.is_authenticated %}
-    <h3>Leave a Review:</h3>
+    <h3>Update Your Review:</h3>
     <p id="reviewer">Posting as: {{ user.username }}</p>
     <form method="post" class="review-form">
         {{ form.as_p }}

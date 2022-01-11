@@ -16,7 +16,7 @@
           <div class="col-md-4">
              <!-- The image URL goes in the src attribute -->
              {% if "review_placeholder" in review.image.url %}
-             <img src="../../../static/images/placeholder.jpeg" width="100%">
+             <img src="{% static 'images/placeholder.jpeg' %}" width="100%">
              {% else %}
              <img src=" {{ review.image.url }} " width="100%">
              {% endif %}

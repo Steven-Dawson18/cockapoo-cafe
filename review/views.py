@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.views import generic
 from django.views.generic import ListView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
@@ -69,4 +69,25 @@ def LikeView(request, pk):
         review.likes.add(request.user)
         liked = True
 
-    return HttpResponseRedirect(reverse('review'))
+    return redirect(reverse('review'))
+
+
+def make_published(modeladmin, request, queryset):
+    queryset.update(status='1')
+
+
+# def approvedReview(request, pk):
+#     review = Review.objects.get(pk=pk)
+#     review.status = 1
+#     review.save()
+#     return HttpResponseRedirect(reverse('review'))
+
+
+# class ApproveReviewUpdateView(LoginRequiredMixin, UpdateView):
+#     model = Review
+#     fields = ['title', 'body', 'image', 'status']
+#     success_message = "Review has been approved"
+#     success_url = reverse_lazy('review')
+
+#     def statusUpdate(request, self):
+#         self.status = 1
