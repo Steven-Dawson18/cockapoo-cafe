@@ -21,42 +21,44 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Home</a>
-              </li>
-              {% if user.is_authenticated %}
-              <li class="nav-item">
-                <a class="nav-link" href="{% url 'reservation' %}">Reservation</a>
-              </li>
-              {% else %}
-              <li>
-                <a class="nav-link" href="{% url 'account_signup' %}">Reservation</a>
-              </li>
-              {% endif %}
-              <li class="nav-item">
-                <a class="nav-link" href="{% url 'review' %}">Reviews</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{% url 'contact' %}">Contact</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{% url 'menu' %}">Menu</a>
-              </li>
-              {% if user.is_authenticated %}
-              <li class="nav-item">
-                <a class="nav-link" href="{% url 'account_logout' %}">Logout</a>
-              </li>
-              {% else %}
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Register/login
-                </a>
-                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <li><a class="dropdown-item" href="{% url 'account_signup' %}">Register</a></li>
-                  <li><a class="dropdown-item" href="{% url 'account_login' %}">Login</a></li>
-                </ul>
-              </li>
-              {% endif %}
+              {% with url_name=request.resolver_match.url_name %}
+                <li class="nav-item">
+                  <a class="nav-link {% if url_name == 'home' %}active{% endif %}" href="{% url 'home' %}">Home</a>
+                </li>
+                {% if user.is_authenticated %}
+                <li class="nav-item">
+                  <a class="nav-link {% if url_name == 'reservation' %}active{% endif %}" href="{% url 'reservation' %}">Reservation</a>
+                </li>
+                {% else %}
+                <li>
+                  <a class="nav-link {% if url_name == 'account_signup' %}active{% endif %}" href="{% url 'account_signup' %}">Reservation</a>
+                </li>
+                {% endif %}
+                <li class="nav-item">
+                  <a class="nav-link {% if url_name == 'review' %}active{% endif %}" href="{% url 'review' %}">Reviews</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link {% if url_name == 'contact' %}active{% endif %}" href="{% url 'contact' %}">Contact</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link {% if url_name == 'menu' %}active{% endif %}" href="{% url 'menu' %}">Menu</a>
+                </li>
+                {% if user.is_authenticated %}
+                <li class="nav-item">
+                  <a class="nav-link {% if url_name == 'account_logout' %}active{% endif %}" href="{% url 'account_logout' %}">Logout</a>
+                </li>
+                {% else %}
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Register/login
+                  </a>
+                  <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <li><a class="dropdown-item {% if url_name == 'account_signup' %}active{% endif %}" href="{% url 'account_signup' %}">Register</a></li>
+                    <li><a class="dropdown-item {% if url_name == 'account_login' %}active{% endif %}" href="{% url 'account_login' %}">Login</a></li>
+                  </ul>
+                </li>
+                {% endif %}
+              {% endwith %}
               <!-- {% if request.user.is_superuser %}
                   <li class="nav-item">
                       <a class="nav-link" href="">Manage Reservations
