@@ -4,7 +4,8 @@ from django.views.generic import ListView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
+from django.http import HttpResponseRedirect
 from .models import Reservation, Reservation_Choices
 from django.forms.widgets import SelectDateWidget
 from django.contrib import messages
@@ -12,8 +13,15 @@ from django.contrib import messages
 
 class ReservationListView(ListView):
     model = Reservation
-    fields = ['first_name', 'last_name', 'email', 'phone', 'time', 'datetime', 'information']
+    queryset = Reservation.objects.all().order_by('datetime')
     template_name = 'reservation/reservation.html'
+    paginate_by = 6
+
+
+class ReservationApproveListView(ListView):
+    model = Reservation
+    queryset = Reservation.objects.filter(accepted=False)
+    template_name = 'reservation/approve-reservation.html'
 
 
 class ReservationCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
@@ -58,6 +66,12 @@ class ReservationUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView)
         form.fields['datetime'].widget = SelectDateWidget()
         return form
 
+    def getReservationApproval(request, pk):
+        reservation = Reservation.objects.get(pk=pk)
+        reservation.accepted = False
+        reservation.save()
+        return reservation
+
 
 class ReservationDeleteView(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
     model = Reservation
@@ -65,3 +79,10 @@ class ReservationDeleteView(LoginRequiredMixin, SuccessMessageMixin, DeleteView)
     template_name = 'reservation/delete_reservation.html'
     success_message = "Reservation will be deleted"
     success_url = reverse_lazy('reservation')
+
+
+def approvedReservation(request, pk):
+        reservation = Reservation.objects.get(pk=pk)
+        reservation.accepted = True
+        reservation.save()
+        return HttpResponseRedirect(reverse('approve_reservation'))

@@ -7,6 +7,9 @@
         <h3>Here You Can Make A Reservation Or Just walk in to our cafe</h3>
         <p>You visit us by just walking in or you can guarantee a table by clicking the button below to make a reservation at the Cockapoo Cafe.</p>
         <p id="make-reservation-btn"><a class="menu-btn" href="{% url 'create_reservation' %}">Make a reservation</a></p>
+        {% if request.user.is_superuser %}
+            <p id="make-reservation-btn"><a class="menu-btn" href="{% url 'approve_reservation' %}">Approve a reservation</a></p>
+        {% endif %}
         <h3>Your Reservations are:</h3>
     </div>
     {% for res in object_list %}
@@ -44,5 +47,17 @@
         </div>
         {% endif %}
     {% endfor %}
+    {% if is_paginated %}
+    <nav aria-label="Page navigation">
+        <ul class="pagination justify-content-center">
+            {% if page_obj.has_previous %}
+            <li><a href="?page={{ page_obj.previous_page_number }}" class="page-link">&laquo; PREV </a></li>
+            {% endif %}
+            {% if page_obj.has_next %}
+            <li><a href="?page={{ page_obj.next_page_number }}" class="page-link"> NEXT &raquo;</a></li>
 
+            {% endif %}
+        </ul>
+    </nav>
+    {% endif %}
 {% endblock %}

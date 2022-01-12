@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+    <div class=" container no-reservation-text">
+        <h3>Approve reservations here</h3>
+        
+        <h3>Your Reservations to approve are:</h3>
+    </div>
+    {% for res in object_list %}
+        {% if accepted == False not in res %}
+
+            <div>
+                <h2>There are no reservations to approve</h2>
+            </div>
+
+        {% else %}
+            
+            <div class="row row-cols-1 row-cols-md-2 g-4 justify-content-center made-reservation">
+                <div class="col">
+                    <div class="card">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">{{ res.first_name }} {{ res.last_name }}</h5>
+                            <p class="card-text">Your table is reserved at: {{ res.time }}</p>
+                            <p class="card-text"> On: {{ res.datetime }}</p>
+                            <p class="card-text"><strong>Important info:</strong> {{ res.information }}</p>
+                            <p class="card-text">Date reservation made: {{ res.sent_date }}</p>
+                            <!-- <p class="card-text">Date reservation approved: {{ res.accepted_date }}</p> -->
+                            <a href="{% url 'approved_revservation' res.id %}" class="menu-btn">Approve Reservation</a>
+                            <a href="{% url 'delete_reservation' res.id %}" class="menu-btn">Delete Reservation</a>
+                        </div>
+                    </div>
+                    <hr>
+                </div>
+            </div>
+        {% endif %}
+    {% endfor %}
+
+    <p id="make-reservation-btn"><a class="menu-btn" href="{% url 'reservation' %}">Back to reservations</a></p>
+
+{% endblock %}

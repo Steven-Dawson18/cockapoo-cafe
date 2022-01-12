@@ -2,42 +2,32 @@
 
 {% load static%}
 
-{% load crispy_forms_tags %}
-
 {% block content %}
-
-{% if request.user.is_superuser %}
-<!-- Only superusers can view things in here -->
-  {% for review in review_list %}
-    {% if !review status == 0 in review_list %}
-      <div>
-        <h2>There are no reviews to approve</h2>
-      </div>
-    {% else %}
-      <div class="card mb-0 col-8 review">
-        <div class="row g-0">
-          <div class="col-md-4">
-             <!-- The image URL goes in the src attribute -->
-             {% if "review_placeholder" in review.image.url %}
-             <img src="{% static 'images/placeholder.jpeg' %}" width="100%">
-             {% else %}
-             <img src=" {{ review.image.url }} " width="100%">
-             {% endif %}
-          </div>
-          <div class="col-md-8">
-            <div class="card-body">
-              <h5 class="card-title">{{ review.title }}</h5>
-              <p class="card-text">{{ review.body }}</p>
-              <p class="card-text"><small class="text-muted">{{ review.author }} | {{ review.created_on }}</small></p>
-              <a href="{% url 'approved_review' %}" class="menu-btn">Approve Review</a>
-              <a class="menu-btn">Reject Review</a>
+  
+  {% if request.user.is_superuser %}
+    <!-- Only superusers can view things in here -->
+    
+        <div class="card mb-0 col-8 review">
+          <div class="row g-0">
+            <div class="col-md-4">
+              {% if "review_placeholder" in review.image.url %}
+                <img src="{% static 'images/placeholder.jpeg' %}" width="100%">
+              {% else %}
+                <img src=" {{ review.image.url }} " width="100%">
+              {% endif %}
+            </div>
+            <div class="col-md-8">
+              <div class="card-body">
+                <h5 class="card-title">{{ review.title }}</h5>
+                <p class="card-text">{{ review.body }}</p>
+                <p class="card-text"><small class="text-muted">{{ review.author }} | {{ review.created_on }}</small></p>
+                <a href="{% url 'approved_review' %}" class="menu-btn">Approve Review</a>
+                <a class="menu-btn">Reject Review</a>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    {% endif %}
-  {% endfor %}
-{% endif %}
-
+      
+  {% endif %}
 
 {% endblock %}

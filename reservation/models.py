@@ -22,7 +22,7 @@ class Reservation(models.Model):
     datetime = models.DateField(auto_now_add=False, null=True, blank=False)
     information = models.TextField(blank=True)
     sent_date = models.DateField(auto_now_add=True)
-    accepted = models.BooleanField(default=True)
+    accepted = models.BooleanField(default=False)
     accepted_date = models.DateTimeField(auto_now=True, null=True)
     user = models.ForeignKey(User, blank=True, null=True,
                              on_delete=models.CASCADE)

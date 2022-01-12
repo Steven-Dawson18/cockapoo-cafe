@@ -12,6 +12,7 @@ class ReviewListView(ListView):
     model = Review
     queryset = Review.objects.filter(status=1).order_by('-created_on')
     template_name = 'review/review.html'
+    paginate_by = 4
 
     def get_context(self):
         item = get_object_or_404(Review, id=self.pk)
