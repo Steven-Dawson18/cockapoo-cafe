@@ -322,6 +322,18 @@ Reservation
   text-align: center;
 }
 
+.confirmed-reservation {
+  background-color: lightgreen;
+}
+
+.pending-reservation {
+  background-color: orange;
+}
+
+.rejected-reservation {
+  background-color: red;
+}
+
 /*
 ---------------------------------------------
 Like functionality

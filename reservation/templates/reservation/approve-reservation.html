@@ -9,7 +9,7 @@
         <h3>Your Reservations to approve are:</h3>
     </div>
     {% for res in object_list %}
-        {% if accepted == False not in res %}
+        {% if accepted == True or rejected == true not in res %}
 
             <div>
                 <h2>There are no reservations to approve</h2>
@@ -28,7 +28,7 @@
                             <p class="card-text">Date reservation made: {{ res.sent_date }}</p>
                             <!-- <p class="card-text">Date reservation approved: {{ res.accepted_date }}</p> -->
                             <a href="{% url 'approved_revservation' res.id %}" class="menu-btn">Approve Reservation</a>
-                            <a href="{% url 'delete_reservation' res.id %}" class="menu-btn">Delete Reservation</a>
+                            <a href="{% url 'reject_revservation' res.id %}" class="menu-btn">Reject Reservation</a>
                         </div>
                     </div>
                     <hr>

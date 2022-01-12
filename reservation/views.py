@@ -9,6 +9,7 @@ from django.http import HttpResponseRedirect
 from .models import Reservation, Reservation_Choices
 from django.forms.widgets import SelectDateWidget
 from django.contrib import messages
+from django.db.models import Q
 
 
 class ReservationListView(ListView):
@@ -20,7 +21,7 @@ class ReservationListView(ListView):
 
 class ReservationApproveListView(ListView):
     model = Reservation
-    queryset = Reservation.objects.filter(accepted=False)
+    queryset = Reservation.objects.filter(Q(accepted=False) & Q(rejected=False))
     template_name = 'reservation/approve-reservation.html'
 
 
@@ -84,5 +85,12 @@ class ReservationDeleteView(LoginRequiredMixin, SuccessMessageMixin, DeleteView)
 def approvedReservation(request, pk):
         reservation = Reservation.objects.get(pk=pk)
         reservation.accepted = True
+        reservation.save()
+        return HttpResponseRedirect(reverse('approve_reservation'))
+
+
+def rejectReservation(request, pk):
+        reservation = Reservation.objects.get(pk=pk)
+        reservation.rejected = True
         reservation.save()
         return HttpResponseRedirect(reverse('approve_reservation'))

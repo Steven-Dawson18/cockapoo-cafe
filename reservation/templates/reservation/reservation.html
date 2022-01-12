@@ -37,7 +37,13 @@
                         <p class="card-text"> On: {{ res.datetime }}</p>
                         <p class="card-text"><strong>Important info:</strong> {{ res.information }}</p>
                         <p class="card-text">Date reservation made: {{ res.sent_date }}</p>
-                        <!-- <p class="card-text">Date reservation approved: {{ res.accepted_date }}</p> -->
+                        {% if res.accepted %}
+                            <p class="card-text confirmed-reservation">Reservation Confirmed!: {{ res.accepted_date }}</p>
+                        {% elif res.rejected %}
+                            <p class="card-text rejected-reservation">Reservation Rejected</p>
+                        {% else %}
+                            <p class="card-text pending-reservation">Reservation Confirmation Pending</p>
+                        {% endif %}
                         <a href="{% url 'update_reservation' res.id %}" class="menu-btn">Update Reservation</a>
                         <a href="{% url 'delete_reservation' res.id %}" class="menu-btn">Delete Reservation</a>
                     </div>
