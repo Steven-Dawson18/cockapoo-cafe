@@ -27,6 +27,8 @@ TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ.get('SECRET_KEY')
 GOOGLE_MAPS_API = os.environ.get('GOOGLE_MAPS_API')
+EMAIL_ADDRESS = os.environ.get('EMAIL_ADDRESS')
+EMAIL_PASSWORD = os.environ.get('EMAIL_PASSWORD')
 
 # SECURITY WARNING: keep the Google Maps API key used in production secret!
 # GOOGLE_MAPS_API = os.environ.get('GOOGLE_MAPS_API')
@@ -170,3 +172,11 @@ DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Email Settings
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = '587'
+EMAIL_HOST_USER = EMAIL_ADDRESS
+EMAIL_HOST_PASSWORD = EMAIL_PASSWORD
+EMAIL_USE_TLS = True

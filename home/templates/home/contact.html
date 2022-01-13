@@ -31,7 +31,7 @@
                         <div class="line"></div>
                     </div>
             
-                    <form class="contact-form" onsubmit="event.preventDefault(); return sendMail(this);" method="POST">
+                    <form action="{% url 'contact' %}" class="contact-form" method="POST">
                         {% csrf_token %}
                         <div class="row">
                             <div class="col-lg-6">
