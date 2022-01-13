@@ -45,6 +45,14 @@ class ReviewUpdateView(LoginRequiredMixin, UpdateView):
     success_message = "Review has been updated"
     success_url = reverse_lazy('review')
 
+    # def post(request, self, pk, form_class=None):
+    #     review_form = super(ReviewUpdateView, self).get_form(form_class)
+    #     if review_form.is_valid():
+    #         review = Review.objects.get(s=pk)
+    #         review.status = 0
+    #         review.save()
+    #         return HttpResponseRedirect(reverse('review'))
+
 
 class ReviewDeleteView(LoginRequiredMixin, DeleteView):
     model = Review
@@ -74,7 +82,7 @@ def LikeView(request, pk):
 
 
 def approvedReview(request, pk):
-        review = Review.objects.get(pk=pk)
-        review.status = 1
-        review.save()
-        return HttpResponseRedirect(reverse('manage_review'))
+    review = Review.objects.get(pk=pk)
+    review.status = 1
+    review.save()
+    return HttpResponseRedirect(reverse('manage_review'))

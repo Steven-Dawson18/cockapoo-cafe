@@ -2,6 +2,7 @@ from django.shortcuts import get_object_or_404, redirect
 from django.views.generic import ListView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy, reverse
 from .models import MenuItem, Category
 
@@ -32,7 +33,7 @@ class CategoryMenuItemListView(ListView):
         return context
 
 
-class AddCategoryCreateView(LoginRequiredMixin, CreateView):
+class AddCategoryCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     model = Category
     template_name = 'menu/add_menu_category.html'
     fields = '__all__'
@@ -40,7 +41,7 @@ class AddCategoryCreateView(LoginRequiredMixin, CreateView):
     success_url = reverse_lazy('menu')
 
 
-class CategoryUpdateView(LoginRequiredMixin, UpdateView):
+class CategoryUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     model = Category
     fields = '__all__'
     template_name = 'menu/update-category.html'
@@ -48,14 +49,14 @@ class CategoryUpdateView(LoginRequiredMixin, UpdateView):
     success_url = reverse_lazy('menu')
 
 
-class CategoryDeleteView(LoginRequiredMixin, DeleteView):
+class CategoryDeleteView(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
     model = Category
     template_name = 'menu/delete-category.html'
     success_message = "Category has been deleted"
     success_url = reverse_lazy('menu')
 
 
-class MenuViewMenuListView(ListView):
+class MenuViewMenuListView(SuccessMessageMixin, ListView):
     Model = MenuItem
     queryset = MenuItem.objects.all().order_by('category')
     template_name = 'menu/menu-items.html'
@@ -63,7 +64,7 @@ class MenuViewMenuListView(ListView):
     success_url = reverse_lazy('menu-items')
 
 
-class AddMenuItemCreateView(LoginRequiredMixin, CreateView):
+class AddMenuItemCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     model = MenuItem
     template_name = 'menu/create-menu-item.html'
     fields = ['name', 'description', 'image', 'category', 'price']
@@ -71,7 +72,7 @@ class AddMenuItemCreateView(LoginRequiredMixin, CreateView):
     success_url = reverse_lazy('menu-items')
 
 
-class MenuItemUpdateView(LoginRequiredMixin, UpdateView):
+class MenuItemUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     model = MenuItem
     fields = ['name', 'description', 'image', 'category', 'price']
     template_name = 'menu/update-menu-item.html'
@@ -79,7 +80,7 @@ class MenuItemUpdateView(LoginRequiredMixin, UpdateView):
     success_url = reverse_lazy('menu-items')
 
 
-class MenuItemDeleteView(LoginRequiredMixin, DeleteView):
+class MenuItemDeleteView(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
     model = MenuItem
     template_name = 'menu/delete-menu-item.html'
     success_message = "Menu Item has been deleted"

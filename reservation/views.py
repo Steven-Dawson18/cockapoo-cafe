@@ -67,11 +67,11 @@ class ReservationUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView)
         form.fields['datetime'].widget = SelectDateWidget()
         return form
 
-    def getReservationApproval(request, pk):
-        reservation = Reservation.objects.get(pk=pk)
-        reservation.accepted = False
-        reservation.save()
-        return reservation
+    # def getReservationApproval(request, pk):
+    #     reservation = Reservation.objects.get(pk=pk)
+    #     reservation.accepted = False
+    #     reservation.save()
+    #     return reservation
 
 
 class ReservationDeleteView(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
@@ -83,14 +83,16 @@ class ReservationDeleteView(LoginRequiredMixin, SuccessMessageMixin, DeleteView)
 
 
 def approvedReservation(request, pk):
-        reservation = Reservation.objects.get(pk=pk)
-        reservation.accepted = True
-        reservation.save()
-        return HttpResponseRedirect(reverse('approve_reservation'))
+    reservation = Reservation.objects.get(pk=pk)
+    reservation.accepted = True
+    reservation.save()
+    messages.success(request, 'The Reservation was Accepted.')
+    return HttpResponseRedirect(reverse('approve_reservation'))
 
 
 def rejectReservation(request, pk):
-        reservation = Reservation.objects.get(pk=pk)
-        reservation.rejected = True
-        reservation.save()
-        return HttpResponseRedirect(reverse('approve_reservation'))
+    reservation = Reservation.objects.get(pk=pk)
+    reservation.rejected = True
+    reservation.save()
+    messages.success(request, 'The Reservation was rejected.')
+    return HttpResponseRedirect(reverse('approve_reservation'))

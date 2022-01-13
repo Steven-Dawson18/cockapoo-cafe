@@ -197,6 +197,12 @@ div.card {
   margin-bottom: 10px;;
 }
 
+.card {
+  border: 1px solid #fb5849;
+  border-radius: 15px;
+  padding: 5px;
+}
+
 .menu-item {
   box-sizing: content-box;
 }

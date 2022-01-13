@@ -18,7 +18,7 @@ class Reservation(models.Model):
     email = models.EmailField(max_length=100, unique=False)
     phone = models.CharField(max_length=50, unique=False)
     time = models.CharField(max_length=100, choices=Reservation_Choices,
-                                 default='4pm')
+                            default='4pm')
     datetime = models.DateField(auto_now_add=False, null=True, blank=False)
     information = models.TextField(blank=True)
     sent_date = models.DateField(auto_now_add=True)
