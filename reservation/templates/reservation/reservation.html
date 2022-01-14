@@ -13,11 +13,72 @@
         <h3>Your Reservations are:</h3>
     </div>
     {% for res in object_list %}
-    
-        {% if user.id == res.user.id %}
+        {% if request.user.is_superuser %}
 
+            <div class="row row-cols-1 row-cols-md-2 g-4 justify-content-center made-reservation">
+                <div class="col">
+                    <div class="card">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">{{ res.first_name }} {{ res.last_name }}</h5>
+                            <p class="card-text">Your table is reserved at: {{ res.time }}</p>
+                            <p class="card-text"> On: {{ res.datetime }}</p>
+                            <p class="card-text"><strong>Important info:</strong> {{ res.information }}</p>
+                            <p class="card-text">Date reservation made: {{ res.sent_date }}</p>
+                            {% if res.accepted %}
+                                <p class="card-text confirmed-reservation">Reservation Confirmed!: {{ res.accepted_date }}</p>
+                            {% elif res.rejected %}
+                                <p class="card-text rejected-reservation">Reservation Rejected</p>
+                            {% else %}
+                                <p class="card-text pending-reservation">Reservation Confirmation Pending</p>
+                            {% endif %}
+                            <a href="{% url 'update_reservation' res.id %}" class="menu-btn">Update Reservation</a>
+                            <a href="{% url 'delete_reservation' res.id %}" class="menu-btn">Delete Reservation</a>
+                        </div>
+                    </div>
+                    <hr>
+                </div>
+            </div>
             {% if res not in object_list %}
-                
+            <div class="row row-cols-1 row-cols-md-2 g-4 justify-content-center made-reservation">
+                <div class="col">
+                    <div class="card">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">No reservations</h5>
+                            <p>You currently have no reservations for the Cockapoo Cafe</p>
+                            </div>
+                    </div>
+                    <hr>
+                </div>
+            </div>
+
+        {% endif %}
+        {% endif %}
+        {% if user.id == res.user.id %}
+     
+            <div class="row row-cols-1 row-cols-md-2 g-4 justify-content-center made-reservation">
+                <div class="col">
+                    <div class="card">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">{{ res.first_name }} {{ res.last_name }}</h5>
+                            <p class="card-text">Your table is reserved at: {{ res.time }}</p>
+                            <p class="card-text"> On: {{ res.datetime }}</p>
+                            <p class="card-text"><strong>Important info:</strong> {{ res.information }}</p>
+                            <p class="card-text">Date reservation made: {{ res.sent_date }}</p>
+                            {% if res.accepted %}
+                                <p class="card-text confirmed-reservation">Reservation Confirmed!: {{ res.accepted_date }}</p>
+                            {% elif res.rejected %}
+                                <p class="card-text rejected-reservation">Reservation Rejected</p>
+                            {% else %}
+                                <p class="card-text pending-reservation">Reservation Confirmation Pending</p>
+                            {% endif %}
+                            <a href="{% url 'update_reservation' res.id %}" class="menu-btn">Update Reservation</a>
+                            <a href="{% url 'delete_reservation' res.id %}" class="menu-btn">Delete Reservation</a>
+                        </div>
+                    </div>
+                    <hr>
+                </div>
+            </div>
+            {% if res not in object_list %}
                 <div class="row row-cols-1 row-cols-md-2 g-4 justify-content-center made-reservation">
                     <div class="col">
                         <div class="card">
@@ -30,34 +91,9 @@
                         <hr>
                     </div>
                 </div>
-            {% else %}
-                <div class="row row-cols-1 row-cols-md-2 g-4 justify-content-center made-reservation">
-                    <div class="col">
-                        <div class="card">
-                            <div class="card-body text-center">
-                                <h5 class="card-title">{{ res.first_name }} {{ res.last_name }}</h5>
-                                <p class="card-text">Your table is reserved at: {{ res.time }}</p>
-                                <p class="card-text"> On: {{ res.datetime }}</p>
-                                <p class="card-text"><strong>Important info:</strong> {{ res.information }}</p>
-                                <p class="card-text">Date reservation made: {{ res.sent_date }}</p>
-                                {% if res.accepted %}
-                                    <p class="card-text confirmed-reservation">Reservation Confirmed!: {{ res.accepted_date }}</p>
-                                {% elif res.rejected %}
-                                    <p class="card-text rejected-reservation">Reservation Rejected</p>
-                                {% else %}
-                                    <p class="card-text pending-reservation">Reservation Confirmation Pending</p>
-                                {% endif %}
-                                <a href="{% url 'update_reservation' res.id %}" class="menu-btn">Update Reservation</a>
-                                <a href="{% url 'delete_reservation' res.id %}" class="menu-btn">Delete Reservation</a>
-                            </div>
-                        </div>
-                        <hr>
-                    </div>
-                </div>
-                
+
             {% endif %}
         {% endif %}
-    
     {% endfor %}
      
     {% if is_paginated %}

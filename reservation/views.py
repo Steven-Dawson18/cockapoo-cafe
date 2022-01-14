@@ -10,6 +10,7 @@ from .models import Reservation, Reservation_Choices
 from django.forms.widgets import SelectDateWidget
 from django.contrib import messages
 from django.db.models import Q
+from datetime import datetime
 
 
 class ReservationListView(ListView):
@@ -42,14 +43,6 @@ class ReservationCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView)
     def form_valid(self, form):
         form.instance.user = self.request.user
         return super().form_valid(form)
-
-    # def get_notification(request):
-    #     """
-    #     Function that count new reservations
-    #     """
-    #     reservation_count = Reservation.objects.filter(accepted=True).count()
-       
-    #     return reservation_count
 
 
 class ReservationUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):

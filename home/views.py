@@ -17,12 +17,11 @@ def contact(request):
         message = request.POST['message']
 
         send_mail('message from ' + message_name,
-        message,
-        emailaddress,
-        ['fullstacksteve18@gmail.com'])
-        messages.success(request, 'message_name, we have rreceived your email and will contact you shortly.')
+                message,
+                emailaddress,
+                ['fullstacksteve18@gmail.com'])
+        messages.success(request,
+                'We have received your email and will contact you shortly.')
         return render(request, "home/contact.html", context)
     else:
-
-       
         return render(request, "home/contact.html", context)
