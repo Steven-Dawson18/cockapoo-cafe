@@ -1,12 +1,16 @@
+'''Menu Models'''
 from django.db import models
-from cloudinary.models import CloudinaryField
 from django.contrib.auth.models import User
+from cloudinary.models import CloudinaryField
 
 
 STATUS = ((0, "Draft"), (1, "Published"))
 
 
 class Category(models.Model):
+    """
+    Models for Menu Category
+    """
     name = models.CharField(max_length=200)
     description = models.TextField(blank=False)
 
@@ -16,7 +20,7 @@ class Category(models.Model):
 
 class MenuItem(models.Model):
     """
-    Models for Hot Drinks Menu
+    Models for Menu Item
     """
     name = models.CharField(max_length=200)
     category = models.ForeignKey(Category, on_delete=models.DO_NOTHING)
@@ -30,9 +34,11 @@ class MenuItem(models.Model):
     likes = models.ManyToManyField(User, related_name='menuitems', blank=True)
 
     class Meta:
+        """Models ordering"""
         ordering = ["-created_on"]
 
     def total_likes(self):
+        """Function to count likes"""
         return self.likes.count()
 
     def __str__(self):

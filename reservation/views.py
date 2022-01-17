@@ -1,19 +1,23 @@
-from django.shortcuts import render
-from django.views import generic
+'''Reservation views'''
 from django.views.generic import ListView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy, reverse
 from django.http import HttpResponseRedirect
-from .models import Reservation, Reservation_Choices
 from django.forms.widgets import SelectDateWidget
 from django.contrib import messages
 from django.db.models import Q
-from datetime import datetime
+from .models import Reservation
 
 
 class ReservationListView(ListView):
+    '''
+    View to show the reservations that have been made
+    Logged in user can only see their reservation but admin can see all
+    There is a traffic light system to show if the reservation is pending,
+    confirmed or rejected by the admin.
+    '''
     model = Reservation
     queryset = Reservation.objects.all().order_by('datetime')
     template_name = 'reservation/reservation.html'
@@ -21,14 +25,27 @@ class ReservationListView(ListView):
 
 
 class ReservationApproveListView(ListView):
+    '''
+    View to show all pending reservations to the admin only.
+    From here they can accept or reject the reservation.
+    '''
     model = Reservation
-    queryset = Reservation.objects.filter(Q(accepted=False) & Q(rejected=False))
+    queryset = Reservation.objects.filter(
+        Q(accepted=False) & Q(rejected=False))
     template_name = 'reservation/approve-reservation.html'
 
 
-class ReservationCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
+class ReservationCreateView(LoginRequiredMixin, SuccessMessageMixin,
+                            CreateView):
+    '''
+    View displays the form to create a reservation to the user.
+    They must be logged in to make a reservation and will receive a message
+    of success when submitted. A date selector has been added for the users
+    convenience and the form is validated for phone, email and date.
+    '''
     model = Reservation
-    fields = ['first_name', 'last_name', 'email', 'phone', 'time', 'datetime', 'information']
+    fields = ['first_name', 'last_name', 'email', 'phone', 'time', 'datetime',
+              'information']
     template_name = 'reservation/create_reservation.html'
     success_message = "Reservation created, will be approve soon"
     success_url = reverse_lazy('reservation')
@@ -45,9 +62,17 @@ class ReservationCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView)
         return super().form_valid(form)
 
 
-class ReservationUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
+class ReservationUpdateView(LoginRequiredMixin, SuccessMessageMixin,
+                            UpdateView):
+    '''
+    View displays the form to update a reservation to the user.
+    They must be logged in to update a reservation and will receive a message
+    of success when submitted. A date selector has been added for the users
+    convenience and the form is validated for phone, email and date.
+    '''
     model = Reservation
-    fields = ['first_name', 'last_name', 'email', 'phone', 'time', 'datetime', 'information']
+    fields = ['first_name', 'last_name', 'email', 'phone', 'time', 'datetime',
+              'information']
     template_name = 'reservation/update_reservation.html'
     success_message = "Reservation will be updated"
     success_url = reverse_lazy('reservation')
@@ -60,22 +85,22 @@ class ReservationUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView)
         form.fields['datetime'].widget = SelectDateWidget()
         return form
 
-    # def getReservationApproval(request, pk):
-    #     reservation = Reservation.objects.get(pk=pk)
-    #     reservation.accepted = False
-    #     reservation.save()
-    #     return reservation
 
-
-class ReservationDeleteView(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
+class ReservationDeleteView(LoginRequiredMixin, SuccessMessageMixin,
+                            DeleteView):
+    '''
+    View displays the option to delete the reservation to the user.
+    '''
     model = Reservation
-    fields = ['first_name', 'last_name', 'email', 'phone', 'time', 'datetime', 'information']
+    fields = ['first_name', 'last_name', 'email', 'phone', 'time', 'datetime',
+              'information']
     template_name = 'reservation/delete_reservation.html'
     success_message = "Reservation will be deleted"
     success_url = reverse_lazy('reservation')
 
 
-def approvedReservation(request, pk):
+def approved_reservation(request, pk):
+    '''View gives the option to approve the reservation to the admin.'''
     reservation = Reservation.objects.get(pk=pk)
     reservation.accepted = True
     reservation.save()
@@ -83,7 +108,8 @@ def approvedReservation(request, pk):
     return HttpResponseRedirect(reverse('approve_reservation'))
 
 
-def rejectReservation(request, pk):
+def reject_reservation(request, pk):
+    '''View gives the option to reject the reservation to the admin.'''
     reservation = Reservation.objects.get(pk=pk)
     reservation.rejected = True
     reservation.save()

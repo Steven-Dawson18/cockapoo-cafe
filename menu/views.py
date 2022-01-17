@@ -1,3 +1,4 @@
+'''Menu views'''
 from django.shortcuts import get_object_or_404, redirect
 from django.views.generic import ListView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
@@ -8,21 +9,30 @@ from .models import MenuItem, Category
 
 
 class CategoryMenuListView(ListView):
+    '''View to show all categories of menu items'''
     Model = Category
     queryset = Category.objects.all()
     template_name = 'menu/menu.html'
 
 
 class CategoryMenuItemListView(ListView):
+    '''
+    View to show the menu for each category
+    User is able to like the menu items if they are logged in.
+    '''
     paginate_by = 10
     template_name = 'menu/categories.html'
     model = MenuItem
     context_object_name = 'menuitem'
 
     def get_queryset(self):
+        '''Function to show the menu item in each category list'''
         return MenuItem.objects.filter(category_id=self.kwargs['pk'])
 
     def get_context(self):
+        '''
+        Function gives the user the ability to like a menu item.
+        '''
         item = get_object_or_404(MenuItem, id=self.pk)
         total_likes = item.total_likes()
         liked = False
@@ -33,7 +43,13 @@ class CategoryMenuItemListView(ListView):
         return context
 
 
-class AddCategoryCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
+class AddCategoryCreateView(LoginRequiredMixin, SuccessMessageMixin,
+                            CreateView):
+    '''
+    View displays the form to create a menu category to the admin.
+    They must be logged in to create a category and will receive a message
+    of success when created.
+    '''
     model = Category
     template_name = 'menu/add_menu_category.html'
     fields = '__all__'
@@ -42,6 +58,11 @@ class AddCategoryCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView)
 
 
 class CategoryUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
+    '''
+    View displays the form to update a category to the admin.
+    They must be logged in to update a category and will receive a message
+    of success when submitted.
+    '''
     model = Category
     fields = '__all__'
     template_name = 'menu/update-category.html'
@@ -50,6 +71,9 @@ class CategoryUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
 
 
 class CategoryDeleteView(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
+    '''
+    View displays the option to delete the category to the admin.
+    '''
     model = Category
     template_name = 'menu/delete-category.html'
     success_message = "Category has been deleted"
@@ -57,6 +81,11 @@ class CategoryDeleteView(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
 
 
 class MenuViewMenuListView(SuccessMessageMixin, ListView):
+    '''
+    View to show all items of the menus
+    Only visbale to the admin who can create, edit and delete
+    menu items from here.
+    '''
     Model = MenuItem
     queryset = MenuItem.objects.all().order_by('category')
     template_name = 'menu/menu-items.html'
@@ -64,7 +93,13 @@ class MenuViewMenuListView(SuccessMessageMixin, ListView):
     success_url = reverse_lazy('menu-items')
 
 
-class AddMenuItemCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
+class AddMenuItemCreateView(LoginRequiredMixin, SuccessMessageMixin,
+                            CreateView):
+    '''
+    View displays the form to create a menu Item to the admin.
+    They must be logged in to create a menu Item and will receive a message
+    of success when created.
+    '''
     model = MenuItem
     template_name = 'menu/create-menu-item.html'
     fields = ['name', 'description', 'image', 'category', 'price']
@@ -73,6 +108,11 @@ class AddMenuItemCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView)
 
 
 class MenuItemUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
+    '''
+    View displays the form to update a menu Item to the admin.
+    They must be logged in to update a menu Item and will receive a message
+    of success when submitted.
+    '''
     model = MenuItem
     fields = ['name', 'description', 'image', 'category', 'price']
     template_name = 'menu/update-menu-item.html'
@@ -81,13 +121,19 @@ class MenuItemUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
 
 
 class MenuItemDeleteView(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
+    '''
+    View displays the option to delete the menu Item to the admin.
+    '''
     model = MenuItem
     template_name = 'menu/delete-menu-item.html'
     success_message = "Menu Item has been deleted"
     success_url = reverse_lazy('menu-items')
 
 
-def LikeView(request, pk):
+def like_view(request, pk):
+    '''
+    Function gives the user the ability to like a Menu Item.
+    '''
     item = get_object_or_404(MenuItem, id=pk)
     category_id = item.category.id
     liked = False

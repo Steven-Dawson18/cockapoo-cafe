@@ -30,7 +30,7 @@
                         <h2>Get In Touch</h2>
                         <div class="line"></div>
                     </div>
-            
+                    <!-- Form -->
                     <form action="{% url 'contact' %}" class="contact-form" method="POST">
                         {% csrf_token %}
                         <div class="row">
@@ -52,6 +52,20 @@
                 </div>
             </div>
         </div>
+        <!-- Opening hours -->
+        <div class="col-12">
+            <div class="opening-hours">
+                <h2>Opening hours</h2>
+                    <p>Monday - 9am - 5pm</p>
+                    <p>Tuesday - 9am - 5pm</p>
+                    <p>Wednesday - 9am - 5pm</p>
+                    <p>Thursday - 9am - 5pm</p>
+                    <p>Friday - 9am - 5pm</p>
+                    <p>Saturday - 9am - 5pm</p>
+                    <p>Sunday - 9am - 5pm</p>
+            </div>
+        </div>
+        <!-- Map -->
         <div class="row">
             <div class="col-12">
                 <div id="location">

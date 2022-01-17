@@ -7,7 +7,6 @@ from django.contrib.auth.models import User
 from django.core.validators import RegexValidator
 from django.core.exceptions import ValidationError
 from django.db.models import Q, F
-from django.contrib import messages
 
 
 PHONE_MESSAGE = 'Please enter a valid number in the format: 07999999999'
@@ -54,15 +53,18 @@ class Reservation(models.Model):
     def __str__(self):
         ret = self.first_name + ',' + self.last_name + ',' + self.email
         return ret
-    
+
     def clean(self):
         if self.datetime <= datetime.now().date():
             raise ValidationError('The date cannot be in the past!')
         return super().clean()
 
     class Meta:
+        """
+        Sets the constraints and checks the date entered isn't in the past
+        """
         constraints = [
             models.CheckConstraint(
                 check=Q(datetime__lte=F('datetime.now().date()')),
-                name='start_before_end')       
+                name='start_before_end')
         ]

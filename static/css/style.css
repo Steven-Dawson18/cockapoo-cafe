@@ -221,6 +221,17 @@ Contact
   border-radius: 8px;
 }
 
+.opening-hours {
+  background-color: #fb5849;
+  border: 1px solid #fb5849;
+  color: white;
+  padding: 30px;
+  border-radius: 8px;
+  margin: 0 auto;
+  width: 60%;
+  text-align: center;
+}
+
 .contact-form {
   padding: 20px;
   background-color: white;
