@@ -4,9 +4,11 @@ banner
 --------------------------------------------- 
 */
 
-/* #top {
-    padding-top: 100px;
-  } */
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
 
 .container-fluid {
   padding-left: 0;
@@ -89,45 +91,44 @@ banner
 }
 
 .nav-bg-col {
-    background-color: #fb5849;
-    }
+background-color: #fb5849;
+}
     
-    footer {
-    background-color: #fb5849;
-    margin-top: 20px;
-    text-align: center;
-    padding-top: .5rem;
-    padding-bottom: .5rem;
-    }
-    
-    nav {
-    margin-bottom: 20px;;
-    }
+footer {
+background-color: #fb5849;
+margin-top: auto;
+text-align: center;
+padding-top: .5rem;
+padding-bottom: .5rem;
+display: inline-block;
+}
 
-    .sticky {
-      position: sticky;
-      top: 0px; /* When the element reaches top: 10px, it becomes fixed. */
-      z-index: 100;
-    }
+nav {
+margin-bottom: 20px;;
+}
 
-    .stickyfoot {
-      position: sticky;
-      bottom: 0px; /* When the element reaches top: 10px, it becomes fixed. */
-      z-index: 100;
-    }
+.sticky {
+position: sticky;
+top: 0px; /* When the element reaches top: 10px, it becomes fixed. */
+z-index: 100;
+}
+
+ul {
+  padding: 0;
+}
+
+.foot-img {
+height: 10%;
+text-align: center;
+}
     
-    .foot-img {
-    height: 10%;
-    text-align: center;
-    }
-    
-    .carouselExampleSlidesOnly img {
-    height: 100%
-    }
-    
-    .socials i {
-        color: black;
-    }
+.carouselExampleSlidesOnly img {
+height: 100%
+}
+
+.socials i {
+    color: black;
+}
 
 .main-white-button a:hover {
   opacity: 0.9;
@@ -173,6 +174,10 @@ Menu
   margin-bottom: 10px;
   margin-right: 5px;
   text-decoration: none;
+}
+
+.inline-flex {
+  display: inline-flex;
 }
 
 .menu-btn:hover{
@@ -240,6 +245,7 @@ Contact
 
 #map {
   height: 100%;
+  margin-bottom: 20px;
 }
 
 #map {
@@ -258,6 +264,7 @@ h3 {
 #location {
   text-align: center;
 }
+
 /* 
 ---------------------------------------------
 Review

@@ -26,9 +26,8 @@
                             <p class="card-text"> On: {{ res.datetime }}</p>
                             <p class="card-text"><strong>Important info:</strong> {{ res.information }}</p>
                             <p class="card-text">Date reservation made: {{ res.sent_date }}</p>
-                            <!-- <p class="card-text">Date reservation approved: {{ res.accepted_date }}</p> -->
-                            <a href="{% url 'approved_revservation' res.id %}" class="menu-btn">Approve Reservation</a>
-                            <a href="{% url 'reject_revservation' res.id %}" class="menu-btn">Reject Reservation</a>
+                            <p class="inline-flex"><a href="{% url 'approved_revservation' res.id %}" class="menu-btn">Approve Reservation</a></p>
+                            <p class="inline-flex"><a href="{% url 'reject_revservation' res.id %}" class="menu-btn">Reject Reservation</a></p>
                         </div>
                     </div>
                     <hr>

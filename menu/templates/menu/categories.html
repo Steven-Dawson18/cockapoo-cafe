@@ -7,6 +7,7 @@
         <h2>Cockapoo Cafe</h2>
         <h3>{{ cat.name }} Category</h3>
     </div>
+    <p class="create-item-btn"><a class="menu-btn" href="{% url 'menu' %}">Back</a></p>
     
     {% for item in menuitem %}
     
@@ -26,14 +27,14 @@
                         <p class="card-text">{{ item.category }}</p>
                         {% if user.is_authenticated %}
                             {% if user in item.likes.all %}
-                                <a href="{% url 'like-menu-item' item.id %}"class="menu-btn like-btn" value="like">UnLike <i class="fab fa-gratipay"></i></a>
+                                <p class="inline-flex"></p><a href="{% url 'like-menu-item' item.id %}"class="menu-btn like-btn" value="like">UnLike <i class="fab fa-gratipay"></i></a></p>
                             {% else %}
-                                <a href="{% url 'like-menu-item' item.id %}"class="menu-btn like-btn" value="like">Like <i class="fab fa-gratipay"></i></a>
+                            <p class="inline-flex"><a href="{% url 'like-menu-item' item.id %}"class="menu-btn like-btn" value="like">Like <i class="fab fa-gratipay"></i></a></p>
                          
                             {% endif %}
                         {% endif %}
 
-                        <i class="fab fa-gratipay"> </i>- {{ item.total_likes }} Likes
+                        <p class="inline-flex"><i class="fab fa-gratipay"> </i> - {{ item.total_likes }} Likes</p>
                        
                     </div>
                     
