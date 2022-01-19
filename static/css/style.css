@@ -100,11 +100,11 @@ margin-top: auto;
 text-align: center;
 padding-top: .5rem;
 padding-bottom: .5rem;
-display: inline-block;
+display: inline-flex;
 }
 
 nav {
-margin-bottom: 20px;;
+margin-bottom: 20px;
 }
 
 .sticky {

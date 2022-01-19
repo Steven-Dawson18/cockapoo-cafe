@@ -9,13 +9,10 @@
         <h3>Your Reservations to approve are:</h3>
     </div>
     {% for res in object_list %}
-        {% if accepted == True or rejected == true not in res %}
+        <!-- {% if queryset.exists %} -->
+       
 
-            <div>
-                <h2>There are no reservations to approve</h2>
-            </div>
-
-        {% else %}
+        <!-- {% else %} -->
             
             <div class="row row-cols-1 row-cols-md-2 g-4 justify-content-center made-reservation">
                 <div class="col">
@@ -33,7 +30,18 @@
                     <hr>
                 </div>
             </div>
-        {% endif %}
+        <!-- {% endif %} -->
+        {% empty %}
+            <div class="row row-cols-1 row-cols-md-2 g-4 justify-content-center made-reservation">
+                <div class="col">
+                    <div class="card">
+                        <div class="card-body text-center">
+                            <h2>There are no reservations to approve</h2>
+                        </div>
+                    </div>
+                    <hr>
+                </div>
+            </div>
     {% endfor %}
 
     <p id="make-reservation-btn"><a class="menu-btn" href="{% url 'reservation' %}">Back to reservations</a></p>
