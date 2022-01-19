@@ -82,7 +82,6 @@ class ReservationUpdateView(LoginRequiredMixin, SuccessMessageMixin,
         '''add date picker in Update forms'''
         form = super(ReservationUpdateView, self).get_form(form_class)
         form.fields['datetime'].widget = SelectDateWidget()
-        form.fields['datetime'].widget = SelectDateWidget()
         return form
 
 
