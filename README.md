@@ -9,10 +9,10 @@ When the user has dicided to register or is a returning user, they have  means a
 
 The live game can be viewed [here](https://cockapoo-cafe.herokuapp.com/).
 
-![Cockapoo Cafe](/static/images/mock-up.png)
+![Cockapoo Cafe](/static/images/cockapoo-cafe-mock-up.png)
 
 ## Wireframes
-[Click here for the wireframe]()
+[Click here for the wireframe](/static/images/cockapoo-cafe-mock-up.png)
 
 ## Database Design
 
@@ -178,13 +178,14 @@ users. In production these are stored in Heroku.
 * [Am I Responsive](http://ami.responsivedesign.is/#)
     * Multi Device Website Mockup Generator was used to create the Mock up image in this README
 
-
-### Libraries Used
-
-
 ## Bugs
+
 ### Fixed
-*  
+* When I created the reservation form, it was not a good experience as a user to enter a date. To solve this I used a datepicker and implemented through the create_review view and Update_review view.
+* I implemented emailjs to send the contact message on the contact page, which worked but the messages to confirm the messsage had been sent didn't display so I removed emailjs and used python to send the email.
+* When I tried to upload an image on the review form the image would't load and the placeholder inage was set. In order to solve this I had to use enctype="multiport/formdata" in the form which I found when searching stackoverflow. Images are now loaded and saved on both create and update forms.
+* When a form was submitted the success messages were not displaying. I had to import success messages in the view and add them in the view perameters.
+* I had trouble getting the like button to change to unlike when the user hads liked the item. To fix I had to use the all() in the tamplate tag.
 ### Known issues
 * 
 
@@ -309,7 +310,7 @@ This project has been tested throughout its inception. Each input has been thoro
 
 ### Testing on Devices
 
-* I have tested the deployed Heroku app on different devices such as Macbook Pro, Samsung Galaxy Tab and iphone. I have found no issues with the game working on them.
+* I have tested the deployed Heroku app on different devices such as Macbook Pro, Samsung Galaxy Tab and iphone. I have found no issues with the site working on them.
 
 ## Deployment on Heroku
 
@@ -337,13 +338,10 @@ This project has been tested throughout its inception. Each input has been thoro
 * The update function was adapted from this tutorial https://www.youtube.com/watch?v=7sVnul-StrU&t=992s
 
 ### Content
-None
+* Date picker for reservation form - https://stackoverflow.com/questions/46735767/django-1-11-createview-adding-datepicker-for-datefields
 
 ### Media
 None
 
 ### Acknowledgments
-My mentor Can Sucullu for his advice and guidance.
-
-Reference 
-Date picker for reservation form - https://stackoverflow.com/questions/46735767/django-1-11-createview-adding-datepicker-for-datefields
+My mentor Antoino for his advice and guidance.

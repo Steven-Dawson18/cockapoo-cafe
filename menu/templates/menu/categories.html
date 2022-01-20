@@ -29,7 +29,7 @@
                             {% if user in item.likes.all %}
                                 <p class="inline-flex"></p><a href="{% url 'like-menu-item' item.id %}"class="menu-btn like-btn" value="like">UnLike <i class="fab fa-gratipay"></i></a></p>
                             {% else %}
-                            <p class="inline-flex"><a href="{% url 'like-menu-item' item.id %}"class="menu-btn like-btn" value="like">Like <i class="fab fa-gratipay"></i></a></p>
+                                <p class="inline-flex"><a href="{% url 'like-menu-item' item.id %}"class="menu-btn like-btn" value="like">Like <i class="fab fa-gratipay"></i></a></p>
                          
                             {% endif %}
                         {% endif %}
