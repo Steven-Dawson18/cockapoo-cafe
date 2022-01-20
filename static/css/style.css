@@ -377,16 +377,6 @@ Like functionality
   display: inline-block;
 }
 
-/* .content-container {
-  position: relative;
-  min-height: 100vh;
-  display: flex;
-  
-  align-items: center; 
-}
-
-.home-container {
-  position: absolute;
-  margin-bottom: auto;
+ .content-container {
   margin-top: auto;
-} */
+}

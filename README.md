@@ -9,9 +9,10 @@ When the user has dicided to register or is a returning user, they have  means a
 
 The live game can be viewed [here](https://cockapoo-cafe.herokuapp.com/).
 
+## Wireframes
+
 ![Cockapoo Cafe](/static/images/cockapoo-cafe-mock-up.png)
 
-## Wireframes
 [Click here for the wireframe](/static/images/cockapoo-cafe-mock-up.png)
 
 ## Database Design
