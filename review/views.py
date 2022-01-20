@@ -66,6 +66,13 @@ class ReviewUpdateView(LoginRequiredMixin, UpdateView):
     success_message = "Review has been updated"
     success_url = reverse_lazy('review')
 
+    def get(self, request, pk, *args, **kwargs):
+        self.object = self.get_object()
+        review = Review.objects.get(pk=pk)
+        review.status = 0
+        review.save()
+        return super(ReviewUpdateView, self).get(request, *args, **kwargs)
+
 
 class ReviewDeleteView(LoginRequiredMixin, DeleteView):
     '''
