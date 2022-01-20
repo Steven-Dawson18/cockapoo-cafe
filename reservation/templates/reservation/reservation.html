@@ -5,9 +5,10 @@
 {% block content %}
     {% if user.is_authenticated %}
     <div class=" container">
-        <h3>Here You Can Make A Reservation Or Just walk in to our cafe</h3>
-        <p>You visit us by just walking in or you can guarantee a table by clicking the button below to make a reservation at the Cockapoo Cafe.</p>
-        
+        <div class="res-title">
+            <h3>Here You Can Make A Reservation Or Just walk in to our cafe</h3>
+            <p>You visit us by just walking in or you can guarantee a table by clicking the button below to make a reservation at the Cockapoo Cafe.</p>
+        </div>
 
     
         {% if request.user.is_superuser %}

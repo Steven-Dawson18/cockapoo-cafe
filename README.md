@@ -23,7 +23,6 @@ Categories Model
 name = models.CharField(max_length=200)
 description = models.TextField(blank=False)
 
-### Menu
 <br>
 Menu-Items Model
 <br>
@@ -82,27 +81,29 @@ Database connection details are set up in an [env.py](https://pypi.org/project/e
 security reasons this is not uploaded to GitHub so that database and connection details are not visible to 
 users. In production these are stored in Heroku. 
 
-## Epics and Usere Stories
+## Epics and User Stories
 
-1. As a site admin/User I can Register/sign in to the site so that I can interact with the site.
-2. As a new user I can Easily register for the site so that I can interact with the site content.
-3. As a returning user I can login to the site so that I can interact with the site content.
-4. As a site admin/User I can view the Cafe menu so that I can see what the cafe offers.
-5. As a site admin I can create/draft new items to add to the menu so that I can change the options on offer.
-6. As a site admin I can Edit/ Delete items on the menu so that Keep the menu up to date.
-7. As a site admin/user I can see the number of likes a menu item has so that I can see how popular it is.
-8. As a User I can Create, edit and delete a reservation so that I can manage the reservation.
-9. As a site admin I can approve/disapprove reservations so that to make sure that there is enough room for the guests.
-10. Reviews can be created, edited, approved and liked/unliked.
-11. As a User I can Create, edit and delete a review of my experience so that I can share my experience of the cafe with future users.
-12. As a User I can Like/unlike fellow users reviews so that I can interact with the sites users.
-13. As a site Admin I can approve/disapprove reviews so that I can filter objectionable comments.
-14. The customer is able to contact the cafe so they can have any questions answered and know how to get to the cafe.
-15. As a User I can See the location of the cafe so that I know how to get there.
-16. As a site admin I can be notified of a message being received so that I can respond promptly.
-17. As a user I can intuitively understand the site and meaning so that I know if I want to stay on the site.
-18. As a user I can intuitively navigate the site so that I can register/ login and make a reservation.
-19. As a user I can Follow the sites social networks so that I can see events and offers.
+ * EPIC: As a site admin/User I can Register/sign in to the site so that I can interact with the site.
+1. As a new user I can Easily register for the site so that I can interact with the site content.
+2. As a returning user I can login to the site so that I can interact with the site content.
+ * EPIC: As a site admin/User I can view the Cafe menu so that I can see what the cafe offers.
+3. As a site admin I can create new items to add to the menu so that I can change the options on offer.
+4. As a site admin I can Edit/ Delete items on the menu so that Keep the menu up to date.
+5. As a site admin/user I can see the number of likes a menu item has so that I can see how popular it is.
+ * EPIC: Users are able to make table reservations. Site owners can manage the reservations.
+6. As a User I can Create, edit and delete a reservation so that I can manage the reservation.
+7. As a site admin I can approve/disapprove reservations so that to make sure that there is enough room for the guests.
+* EPIC: Reviews can be created, edited, approved and liked/unliked.
+8. As a User I can Create, edit and delete a review of my experience so that I can share my experience of the cafe with future users.
+9. As a User I can Like/unlike fellow users reviews so that I can interact with the sites users.
+10. As a site Admin I can approve/disapprove reviews so that I can filter objectionable comments.
+* EPIC: The customer is able to contact the cafe so they can have any questions answered and know how to get to the cafe.
+11. As a User I can See the location of the cafe so that I know how to get there.
+12. As a site admin I can be notified of a message being received so that I can respond promptly.
+* EPIC: Landing Page
+13. As a user I can intuitively understand the site and meaning so that I know if I want to stay on the site.
+14. As a user I can intuitively navigate the site so that I can register/ login and make a reservation.
+15. As a user I can Follow the sites social networks so that I can see events and offers.
 
 ## Features
 
@@ -139,6 +140,21 @@ users. In production these are stored in Heroku.
 * [Python](https://www.python.org/)
     * This projects core was created using Python, the back-end logic and the means to run/view the Website.
     * Python Modules used (These can be found in the requirements.txt project file):
+        * asgiref==3.4.1
+        * cloudinary==1.28.0
+        * dj-database-url==0.5.0
+        * dj3-cloudinary-storage==0.0.6
+        * Django==3.2.9
+        * django-allauth==0.46.0
+        * django-crispy-forms==1.13.0
+        * gunicorn==20.1.0
+        * oauthlib==3.1.1
+        * psycopg2==2.9.2
+        * PyJWT==2.3.0
+        * python3-openid==3.2.0
+        * pytz==2021.3
+        * requests-oauthlib==1.3.0
+        * sqlparse==0.4.2
 * [Django](https://en.wikipedia.org/wiki/Django_(web_framework))
     * This project was created using the Django framework, the back-end logic and the means to run/view the Website.
 * [Bootstrap](https://getbootstrap.com/)
@@ -175,64 +191,113 @@ users. In production these are stored in Heroku.
 ## Testing
 
 The website was extensively tested as it was developed using:
-* console.log().
+* print().
 * The terminal by printing the expected outcome.
 * Testing scenarios manually.
+* Testing functionallity manually.
 
 This project has been tested throughout its inception. Each input has been thoroughly tested to make sure that any invalid inputs are handled correctly and a response is shown to the user.
 
+### Testing User Stories
 
+1. As a new user I can easily register for the site so that I can interact with the site content.
 
-### Testing Client Stories
+![Site Registration](/static/images/register-page.png)
 
-1. As an new visitor to the website, I want to easily be able to understand what the game is about.
+* WHen the user navigates to the register button in the navigation bar or clicks the reservation tab, if not logged in, they are directed to the register page.
 
-![Game information](assets/images/client_story_1.png)
+2. As a returning user I can login to the site so that I can interact with the site content.
 
-* The game immediately informs you that you are about to play hangman. Once you enter your name you are then told how to play the game, as shown in the image above.
+![Site Login](/static/images/login-page.png)
 
-2. As a visitor to the website, I want to have a choice of game catagories.
+* If the user is a returning user they will be able to sigh in using the signin tab in the navigation bar.
 
-![Game Category](assets/images/client_story_2.png)
+3. As a site admin I can create new items to add to the menu so that I can change the options on offer.
 
-* The user is given three choices of category, Dragons, Cities and Standard words.
+![Create Menu Category](/static/images/create-menu-category.png)
 
-3. As a visitor to the website, I want to have a choice of difficulty levels.
+* The admin can create a new menu category.
 
-![Game Levels](assets/images/client_story_3.png)
+![Create Menu Items](/static/images/create-menu-item.png)
 
-* The user is given three levels of difficulty to choose from.
+* The admin can create a new menu Item.
 
-4. As a user I want to know if I guessed correctly and see it displayed in the hidden word.
+4. As a site admin I can Edit/ Delete items on the menu so that Keep the menu up to date.
 
-![Guess confirmation](assets/images/client_story_4.png)
+![Update/ delete Menu Item](/static/images/update-delete-menu-item.png)
 
-* The user is congratulated on getting a guess correct and the letter guessed is input into the hidden word and displayed to the user.
+* By clicking the relevant button the admin can update or delete the selected menu item.
 
-5. As a user I want to know if I guessed incorrectly and see a hangman image and how many guesses I have left.
+![Update/ delete Menu Category](/static/images/update-delete-menu-cat.png)
 
-![Guess incorrect](assets/images/client_story_5.png)
+* By clicking the relevant button the admin can update or delete the selected menu category.
+
+5. As a site admin/user I can see the number of likes a menu item has so that I can see how popular it is.
+
+![View Menu item likes](/static/images/update-delete-menu-item.png)
 
 * The user is informed if their guess is incorrect. A list of the letters they have guessed so far will be displayed along with the number of guesses they have left and an image of the hangman position they are at.
 
-6. As a user I want to know if I have already guessed a letter.
+6. As a User I can Create, edit and delete a reservation so that I can manage the reservation.
 
-![Guessed already](assets/images/client_story_6.png)
+![Create Update Delete reservation](/static/images/create-update-dalete-reservation.png)
 
-* The user will be informed if they have already guessed a letter and asked to try again. They will not lose a life.
+* When the logged in user navigates to the reservation page, they will see a card to create a reservation. once created they will get a message to say it has been created and then will be able to update and delete the reservation by selecting the appropriate button. The reservation also has a traffic light system to inform the user if their reservation is pending, accepted or rejected.
 
-7. As a user I want to know if I have won or lost.
 
-![Win](assets/images/client_story_7.png)
-![Lost](assets/images/client_story_75.png)
+7. As a site admin I can approve/disapprove reservations so that to make sure that there is enough room for the guests.
 
-* The user is informed if they won or lost the game with a statement being returned to them. They are also informed of what the hidden word was.
+![Admin approve reservations](/static/images/approve-reject-reservation.png)
 
-8. As a user I want to have the choice to play again or not.
+* The admin is able to approve or reject reservations by selecting the appropriate button. Once done the reservation will be removed from this page and the reservation traffic light system will change accordingly, informing the user and the admin that the reservation has been accepted or rejected.
 
-![Play again](assets/images/client_story_8.png)
+8. As a User I can Create, edit and delete a review of my experience so that I can share my experience of the cafe with future users.
 
-* When the user has either been successfull in guessing the word or failed to guess the word they will be invited to play again. If they select yes they will be invited to enter their name again to restart. If they choose no then they will be shown a goodbye message and the game will end.
+![Create Update Delete a Review](/static/images/create-update-delete-review.png)
+
+* The user is able to create a review of the cafe by clicking the button Leave a Review. Once they have completed the form and submitted the review will be sent for approval to the admin and will not show in the review page. Once the admin has approved the review the review will be displayed on the review page. The user will then be able to Update or delete their review by selecting the appropriate button on their review.
+
+9. As a User I can Like/unlike fellow users reviews so that I can interact with the sites users.
+
+![Review likes/unlikes](/static/images/create-update-delete-review.png)
+
+* The user is able to like and unlike reviews of the cafe by clicking the button Like/Unlike. Their like will be added to any previous likes and change the number of likes that review has.
+
+10. As a site Admin I can approve/disapprove reviews so that I can filter objectionable comments.
+
+![Admin review approval](/static/images/approve-review.png)
+
+* When the user has left a review, the review will not be displayed until it has been accepted by the site admin. The site admin has the ability to approve or reject the review by going to the manage review page via the button only visable to the admin and then selecting the appropriate button to accept or reject the review. If the review is rejected it will be deleted.
+
+11. As a User I can See the location of the cafe so that I know how to get there.
+
+![Cafe location](/static/images/location.png)
+
+* The user is able to view the location of the cafe on a google map on the contact page. Above the map there is also the address of the cafe which could be used to put into a car sat nav for directions.
+
+12. As a site admin I can be notified of a message being received so that I can respond promptly.
+
+![Contact message](/static/images/contact-message.png)
+
+* The user is able to contact the cafe by phone or by email by completing the form on the contact page. Once the user clicks send mesasage, an email will be sent to the cafe with the name entered, email address the user entered to reply to and the content of the message.
+
+13. As a user I can intuitively understand the site and meaning so that I know if I want to stay on the site.
+
+![Landing Page](/static/images/landing-page.png)
+
+* When a user first lands on the site the purpose is clear, with a large title with the name of the cafe, images on the page and a link to make a reservation at the cafe.
+
+14. As a user I can intuitively navigate the site so that I can register/ login and make a reservation.
+
+![Intuitive navigation](/static/images/landing-page.png)
+
+* The user is able to navigate the site intuitively as the navigation bar is site wide, meaning it is the same on every page. On sub pages of the main navigation pages there are buttons to go back to the main page.
+
+15. As a user I can Follow the sites social networks so that I can see events and offers.
+
+![Site socials](/static/images/landing-page.png)
+
+* The user is able to view the cafe's social networks by clicking on the icons at the bottom of the page in the footer, this will help keep them uptodate with any offers or news the cafe has.
 
 ### Validator Testing
 

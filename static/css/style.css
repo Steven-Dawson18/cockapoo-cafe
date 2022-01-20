@@ -321,6 +321,11 @@ Reservation
 --------------------------------------------- 
 */
 
+.res-title {
+  margin: 0 auto;
+  text-align: center;
+}
+
 #make-reservation-btn {
   text-align: center;
   margin: 20px auto;
@@ -371,3 +376,17 @@ Like functionality
 .like {
   display: inline-block;
 }
+
+/* .content-container {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  
+  align-items: center; 
+}
+
+.home-container {
+  position: absolute;
+  margin-bottom: auto;
+  margin-top: auto;
+} */
