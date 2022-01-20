@@ -70,7 +70,7 @@ class ReviewUpdateView(LoginRequiredMixin, UpdateView):
     def get(self, request, pk, *args, **kwargs):
         self.object = self.get_object()
         return super(ReviewUpdateView, self).get(request, *args, **kwargs)
-    
+
     def post(self, request, pk, *args, **kwargs):
         self.object = self.get_object()
         review = Review.objects.get(pk=pk)

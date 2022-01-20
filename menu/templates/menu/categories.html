@@ -16,9 +16,9 @@
             <div class="col">
                 <div class="card category-selection">
                     {% if "item_placeholder" in item.image.url %}
-                        <img src="{% static 'images/menu_placeholder.jpeg' %}" alt="placeholder" width="100%">
+                        <img class="upload-img" src="{% static 'images/menu_placeholder.jpeg' %}" alt="placeholder">
                     {% else %}
-                        <img src=" {{ item.image.url }} " alt="placeholder" width="100%">
+                        <img class="upload-img" src=" {{ item.image.url }} " alt="Menu item image">
                     {% endif %}
                     <div class="card-body text-center">
                         <h5 class="card-title">{{ item.name }}</h5>

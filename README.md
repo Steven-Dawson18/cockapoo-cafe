@@ -11,9 +11,9 @@ The live game can be viewed [here](https://cockapoo-cafe.herokuapp.com/).
 
 ## Wireframes
 
-![Cockapoo Cafe](/static/images/cockapoo-cafe-mock-up.png)
+![Cockapoo Cafe](readme_images/cockapoo-cafe-mock-up.png)
 
-[Click here for the wireframe](/static/images/cockapoo-cafe-mock-up.png)
+[Click here for the wireframe](/readme_images/cockapoo-cafe-mock-up.png)
 
 ## Database Design
 
@@ -204,100 +204,100 @@ This project has been tested throughout its inception. Each input has been thoro
 
 1. As a new user I can easily register for the site so that I can interact with the site content.
 
-![Site Registration](/static/images/register-page.png)
+![Site Registration](readme_images/register-page.png)
 
 * WHen the user navigates to the register button in the navigation bar or clicks the reservation tab, if not logged in, they are directed to the register page.
 
 2. As a returning user I can login to the site so that I can interact with the site content.
 
-![Site Login](/static/images/login-page.png)
+![Site Login](readme_images/login-page.png)
 
 * If the user is a returning user they will be able to sigh in using the signin tab in the navigation bar.
 
 3. As a site admin I can create new items to add to the menu so that I can change the options on offer.
 
-![Create Menu Category](/static/images/create-menu-category.png)
+![Create Menu Category](readme_images/create-menu-category.png)
 
 * The admin can create a new menu category.
 
-![Create Menu Items](/static/images/create-menu-item.png)
+![Create Menu Items](readme_images/create-menu-item.png)
 
 * The admin can create a new menu Item.
 
 4. As a site admin I can Edit/ Delete items on the menu so that Keep the menu up to date.
 
-![Update/ delete Menu Item](/static/images/update-delete-menu-item.png)
+![Update/ delete Menu Item](readme_images/update-delete-menu-item.png)
 
 * By clicking the relevant button the admin can update or delete the selected menu item.
 
-![Update/ delete Menu Category](/static/images/update-delete-menu-cat.png)
+![Update/ delete Menu Category](readme_images/update-delete-menu-cat.png)
 
 * By clicking the relevant button the admin can update or delete the selected menu category.
 
 5. As a site admin/user I can see the number of likes a menu item has so that I can see how popular it is.
 
-![View Menu item likes](/static/images/update-delete-menu-item.png)
+![View Menu item likes](readme_images/update-delete-menu-item.png)
 
 * The user is informed if their guess is incorrect. A list of the letters they have guessed so far will be displayed along with the number of guesses they have left and an image of the hangman position they are at.
 
 6. As a User I can Create, edit and delete a reservation so that I can manage the reservation.
 
-![Create Update Delete reservation](/static/images/create-update-dalete-reservation.png)
+![Create Update Delete reservation](readme_images/create-update-dalete-reservation.png)
 
 * When the logged in user navigates to the reservation page, they will see a card to create a reservation. once created they will get a message to say it has been created and then will be able to update and delete the reservation by selecting the appropriate button. The reservation also has a traffic light system to inform the user if their reservation is pending, accepted or rejected.
 
 
 7. As a site admin I can approve/disapprove reservations so that to make sure that there is enough room for the guests.
 
-![Admin approve reservations](/static/images/approve-reject-reservation.png)
+![Admin approve reservations](readme_images/approve-reject-reservation.png)
 
 * The admin is able to approve or reject reservations by selecting the appropriate button. Once done the reservation will be removed from this page and the reservation traffic light system will change accordingly, informing the user and the admin that the reservation has been accepted or rejected.
 
 8. As a User I can Create, edit and delete a review of my experience so that I can share my experience of the cafe with future users.
 
-![Create Update Delete a Review](/static/images/create-update-delete-review.png)
+![Create Update Delete a Review](readme_images/create-update-delete-review.png)
 
 * The user is able to create a review of the cafe by clicking the button Leave a Review. Once they have completed the form and submitted the review will be sent for approval to the admin and will not show in the review page. Once the admin has approved the review the review will be displayed on the review page. The user will then be able to Update or delete their review by selecting the appropriate button on their review.
 
 9. As a User I can Like/unlike fellow users reviews so that I can interact with the sites users.
 
-![Review likes/unlikes](/static/images/create-update-delete-review.png)
+![Review likes/unlikes](readme_images/create-update-delete-review.png)
 
 * The user is able to like and unlike reviews of the cafe by clicking the button Like/Unlike. Their like will be added to any previous likes and change the number of likes that review has.
 
 10. As a site Admin I can approve/disapprove reviews so that I can filter objectionable comments.
 
-![Admin review approval](/static/images/approve-review.png)
+![Admin review approval](readme_images/approve-review.png)
 
 * When the user has left a review, the review will not be displayed until it has been accepted by the site admin. The site admin has the ability to approve or reject the review by going to the manage review page via the button only visable to the admin and then selecting the appropriate button to accept or reject the review. If the review is rejected it will be deleted.
 
 11. As a User I can See the location of the cafe so that I know how to get there.
 
-![Cafe location](/static/images/location.png)
+![Cafe location](readme_images/location.png)
 
 * The user is able to view the location of the cafe on a google map on the contact page. Above the map there is also the address of the cafe which could be used to put into a car sat nav for directions.
 
 12. As a site admin I can be notified of a message being received so that I can respond promptly.
 
-![Contact message](/static/images/contact-message.png)
+![Contact message](readme_images/contact-message.png)
 
 * The user is able to contact the cafe by phone or by email by completing the form on the contact page. Once the user clicks send mesasage, an email will be sent to the cafe with the name entered, email address the user entered to reply to and the content of the message.
 
 13. As a user I can intuitively understand the site and meaning so that I know if I want to stay on the site.
 
-![Landing Page](/static/images/landing-page.png)
+![Landing Page](readme_images/landing-page.png)
 
 * When a user first lands on the site the purpose is clear, with a large title with the name of the cafe, images on the page and a link to make a reservation at the cafe.
 
 14. As a user I can intuitively navigate the site so that I can register/ login and make a reservation.
 
-![Intuitive navigation](/static/images/landing-page.png)
+![Intuitive navigation](readme_images/landing-page.png)
 
 * The user is able to navigate the site intuitively as the navigation bar is site wide, meaning it is the same on every page. On sub pages of the main navigation pages there are buttons to go back to the main page.
 
 15. As a user I can Follow the sites social networks so that I can see events and offers.
 
-![Site socials](/static/images/landing-page.png)
+![Site socials](readme_images/landing-page.png)
 
 * The user is able to view the cafe's social networks by clicking on the icons at the bottom of the page in the footer, this will help keep them uptodate with any offers or news the cafe has.
 
@@ -345,4 +345,4 @@ This project has been tested throughout its inception. Each input has been thoro
 None
 
 ### Acknowledgments
-My mentor Antoino for his advice and guidance.
+My mentor Antoino Rodriguez for his advice and guidance.

@@ -15,6 +15,10 @@ body {
   padding-right: 0;
 }
 
+.content-container {
+  margin-top: auto;
+}
+
 #top .col-lg-4,
 #top .col-lg-8 {
   padding: 0px;
@@ -153,6 +157,10 @@ height: 100%
 Menu
 --------------------------------------------- 
 */
+
+.upload-img {
+  width:100%;
+}
 
 .menu-title {
   text-align: center;
@@ -375,8 +383,4 @@ Like functionality
 
 .like {
   display: inline-block;
-}
-
- .content-container {
-  margin-top: auto;
 }

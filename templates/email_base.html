@@ -48,29 +48,29 @@
               {% else %}
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Register/login
-                </a>
+                  Register/login</a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                   <li><a class="dropdown-item" href="{% url 'account_signup' %}">Register</a></li>
                   <li><a class="dropdown-item" href="{% url 'account_login' %}">Login</a></li>
                 </ul>
               </li>
+            </ul>
               {% endif %}
           </div>
         </div>
       </nav>
         <!-- ***** Messages display ***** -->
       <div class="container">
-        <div class="row">
-            <div class="col-md-8 offset-md-2">
-                {% for message in messages %}
-                <div class="alert {{ message.tags }} alert-dismissible fade show" id="msg" role="alert">
-                    {{ message | safe }}
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>
-                {% endfor %}
-            </div>
-        </div>
+          <div class="row">
+              <div class="col-md-8 offset-md-2">
+                  {% for message in messages %}
+                    <div class="alert {{ message.tags }} alert-dismissible fade show" id="msg" role="alert">
+                        {{ message | safe }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                  {% endfor %}
+              </div>
+          </div>
       </div>
 
       {% block content %}

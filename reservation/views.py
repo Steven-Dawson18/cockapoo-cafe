@@ -83,18 +83,20 @@ class ReservationUpdateView(LoginRequiredMixin, SuccessMessageMixin,
         form = super(ReservationUpdateView, self).get_form(form_class)
         form.fields['datetime'].widget = SelectDateWidget()
         return form
-    
+
     def get(self, request, pk, *args, **kwargs):
         self.object = self.get_object()
         return super(ReservationUpdateView, self).get(request, *args, **kwargs)
-    
+
     def post(self, request, pk, *args, **kwargs):
         self.object = self.get_object()
         reseervation = Reservation.objects.get(pk=pk)
         reseervation.accepted = False
         reseervation.save()
-        messages.success(request, 'The Reservation has been sent for approval.')
-        return super(ReservationUpdateView, self).post(request, *args, **kwargs)
+        messages.success(request,
+                         'The Reservation has been sent for approval')
+        return super(ReservationUpdateView,
+                     self).post(request, *args, **kwargs)
 
 
 class ReservationDeleteView(LoginRequiredMixin, SuccessMessageMixin,
