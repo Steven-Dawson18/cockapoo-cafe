@@ -6,6 +6,7 @@ from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy, reverse
 from django.http import HttpResponseRedirect
+from django.contrib import messages
 from .models import Review
 
 
@@ -68,10 +69,15 @@ class ReviewUpdateView(LoginRequiredMixin, UpdateView):
 
     def get(self, request, pk, *args, **kwargs):
         self.object = self.get_object()
+        return super(ReviewUpdateView, self).get(request, *args, **kwargs)
+    
+    def post(self, request, pk, *args, **kwargs):
+        self.object = self.get_object()
         review = Review.objects.get(pk=pk)
         review.status = 0
         review.save()
-        return super(ReviewUpdateView, self).get(request, *args, **kwargs)
+        messages.success(request, 'The Review has been sent for approval.')
+        return super(ReviewUpdateView, self).post(request, *args, **kwargs)
 
 
 class ReviewDeleteView(LoginRequiredMixin, DeleteView):
@@ -117,4 +123,5 @@ def approved_review(request, pk):
     review = Review.objects.get(pk=pk)
     review.status = 1
     review.save()
+    messages.success(request, 'The Review has been approved.')
     return HttpResponseRedirect(reverse('manage_review'))
