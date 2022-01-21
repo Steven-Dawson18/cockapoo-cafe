@@ -187,8 +187,10 @@ users. In production these are stored in Heroku.
 * When I tried to upload an image on the review form the image would't load and the placeholder inage was set. In order to solve this I had to use enctype="multiport/formdata" in the form which I found when searching stackoverflow. Images are now loaded and saved on both create and update forms.
 * When a form was submitted the success messages were not displaying. I had to import success messages in the view and add them in the view perameters.
 * I had trouble getting the like button to change to unlike when the user hads liked the item. To fix I had to use the all() in the tamplate tag.
+* An error was highlighted on the Review.html page when put through the HTML validator. This was corrected by adding an alt to the image and moving the width="100%" to the css file.
+* The pep8 validator picked up a line with whitespace on it in the reservation update view and review update view. This was resolved by removing the whitespace.
 ### Known issues
-* 
+* The contact tab in the nav doesn't show up as active when on the page, instead the home page does, this could be down to the contact page being in the home app.
 
 ## Testing
 
@@ -303,11 +305,7 @@ This project has been tested throughout its inception. Each input has been thoro
 
 ### Validator Testing
 
-* Each Python file was run through pep8 online and returned no errors.
-
-![Click here for the PEP8 online Validation of run.py](assets/images/pep8_validation.png)
-
-![Click here for the PEP8 online Validation of hangman_pictures.py](assets/images/pep8_online_validation_2.png)
+Full test results can be found [here](TESTING.md)
 
 ### Testing on Devices
 
