@@ -124,7 +124,8 @@ users. In production these are stored in Heroku.
 
 
 ### Future Features
-
+* Implement a reservation archive
+* Admin receive notifications in the navigation bar if a reservation has been requested.
 
 ## Technologies Used
 
@@ -147,7 +148,6 @@ users. In production these are stored in Heroku.
         * dj3-cloudinary-storage==0.0.6
         * Django==3.2.9
         * django-allauth==0.46.0
-        * django-crispy-forms==1.13.0
         * gunicorn==20.1.0
         * oauthlib==3.1.1
         * psycopg2==2.9.2
@@ -189,14 +189,29 @@ users. In production these are stored in Heroku.
 * I had trouble getting the like button to change to unlike when the user hads liked the item. To fix I had to use the all() in the tamplate tag.
 * An error was highlighted on the Review.html page when put through the HTML validator. This was corrected by adding an alt to the image and moving the width="100%" to the css file.
 * The pep8 validator picked up a line with whitespace on it in the reservation update view and review update view. This was resolved by removing the whitespace.
+* When a user made a reservation sometimes they were unabel to see it. This was because the page was paginated by the date and so it appeared on a different page. To solve this I removed the pagination.
 ### Known issues
 * The contact tab in the nav doesn't show up as active when on the page, instead the home page does, this could be down to the contact page being in the home app.
 
 ## Testing
 
+Testing is required on all features and user stories documented in this README. 
+All clickable links must redirect to the correct pages. All forms linked to the database
+must be tested to ensure they insert all given fields into the correct collections.
+
+HTML Code must pass through the [W3C HTML Validator](https://validator.w3.org/#validate_by_uri).
+
+CSS Code must pass through the [W3C CSS Validator](https://jigsaw.w3.org/css-validator/).
+
+JavaScript code must pass through the [JSHint Validator](https://jshint.com/).
+
+Python Code must pass through [PEP8 Validator](http://pep8online.com/)
+
+
 The website was extensively tested as it was developed using:
 * print().
 * The terminal by printing the expected outcome.
+* Testing User Stories.
 * Testing scenarios manually.
 * Testing functionallity manually.
 
@@ -327,20 +342,17 @@ Full test results can be found [here](TESTING.md)
 * Enable automatic deploy
 
 ## Credits
-* Code Institute for the deployment terminal
+
 
 ### Code
-* The run_game_choice function was adapted from this tutorial https://www.youtube.com/watch?v=m4nEnsavl6w&t=173s
 
-* The think function was adapted from this tutorial https://www.youtube.com/watch?v=7sVnul-StrU&t=992s
-
-* The update function was adapted from this tutorial https://www.youtube.com/watch?v=7sVnul-StrU&t=992s
 
 ### Content
 * Date picker for reservation form - https://stackoverflow.com/questions/46735767/django-1-11-createview-adding-datepicker-for-datefields
 
 ### Media
-None
+* images - google images
 
 ### Acknowledgments
 My mentor Antoino Rodriguez for his advice and guidance.
+Code Institutes Tutor support for their help and guidance.

@@ -21,7 +21,6 @@ class ReservationListView(ListView):
     model = Reservation
     queryset = Reservation.objects.all().order_by('datetime')
     template_name = 'reservation/reservation.html'
-    paginate_by = 6
 
 
 class ReservationApproveListView(ListView):
