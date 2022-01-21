@@ -8,33 +8,44 @@
     
     <h3>Your Reviews to approve are:</h3>
   </div>
-  {% for review in review_list %}
+  {% if request.user.is_superuser %}
+    {% for review in review_list %}
 
-    {% if request.user.is_superuser %}
-      <!-- Only superusers can view things in here -->
-      <div class="card mb-0 col-8 review">
-        <div class="row g-0">
-          <div class="col-md-4">
-            <!-- The image URL goes in the src attribute -->
-            {% if "review_placeholder" in review.image.url %}
-            <img src="{% static 'images/placeholder.jpeg' %}" width="100%">
-            {% else %}
-            <img src=" {{ review.image.url }} " width="100%">
-            {% endif %}
-          </div>
-          <div class="col-md-8">
-            <div class="card-body">
-              <h5 class="card-title">{{ review.title }}</h5>
-              <p class="card-text">{{ review.body }}</p>
-              <p class="card-text"><small class="text-muted">{{ review.author }} | {{ review.created_on }}</small></p>
-              <a href="{% url 'approved_review' review.id %}" class="menu-btn">Approve Review</a>
-              <a href="{% url 'delete_review' review.id %}" class="menu-btn">Reject Review</a>
+        <!-- Only superusers can view things in here -->
+        <div class="card mb-0 col-8 review">
+          <div class="row g-0">
+            <div class="col-md-4">
+              <!-- The image URL goes in the src attribute -->
+              {% if "review_placeholder" in review.image.url %}
+                <img src="{% static 'images/placeholder.jpeg' %}" width="100%">
+              {% else %}
+                <img src=" {{ review.image.url }} " width="100%">
+              {% endif %}
+            </div>
+            <div class="col-md-8">
+              <div class="card-body">
+                <h5 class="card-title">{{ review.title }}</h5>
+                <p class="card-text">{{ review.body }}</p>
+                <p class="card-text"><small class="text-muted">{{ review.author }} | {{ review.created_on }}</small></p>
+                <a href="{% url 'approved_review' review.id %}" class="menu-btn">Approve Review</a>
+                <a href="{% url 'delete_review' review.id %}" class="menu-btn">Reject Review</a>
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      {% empty %}
+        <div class="row row-cols-1 row-cols-md-2 g-4 justify-content-center made-reservation">
+            <div class="col">
+                <div class="card">
+                    <div class="card-body text-center">
+                        <h2>There are no Reviews to approve</h2>
+                    </div>
+                </div>
+                <hr>
+            </div>
+        </div>
 
-    {% endif %}
-  {% endfor %}
+    {% endfor %}
+  {% endif %}
   <p id="make-reservation-btn"><a class="menu-btn" href="{% url 'review' %}">Back to reviews</a></p>
 {% endblock %}

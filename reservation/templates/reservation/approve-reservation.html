@@ -8,41 +8,39 @@
         
         <h3>Your Reservations to approve are:</h3>
     </div>
-    {% for res in object_list %}
-        <!-- {% if queryset.exists %} -->
-       
-
-        <!-- {% else %} -->
+    {% if request.user.is_superuser %}
+        {% for res in object_list %}
+                
+                <div class="row row-cols-1 row-cols-md-2 g-4 justify-content-center made-reservation">
+                    <div class="col">
+                        <div class="card">
+                            <div class="card-body text-center">
+                                <h5 class="card-title">{{ res.first_name }} {{ res.last_name }}</h5>
+                                <p class="card-text">Your table is reserved at: {{ res.time }}</p>
+                                <p class="card-text"> On: {{ res.datetime }}</p>
+                                <p class="card-text"><strong>Important info:</strong> {{ res.information }}</p>
+                                <p class="card-text">Date reservation made: {{ res.sent_date }}</p>
+                                <p class="inline-flex"><a href="{% url 'approved_revservation' res.id %}" class="menu-btn">Approve Reservation</a></p>
+                                <p class="inline-flex"><a href="{% url 'reject_revservation' res.id %}" class="menu-btn">Reject Reservation</a></p>
+                            </div>
+                        </div>
+                        <hr>
+                    </div>
+                </div>
             
-            <div class="row row-cols-1 row-cols-md-2 g-4 justify-content-center made-reservation">
-                <div class="col">
-                    <div class="card">
-                        <div class="card-body text-center">
-                            <h5 class="card-title">{{ res.first_name }} {{ res.last_name }}</h5>
-                            <p class="card-text">Your table is reserved at: {{ res.time }}</p>
-                            <p class="card-text"> On: {{ res.datetime }}</p>
-                            <p class="card-text"><strong>Important info:</strong> {{ res.information }}</p>
-                            <p class="card-text">Date reservation made: {{ res.sent_date }}</p>
-                            <p class="inline-flex"><a href="{% url 'approved_revservation' res.id %}" class="menu-btn">Approve Reservation</a></p>
-                            <p class="inline-flex"><a href="{% url 'reject_revservation' res.id %}" class="menu-btn">Reject Reservation</a></p>
+            {% empty %}
+                <div class="row row-cols-1 row-cols-md-2 g-4 justify-content-center made-reservation">
+                    <div class="col">
+                        <div class="card">
+                            <div class="card-body text-center">
+                                <h2>There are no reservations to approve</h2>
+                            </div>
                         </div>
+                        <hr>
                     </div>
-                    <hr>
                 </div>
-            </div>
-        <!-- {% endif %} -->
-        {% empty %}
-            <div class="row row-cols-1 row-cols-md-2 g-4 justify-content-center made-reservation">
-                <div class="col">
-                    <div class="card">
-                        <div class="card-body text-center">
-                            <h2>There are no reservations to approve</h2>
-                        </div>
-                    </div>
-                    <hr>
-                </div>
-            </div>
-    {% endfor %}
+        {% endfor %}
+    {% endif %}
 
     <p id="make-reservation-btn"><a class="menu-btn" href="{% url 'reservation' %}">Back to reservations</a></p>
 

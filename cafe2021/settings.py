@@ -58,7 +58,6 @@ INSTALLED_APPS = [
     'home.apps.HomeConfig',
     'review.apps.ReviewConfig',
     'reservation.apps.ReservationConfig',
-    'crispy_forms',
 ]
 
 SITE_ID = 1
@@ -74,8 +73,6 @@ MESSAGE_TAGS = {
         messages.WARNING: 'alert-warning',
         messages.ERROR: 'alert-danger',
     }
-
-CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
