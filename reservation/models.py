@@ -1,7 +1,7 @@
 """
 Models for reservations
 """
-from datetime import datetime
+from datetime import datetime, date
 from django.db import models
 from django.contrib.auth.models import User
 from django.core.validators import RegexValidator
@@ -55,16 +55,14 @@ class Reservation(models.Model):
         return ret
 
     def clean(self):
-        if self.datetime <= datetime.now().date():
+        now = datetime.now().date()
+        if self.datetime <= now:
             raise ValidationError('The date cannot be in the past!')
         return super().clean()
 
+    # Adapted from stackoverflow
     class Meta:
         """
         Sets the constraints and checks the date entered isn't in the past
         """
-        constraints = [
-            models.CheckConstraint(
-                check=Q(datetime__lte=F('datetime.now().date()')),
-                name='start_before_end')
-        ]
+        ordering = ["datetime"]
