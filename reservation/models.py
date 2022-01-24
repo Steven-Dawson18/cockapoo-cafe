@@ -1,12 +1,11 @@
 """
 Models for reservations
 """
-from datetime import datetime, date
+from datetime import datetime
 from django.db import models
 from django.contrib.auth.models import User
 from django.core.validators import RegexValidator
 from django.core.exceptions import ValidationError
-from django.db.models import Q, F
 
 
 PHONE_MESSAGE = 'Please enter a valid number in the format: 07999999999'
