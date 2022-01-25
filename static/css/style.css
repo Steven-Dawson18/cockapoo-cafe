@@ -19,7 +19,7 @@ body {
 }
 
 #top .left-content {
-  background-image: url('https://res.cloudinary.com/fullstacksteve/image/upload/v1/static/images/top-left-bg.jpg');
+  background-color: #fb5849;
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
