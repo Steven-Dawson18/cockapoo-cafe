@@ -8,8 +8,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Bootstrap css link -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <link href="{% static 'css/style.css' %}" rel="stylesheet">
-    <link href="/static/favicon.ico" rel="icon" type="image/x-icon" />
+    <!-- Import custom CSS -->
+    <link href="{% static 'css/style.css' %}" rel="stylesheet" type="text/css">
+    <!-- Import favicon -->
+    <link href="{% static 'favicon.ico' %}" rel="icon" type="image/x-icon" />
     <title>Cockapoo Cafe</title>
 </head>
 <body>
@@ -25,24 +27,56 @@
                 <li class="nav-item">
                   <a class="nav-link {% if url_name == 'home' %}active{% endif %}" href="{% url 'home' %}">Home</a>
                 </li>
-                {% if user.is_authenticated %}
-                <li class="nav-item">
-                  <a class="nav-link {% if url_name == 'reservation' %}active{% endif %}" href="{% url 'reservation' %}">Reservation</a>
-                </li>
+                    {% if request.user.is_superuser %}
+                      <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                          Reservations</a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                          <li><a class="dropdown-item {% if url_name == 'reservation' %}active{% endif %}" href="{% url 'reservation' %}">Reservations</a></li>
+                          <li><a class="dropdown-item {% if url_name == 'approve_reservation' %}active{% endif %}" href="{% url 'approve_reservation' %}">Approve Reservations</a></li>
+                        </ul>
+                      </li>
+                    {% elif user.is_authenticated %}
+                      <li class="nav-item">
+                        <a class="nav-link {% if url_name == 'reservation' %}active{% endif %}" href="{% url 'reservation' %}">Reservation</a>
+                      </li>
+                    {% else %}
+                      <li>
+                        <a class="nav-link {% if url_name == 'account_signup' %}active{% endif %}" href="{% url 'account_signup' %}">Reservation</a>
+                      </li>
+                    {% endif %}
+                {% if request.user.is_superuser %}
+                    <li class="nav-item dropdown">
+                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Reviews</a>
+                      <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item {% if url_name == 'review' %}active{% endif %}" href="{% url 'review' %}">Reviews</a></li>
+                        <li><a class="dropdown-item {% if url_name == 'manage_review' %}active{% endif %}" href="{% url 'manage_review' %}">Approve Reviews</a></li>
+                      </ul>
+                    </li>
                 {% else %}
-                <li>
-                  <a class="nav-link {% if url_name == 'account_signup' %}active{% endif %}" href="{% url 'account_signup' %}">Reservation</a>
-                </li>
+                    <li class="nav-item">
+                      <a class="nav-link {% if url_name == 'review' %}active{% endif %}" href="{% url 'review' %}">Reviews</a>
+                    </li>
                 {% endif %}
-                <li class="nav-item">
-                  <a class="nav-link {% if url_name == 'review' %}active{% endif %}" href="{% url 'review' %}">Reviews</a>
-                </li>
                 <li class="nav-item">
                   <a class="nav-link {% if url_name == 'contact' %}active{% endif %}" href="{% url 'contact' %}">Contact</a>
                 </li>
-                <li class="nav-item">
-                  <a class="nav-link {% if url_name == 'menu' %}active{% endif %}" href="{% url 'menu' %}">Menu</a>
-                </li>
+                {% if request.user.is_superuser %}
+                    <li class="nav-item dropdown">
+                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Menu</a>
+                      <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item {% if url_name == 'menu' %}active{% endif %}" href="{% url 'menu' %}">Menu</a></li>
+                        <li><a class="dropdown-item {% if url_name == 'create-menu-category' %}active{% endif %}" href="{% url 'create-menu-category' %}">Create Menu Category</a></li>
+                        <li><a class="dropdown-item {% if url_name == 'create-menu-item' %}active{% endif %}" href="{% url 'create-menu-item' %}">Create Menu Iterm</a></li>
+                      </ul>
+                    </li>
+                {% else %}
+                    <li class="nav-item">
+                      <a class="nav-link {% if url_name == 'menu' %}active{% endif %}" href="{% url 'menu' %}">Menu</a>
+                    </li>
+                {% endif %}
                 {% if user.is_authenticated %}
                 <li class="nav-item">
                   <a class="nav-link {% if url_name == 'account_logout' %}active{% endif %}" href="{% url 'account_logout' %}">Logout</a>
