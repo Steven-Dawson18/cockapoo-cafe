@@ -27,24 +27,26 @@
                 <li class="nav-item">
                   <a class="nav-link {% if url_name == 'home' %}active{% endif %}" href="{% url 'home' %}">Home</a>
                 </li>
-                    {% if request.user.is_superuser %}
-                      <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                          Reservations</a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                          <li><a class="dropdown-item {% if url_name == 'reservation' %}active{% endif %}" href="{% url 'reservation' %}">Reservations</a></li>
-                          <li><a class="dropdown-item {% if url_name == 'approve_reservation' %}active{% endif %}" href="{% url 'approve_reservation' %}">Approve Reservations</a></li>
-                        </ul>
-                      </li>
-                    {% elif user.is_authenticated %}
-                      <li class="nav-item">
-                        <a class="nav-link {% if url_name == 'reservation' %}active{% endif %}" href="{% url 'reservation' %}">Reservation</a>
-                      </li>
-                    {% else %}
-                      <li>
-                        <a class="nav-link {% if url_name == 'account_signup' %}active{% endif %}" href="{% url 'account_signup' %}">Reservation</a>
-                      </li>
-                    {% endif %}
+                <!-- Reservation Navigation -->
+                {% if request.user.is_superuser %}
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      Reservations</a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                      <li><a class="dropdown-item {% if url_name == 'reservation' %}active{% endif %}" href="{% url 'reservation' %}">Reservations</a></li>
+                      <li><a class="dropdown-item {% if url_name == 'approve_reservation' %}active{% endif %}" href="{% url 'approve_reservation' %}">Approve Reservations</a></li>
+                    </ul>
+                  </li>
+                {% elif user.is_authenticated %}
+                  <li class="nav-item">
+                    <a class="nav-link {% if url_name == 'reservation' %}active{% endif %}" href="{% url 'reservation' %}">Reservation</a>
+                  </li>
+                {% else %}
+                  <li>
+                    <a class="nav-link {% if url_name == 'account_signup' %}active{% endif %}" href="{% url 'account_signup' %}">Reservation</a>
+                  </li>
+                {% endif %}
+                <!-- Review Navigation -->
                 {% if request.user.is_superuser %}
                     <li class="nav-item dropdown">
                       <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -59,15 +61,18 @@
                       <a class="nav-link {% if url_name == 'review' %}active{% endif %}" href="{% url 'review' %}">Reviews</a>
                     </li>
                 {% endif %}
+                <!-- Contact Navigation -->
                 <li class="nav-item">
                   <a class="nav-link {% if url_name == 'contact' %}active{% endif %}" href="{% url 'contact' %}">Contact</a>
                 </li>
+                <!-- Menu Navigation -->
                 {% if request.user.is_superuser %}
                     <li class="nav-item dropdown">
                       <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Menu</a>
                       <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <li><a class="dropdown-item {% if url_name == 'menu' %}active{% endif %}" href="{% url 'menu' %}">Menu</a></li>
+                        <li><a class="dropdown-item {% if url_name == 'menu-items' %}active{% endif %}" href="{% url 'menu-items' %}">Manage Menu Items</a></li>
                         <li><a class="dropdown-item {% if url_name == 'create-menu-category' %}active{% endif %}" href="{% url 'create-menu-category' %}">Create Menu Category</a></li>
                         <li><a class="dropdown-item {% if url_name == 'create-menu-item' %}active{% endif %}" href="{% url 'create-menu-item' %}">Create Menu Iterm</a></li>
                       </ul>
@@ -77,38 +82,39 @@
                       <a class="nav-link {% if url_name == 'menu' %}active{% endif %}" href="{% url 'menu' %}">Menu</a>
                     </li>
                 {% endif %}
+                <!-- Account Navigation -->
                 {% if user.is_authenticated %}
-                <li class="nav-item">
-                  <a class="nav-link {% if url_name == 'account_logout' %}active{% endif %}" href="{% url 'account_logout' %}">Logout</a>
-                </li>
+                  <li class="nav-item">
+                    <a class="nav-link {% if url_name == 'account_logout' %}active{% endif %}" href="{% url 'account_logout' %}">Logout</a>
+                  </li>
                 {% else %}
-                <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    Register/login</a>
-                  <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <li><a class="dropdown-item {% if url_name == 'account_signup' %}active{% endif %}" href="{% url 'account_signup' %}">Register</a></li>
-                    <li><a class="dropdown-item {% if url_name == 'account_login' %}active{% endif %}" href="{% url 'account_login' %}">Login</a></li>
-                  </ul>
-                </li>
-            </ul>
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      Register/login</a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                      <li><a class="dropdown-item {% if url_name == 'account_signup' %}active{% endif %}" href="{% url 'account_signup' %}">Register</a></li>
+                      <li><a class="dropdown-item {% if url_name == 'account_login' %}active{% endif %}" href="{% url 'account_login' %}">Login</a></li>
+                    </ul>
+                  </li>
                 {% endif %}
               {% endwith %}
+            </ul>
           </div>
         </div>
-      </nav>
-      <!-- ***** Messages display ***** -->
-      <div class="container content-container">
-          <div class="row">
-              <div class="col-md-8 offset-md-2">
-                {% for message in messages %}
-                    <div class="alert {{ message.tags }} alert-dismissible fade show" id="msg" role="alert">
-                        {{ message | safe }}
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </div>
-                {% endfor %}
-              </div>
-          </div>
-      </div>
+    </nav>
+    <!-- ***** Messages display ***** -->
+    <div class="container content-container">
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+              {% for message in messages %}
+                  <div class="alert {{ message.tags }} alert-dismissible fade show" id="msg" role="alert">
+                      {{ message | safe }}
+                      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                  </div>
+              {% endfor %}
+            </div>
+        </div>
+    </div>
     {% block content %}
 
     {% endblock %}
@@ -146,6 +152,5 @@
           alert.close();
       }, 2500);
     </script>
-    
 </body>
 </html>
