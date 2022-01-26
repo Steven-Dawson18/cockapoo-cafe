@@ -29,12 +29,10 @@
                     <p class="card-text">{{ item.category }}</p>
                     {% if request.user.is_superuser %}
                         <p class="inline-flex"><a href="{% url 'update-menu-item' item.id %}" class="menu-btn">Update Item</a></p>
-                        <p class="inline-flex"></p><a href="{% url 'delete-menu-item' item.id %}" class="menu-btn">Delete Item</a></p>
+                        <p class="inline-flex"><a href="{% url 'delete-menu-item' item.id %}" class="menu-btn">Delete Item</a></p>
                     {% endif %}
                     <p class="inline-flex"><i class="fab fa-gratipay"> </i>- {{ item.total_likes }} Likes</p>
-
                 </div>
-                
             </div>
             <hr>
         </div>

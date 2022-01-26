@@ -31,7 +31,7 @@ EMAIL_ADDRESS = os.environ.get('EMAIL_ADDRESS')
 EMAIL_PASSWORD = os.environ.get('EMAIL_PASSWORD')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ["cockapoo-cafe.herokuapp.com", "localhost"]
 

@@ -12,7 +12,7 @@
         {{ form.as_p }}
         {% csrf_token %}
         <button type="submit" class="menu-btn">Submit</button>
-        <a class="menu-btn cancel-btn" href="{% url 'reservation' %}">Cancel</a>
+        <p class="inline-flex"><a class="menu-btn cancel-btn" href="{% url 'reservation' %}">Cancel</a></p>
     </form>
 
   {% endif %}
