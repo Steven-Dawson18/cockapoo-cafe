@@ -4,6 +4,7 @@ from django.views.generic import ListView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
+from django.contrib import messages
 from django.urls import reverse_lazy, reverse
 from .models import MenuItem, Category
 
@@ -79,6 +80,10 @@ class CategoryDeleteView(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
     success_message = "Category has been deleted"
     success_url = reverse_lazy('menu')
 
+    def delete(self, request, *args, **kwargs):
+        messages.success(self.request, self.success_message)
+        return super(CategoryDeleteView, self).delete(request, *args, **kwargs)
+
 
 class MenuViewMenuListView(SuccessMessageMixin, ListView):
     '''
@@ -128,6 +133,10 @@ class MenuItemDeleteView(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
     template_name = 'menu/delete-menu-item.html'
     success_message = "Menu Item has been deleted"
     success_url = reverse_lazy('menu-items')
+
+    def delete(self, request, *args, **kwargs):
+        messages.success(self.request, self.success_message)
+        return super(MenuItemDeleteView, self).delete(request, *args, **kwargs)
 
 
 def like_view(request, pk):

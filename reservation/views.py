@@ -110,6 +110,10 @@ class ReservationDeleteView(LoginRequiredMixin, SuccessMessageMixin,
     success_message = "Reservation will be deleted"
     success_url = reverse_lazy('reservation')
 
+    def delete(self, request, *args, **kwargs):
+        messages.success(self.request, self.success_message)
+        return super(ReservationDeleteView, self).delete(request, *args, **kwargs)
+
 
 def approved_reservation(request, pk):
     '''View gives the option to approve the reservation to the admin.'''

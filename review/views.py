@@ -4,6 +4,7 @@ from django.views import generic
 from django.views.generic import ListView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy, reverse
 from django.http import HttpResponseRedirect
 from django.contrib import messages
@@ -36,7 +37,7 @@ class ReviewListView(ListView):
         return context
 
 
-class ReviewCreateView(LoginRequiredMixin, CreateView):
+class ReviewCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     '''
     View displays the form to create a review to the user.
     They must be logged in to make a review and will receive a message
@@ -54,7 +55,7 @@ class ReviewCreateView(LoginRequiredMixin, CreateView):
         return super().form_valid(form)
 
 
-class ReviewUpdateView(LoginRequiredMixin, UpdateView):
+class ReviewUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     '''
     View displays the form to update a review to the user.
     They must be logged in to update a review and will receive a message
@@ -80,7 +81,7 @@ class ReviewUpdateView(LoginRequiredMixin, UpdateView):
         return super(ReviewUpdateView, self).post(request, *args, **kwargs)
 
 
-class ReviewDeleteView(LoginRequiredMixin, DeleteView):
+class ReviewDeleteView(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
     '''
     View displays the option to delete the review to the user.
     '''
@@ -88,6 +89,10 @@ class ReviewDeleteView(LoginRequiredMixin, DeleteView):
     template_name = 'review/delete_review.html'
     success_message = "Review has been deleted"
     success_url = reverse_lazy('review')
+
+    def delete(self, request, *args, **kwargs):
+        messages.success(self.request, self.success_message)
+        return super(ReviewDeleteView, self).delete(request, *args, **kwargs)
 
 
 class ManageReviewList(generic.ListView):
