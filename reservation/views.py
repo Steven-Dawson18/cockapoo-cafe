@@ -11,7 +11,7 @@ from django.db.models import Q
 from .models import Reservation
 
 
-class ReservationListView(ListView):
+class ReservationListView(LoginRequiredMixin, ListView):
     '''
     View to show the reservations that have been made
     Logged in user can only see their reservation but admin can see all
@@ -23,7 +23,7 @@ class ReservationListView(ListView):
     template_name = 'reservation/reservation.html'
 
 
-class ReservationApproveListView(ListView):
+class ReservationApproveListView(LoginRequiredMixin, ListView):
     '''
     View to show all pending reservations to the admin only.
     From here they can accept or reject the reservation.
