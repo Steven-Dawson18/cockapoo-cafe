@@ -27,7 +27,7 @@ class MenuItem(models.Model):
     slug = models.SlugField(max_length=200, default=name)
     description = models.TextField(blank=False)
     image = CloudinaryField('image', default='placeholder')
-    price = models.FloatField()
+    price = models.FloatField(default=3.99)
     status = models.IntegerField(choices=STATUS, default=1)
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)

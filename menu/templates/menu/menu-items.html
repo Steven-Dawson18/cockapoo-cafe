@@ -17,10 +17,10 @@
     <div class="row row-cols-1 row-cols-md-2 g-4 justify-content-center content">
         <div class="col">
             <div class="card">
-                {% if "item_placeholder" in item.image.url %}
-                    <img src="{% static 'images/menu_placeholder.jpeg' %}" alt="placeholder" width="100%">
+                {% if "placeholder" in item.image.url %}
+                    <img src="{% static 'images/placeholder.jpeg' %}" alt="placeholder image" width="100%">
                 {% else %}
-                    <img src=" {{ item.image.url }} " alt="placeholder" width="100%">
+                    <img src=" {{ item.image.url }} " alt="Menu Item Image" width="100%">
                 {% endif %}
                 <div class="card-body text-center">
                     <h5 class="card-title">{{ item.name }}</h5>
