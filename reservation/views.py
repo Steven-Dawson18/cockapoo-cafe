@@ -1,4 +1,5 @@
 '''Reservation views'''
+from django.shortcuts import render
 from django.views.generic import ListView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -9,6 +10,10 @@ from django.forms.widgets import SelectDateWidget
 from django.contrib import messages
 from django.db.models import Q
 from .models import Reservation
+
+
+def error_404_view(request, exception):
+    return render(request, '404.html')
 
 
 class ReservationListView(LoginRequiredMixin, ListView):
@@ -85,7 +90,8 @@ class ReservationUpdateView(LoginRequiredMixin, SuccessMessageMixin,
 
     def get(self, request, pk, *args, **kwargs):
         self.object = self.get_object()
-        return super(ReservationUpdateView, self).get(request, *args, **kwargs)
+        return super(ReservationUpdateView, self).get(request, pk,
+                                                      *args, **kwargs)
 
     def post(self, request, pk, *args, **kwargs):
         self.object = self.get_object()
@@ -95,7 +101,7 @@ class ReservationUpdateView(LoginRequiredMixin, SuccessMessageMixin,
         messages.success(request,
                          'The Reservation has been sent for approval')
         return super(ReservationUpdateView,
-                     self).post(request, *args, **kwargs)
+                     self).post(request, pk, *args, **kwargs)
 
 
 class ReservationDeleteView(LoginRequiredMixin, SuccessMessageMixin,

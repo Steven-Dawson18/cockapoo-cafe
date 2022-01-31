@@ -1,5 +1,5 @@
 '''Menu views'''
-from django.shortcuts import get_object_or_404, redirect
+from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import ListView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -7,6 +7,10 @@ from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib import messages
 from django.urls import reverse_lazy, reverse
 from .models import MenuItem, Category
+
+
+def error_404_view(request, exception):
+    return render(request, '404.html')
 
 
 class CategoryMenuListView(ListView):

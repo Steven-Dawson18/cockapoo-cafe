@@ -1,5 +1,5 @@
 '''Review views'''
-from django.shortcuts import get_object_or_404, redirect
+from django.shortcuts import render, get_object_or_404, redirect
 from django.views import generic
 from django.views.generic import ListView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
@@ -9,6 +9,10 @@ from django.urls import reverse_lazy, reverse
 from django.http import HttpResponseRedirect
 from django.contrib import messages
 from .models import Review
+
+
+def error_404_view(request, exception):
+    return render(request, '404.html')
 
 
 class ReviewListView(ListView):

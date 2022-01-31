@@ -5,6 +5,10 @@ from django.contrib import messages
 from django.core.mail import send_mail
 
 
+def error_404_view(request, exception):
+    return render(request, '404.html')
+
+    
 def home(request):
     '''Home page view'''
     return render(request, "home/home.html")
