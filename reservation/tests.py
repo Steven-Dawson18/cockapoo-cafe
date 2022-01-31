@@ -5,7 +5,10 @@ Testing views in the Review app
 from django.contrib.auth import get_user_model
 from django.test import TestCase
 from django.contrib.messages import get_messages
+from django.shortcuts import get_object_or_404
+from django.contrib.auth import get_user_model
 from .models import Reservation
+from .views import ReservationUpdateView
 
 
 User = get_user_model()
@@ -31,6 +34,21 @@ class TestReservationViews(TestCase):
         user_b = User.objects.create_user('user_2', 'cfe3@invlalid.com',
                                           'some_123_password')
         self.user_b = user_b
+
+        self.reservation1 = Reservation.objects.create(
+            first_name='testName',
+            last_name='testSurname',
+            email='cfe@invalid.com',
+            phone='07564654321',
+            time='12pm',
+            datetime='2022-02-01',
+            information='test',
+            sent_date='2022-02-01',
+            accepted='False',
+            rejected='False',
+            accepted_date='2022-02-01',
+            user=self.user_a
+        )
 
     def test_user_count(self):
         """
@@ -61,7 +79,7 @@ class TestReservationViews(TestCase):
 
     def test_reservation_create_view(self):
         """
-        Test that logged in users can create a reservation
+        Test that logged in users can access create reservation page
         """
         self.client.login(username=self.user_b.username,
                           password='some_123_password')
@@ -72,7 +90,7 @@ class TestReservationViews(TestCase):
 
     def test_superuser_reservation_create_view(self):
         """
-        Test that superusers can create a reservation
+        Test that superusers can access create reservation page
         """
         self.client.login(username=self.user_a.username,
                           password='some_123_password')
@@ -83,7 +101,36 @@ class TestReservationViews(TestCase):
 
     def test_non_user_reservation_create_view(self):
         """
-        Test that non logged in users can't create a reservation
+        Test that non logged in users can't access create reservation page
         """
         response = self.client.get('/reservation/create_reservation/')
         self.assertNotEqual(response.status_code, 200)
+
+    # def test_edit_reservation(self, form_class=None):
+    #     """
+    #     Test that admin can edit reservation
+    #     """
+    #     form = super(ReservationUpdateView, self).get_form(form_class)
+    #     self.client.login(username=self.user_a.username,
+    #                       password='some_123_password')
+    #     reservation = get_object_or_404(Reservation, pk=self.reservation1.id)
+    #     reservation_form = form({
+    #         'first_name': 'test',
+    #         'last_name': 'testNameChange',
+    #         'email': 'cfe@invalid.com',
+    #         'phone': '07564654321',
+    #         'time': '12pm',
+    #         'datetime': '2022-02-02',
+    #         'information': 'test',
+    #         'sent_date': '2022-02-02',
+    #         'accepted': 'False',
+    #         'rejected': 'False',
+    #         'accepted_date': '2022-02-02',
+    #         'user': self.user_a
+    #     },
+    #     )
+    #     self.assertTrue(reservation_form.is_valid())
+    #     reservation_form.save()
+    #     self.client.post(f'/reservation/update_reservation/{self.reservation1.id}/')
+    #     updated_reservation = Reservation.objects.get(id=self.reservation1.id)
+    #     self.assertEqual(updated_reservation.last_name, 'testNameChange')

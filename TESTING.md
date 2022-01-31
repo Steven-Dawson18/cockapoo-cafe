@@ -57,7 +57,7 @@
 ![CSS](testing_images/style-css-validation.png)<br>
 
 ### JavaScript Results:
-![maps.js](testing_images/)<br>
+![maps.js](testing_images/jshint-validation.png)<br>
 
 ### Python Results:
 #### Home App

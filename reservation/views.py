@@ -112,7 +112,8 @@ class ReservationDeleteView(LoginRequiredMixin, SuccessMessageMixin,
 
     def delete(self, request, *args, **kwargs):
         messages.success(self.request, self.success_message)
-        return super(ReservationDeleteView, self).delete(request, *args, **kwargs)
+        return super(ReservationDeleteView,
+                     self).delete(request, *args, **kwargs)
 
 
 def approved_reservation(request, pk):
