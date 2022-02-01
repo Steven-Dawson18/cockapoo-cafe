@@ -62,6 +62,6 @@ class Reservation(models.Model):
     # Adapted from stackoverflow
     class Meta:
         """
-        Sets the constraints and checks the date entered isn't in the past
+        Sets the order of reservations by datetime
         """
         ordering = ["datetime"]

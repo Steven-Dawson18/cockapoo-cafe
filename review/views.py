@@ -12,6 +12,7 @@ from .models import Review
 
 
 def error_404_view(request, exception):
+    '''404 error view'''
     return render(request, '404.html')
 
 

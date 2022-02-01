@@ -6,9 +6,10 @@ from django.core.mail import send_mail
 
 
 def error_404_view(request, exception):
+    '''404 error view'''
     return render(request, '404.html')
 
-    
+
 def home(request):
     '''Home page view'''
     return render(request, "home/home.html")

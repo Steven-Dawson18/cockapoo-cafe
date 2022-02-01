@@ -6,18 +6,20 @@
 {% block content %}
 
 <div class="container mx-auto">
-    <h1 class="page-title">404 Error</h1>
-    <hr class="page-title-hr">
-    <div class="row mt-3">
-        <div class="col-12 col-md-6">
-            <h2 class="mb-3">Something went wrong</h2>
-            <p class="mb-3 error-text">The page you're looking for doesn't exist</p>
-            <p class="mb-3">But you can use one of the links below to find your way</p>
-            <div>
-                <a href="{% url 'home' %}" class="btn mr-2">Home</a>
-                <a href="{% url 'contact' %}" class="btn mr-2">Contact</a>
-                <a href="{% url 'menu' %}" class="btn">Menu</a>
-            </div>           
+    <div class="card center">
+        <h3 >404 Error</h3>
+        <hr>
+        <div class="row">
+            <div class="col-12">
+                <h3>Something went wrong</h3>
+                <p>The page you're looking for doesn't exist</p>
+                <p>But you can use one of the links below to find your way</p>
+                <div>
+                    <p class="inline-flex"><a href="{% url 'home' %}" class="menu-btn">Home</a></p>
+                    <p class="inline-flex"><a href="{% url 'contact' %}" class="menu-btn">Contact</a></p>
+                    <p class="inline-flex"><a href="{% url 'menu' %}" class="menu-btn">Menu</a></p>
+                </div>           
+            </div>
         </div>
     </div>
 </div>

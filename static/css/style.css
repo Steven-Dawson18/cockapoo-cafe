@@ -374,3 +374,7 @@ Like functionality
 .like {
   display: inline-block;
 }
+
+.center {
+  text-align: center;
+}

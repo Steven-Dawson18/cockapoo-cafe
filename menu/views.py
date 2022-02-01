@@ -10,6 +10,7 @@ from .models import MenuItem, Category
 
 
 def error_404_view(request, exception):
+    '''404 page view'''
     return render(request, '404.html')
 
 

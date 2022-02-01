@@ -190,6 +190,7 @@ users. In production these are stored in Heroku.
 * An error was highlighted on the Review.html page when put through the HTML validator. This was corrected by adding an alt to the image and moving the width="100%" to the css file.
 * The pep8 validator picked up a line with whitespace on it in the reservation update view and review update view. This was resolved by removing the whitespace.
 * When a user made a reservation sometimes they were unabel to see it. This was because the page was paginated by the date and so it appeared on a different page. To solve this I removed the pagination.
+* During testing on mobile devices some buttons overlapped on the reservation page such as the update and delete buttons. This was solved by adding the inline-flex class to the buttons.
 ### Known issues
 * The contact tab in the nav doesn't show up as active when on the page, instead the home page does, this could be down to the contact page being in the home app.
 
@@ -341,7 +342,18 @@ Full test results can be found [here](TESTING.md)
 
 ### Testing on Devices
 
-* I have tested the deployed Heroku app on different devices such as Macbook Pro, Samsung Galaxy Tab and iphone. I have found no issues with the site working on them.
+* I have tested the deployed Heroku app on different devices such as Macbook Pro, Samsung Galaxy Tab and iphone. Any issues found have been fixed and reported in the bugs section. I no longer see issues with the site working on them.
+
+### Testing on different browsers
+* I have tested the site on google chrome and all works well.
+* I have tested the site on Safari and all works well.
+
+### Exploratory Testing
+* A session was held with a sample of testers who were asked to test the site. Testers were asked to test on mobile devices as well as their home computers and report any issues or recomendations.
+
+* Tester 1 - Thought the site was easy to use and navigate around. They felt it was easy to sign up and make a reservation and leave a review. Editing the reservation was also easy to do and worked. They felt that after leaving a review they couldn't view the review until it had been approved could possibly be improved. The menu was easy to understand and navigate between.
+
+* Tester 2 - Thought the site was easy to understand and navigate. It was easy to sign up and they liked that they were informed that they had successfully signed up. Making, editing and deleting reservations was straightforward but found that the edit and delete buttons overlapped on the mobile device (This is highlighted in the bugs section and has been resolved).Leaving a review was easy but they couldn't edit or delete until after it had been approved. The menu was easily understood and moved between. They suggested maybe an extra feature to select and order the items. The contact page was nicely set out and filling out the contact form was straightforward. They liked the map feature at the bottom of the page. They liked that they were informed of all the actions.   
 
 ## Deployment on Heroku
 
