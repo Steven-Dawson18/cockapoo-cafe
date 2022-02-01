@@ -17,7 +17,7 @@ class TestReviewViews(TestCase):
     """
     def setUp(self):
         """
-        Set up users for the tests
+        Set up users and review for the tests
         """
         user_a = User(username='cfe', email='cfe@invalid.com')
         user_a_pw = 'some_123_password'
@@ -31,6 +31,16 @@ class TestReviewViews(TestCase):
         user_b = User.objects.create_user('user_2', 'cfe3@invlalid.com',
                                           'some_123_password')
         self.user_b = user_b
+
+        self.review_a = Review.objects.create(
+            author=user_b,
+            title="TestTitle",
+            body="TestBody",
+            image="TestImage",
+            created_on='2022-02-01',
+            updated_on='2022-02-01',
+            status='0',
+            approved='False')
 
     def test_user_count(self):
         """
@@ -49,28 +59,35 @@ class TestReviewViews(TestCase):
 
     def test_valid_request(self):
         """
-        Test that a logged in user can create a reviews
+        Test that a logged in user can access the create a review page
         """
         self.client.login(username=self.user_b.username,
                           password='some_123_password')
-        response = self.client.post("/review/create_review/",
-                                    {"title": "this is an valid test"})
+        response = self.client.post("/review/create_review/")
         self.assertEqual(response.status_code, 200)
 
     def test_admin_valid_request(self):
         """
-        Test that a logged in superuser can create a review
+        Test that a logged in superuser can access the create a review page
         """
         self.client.login(username=self.user_a.username,
                           password='some_123_password')
-        response = self.client.post("/review/create_review/",
-                                    {"title": "this is a valid test"})
+        response = self.client.post("/review/create_review/")
         self.assertEqual(response.status_code, 200)
 
     def test_invalid_request(self):
         """
-        Test that a non logged in user can't create a review
+        Test that a non logged in user can't access the create a review page
         """
-        response = self.client.post("/review/create_review/",
-                                    {"title": "this is not a valid test"})
+        response = self.client.post("/review/create_review/")
         self.assertEqual(response.status_code, 302)
+
+    def test_edit_review_view(self):
+        """
+        Test that only the author can edit the review.
+        """
+        self.client.login(username=self.user_a.username,
+                          password='some_123_password')
+        response = self.client.get(f'/review/update_review/{self.review_a.id}/')
+        self.assertNotEqual(self.review_a.author.id, self.user_a.id)
+        self.assertEqual(response.status_code, 200)

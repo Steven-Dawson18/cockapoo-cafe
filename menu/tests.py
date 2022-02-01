@@ -12,4 +12,3 @@ class TestGetCategories(TestCase):
         test_category = Category.objects.create(name="test_category")
         response = self.client.get(self.menu_url)
         self.assertEqual(response.status_code, 200)
-        print(test_category.name)
