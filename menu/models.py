@@ -24,7 +24,6 @@ class MenuItem(models.Model):
     """
     name = models.CharField(max_length=200)
     category = models.ForeignKey(Category, on_delete=models.DO_NOTHING)
-    slug = models.SlugField(max_length=200, default=name)
     description = models.TextField(blank=False)
     image = CloudinaryField('image', default='placeholder')
     price = models.FloatField(default=3.99)
