@@ -60,7 +60,7 @@ class ReviewCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
         return super().form_valid(form)
 
 
-class ReviewUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
+class ReviewUpdateView(LoginRequiredMixin, UpdateView):
     '''
     View displays the form to update a review to the user.
     They must be logged in to update a review and will receive a message
@@ -70,7 +70,6 @@ class ReviewUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     model = Review
     fields = ['title', 'body', 'image']
     template_name = 'review/update_review.html'
-    success_message = "Review has been updated"
     success_url = reverse_lazy('review')
 
     def get(self, request, pk, *args, **kwargs):

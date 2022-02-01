@@ -1,5 +1,5 @@
 '''Reservation views'''
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.generic import ListView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -67,8 +67,7 @@ class ReservationCreateView(LoginRequiredMixin, SuccessMessageMixin,
         return super().form_valid(form)
 
 
-class ReservationUpdateView(LoginRequiredMixin, SuccessMessageMixin,
-                            UpdateView):
+class ReservationUpdateView(LoginRequiredMixin, UpdateView):
     '''
     View displays the form to update a reservation to the user.
     They must be logged in to update a reservation and will receive a message
@@ -79,7 +78,6 @@ class ReservationUpdateView(LoginRequiredMixin, SuccessMessageMixin,
     fields = ['first_name', 'last_name', 'email', 'phone', 'time', 'datetime',
               'information']
     template_name = 'reservation/update_reservation.html'
-    success_message = "Reservation will be updated"
     success_url = reverse_lazy('reservation')
 
     # Adapted from stackoverflow
@@ -91,8 +89,12 @@ class ReservationUpdateView(LoginRequiredMixin, SuccessMessageMixin,
 
     def get(self, request, pk, *args, **kwargs):
         self.object = self.get_object()
-        return super(ReservationUpdateView, self).get(request, pk,
-                                                      *args, **kwargs)
+        if self.object.user == self.request.user:
+            return super(ReservationUpdateView, self).get(request, pk,
+                                                          *args, **kwargs)
+        else:
+            messages.error(request, 'Unauthorised!')
+            return redirect(reverse('reservation'))
 
     def post(self, request, pk, *args, **kwargs):
         self.object = self.get_object()
