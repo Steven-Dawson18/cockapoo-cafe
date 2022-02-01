@@ -89,5 +89,8 @@ class TestReviewViews(TestCase):
         self.client.login(username=self.user_a.username,
                           password='some_123_password')
         response = self.client.get(f'/review/update_review/{self.review_a.id}/')
-        self.assertNotEqual(self.review_a.author.id, self.user_a.id)
-        self.assertEqual(response.status_code, 200)
+        # self.assertNotEqual(self.review_a.author.id, self.user_a.id)
+        messages = list(get_messages(response.wsgi_request))
+        self.assertEqual(str(messages[0]),
+                         'Unauthorised.')
+        self.assertEqual(response.status_code, 302)

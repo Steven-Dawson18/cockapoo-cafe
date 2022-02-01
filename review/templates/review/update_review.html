@@ -18,7 +18,11 @@
         <button type="submit" class="menu-btn">Submit</button>
         <p class="inline-flex"><a class="menu-btn" href="{% url 'review' %}">Cancel</a></p>
     </form>
-
+  {% else %}
+    <div class="center">
+      <h3>Unauthorised</h3>
+      <p class="inline-flex"><a class="menu-btn" href="{% url 'review' %}">Back</a></p>
+    </div>
   {% endif %}
 {% endif %}
 

@@ -75,7 +75,11 @@ class ReviewUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
 
     def get(self, request, pk, *args, **kwargs):
         self.object = self.get_object()
-        return super(ReviewUpdateView, self).get(request, *args, **kwargs)
+        if self.object.author == self.request.user:
+            return super(ReviewUpdateView, self).get(request, *args, **kwargs)
+        else:
+            messages.error(request, 'Unauthorised.')
+            return redirect(reverse('review'))
 
     def post(self, request, pk, *args, **kwargs):
         self.object = self.get_object()
