@@ -191,6 +191,8 @@ users. In production these are stored in Heroku.
 * The pep8 validator picked up a line with whitespace on it in the reservation update view and review update view. This was resolved by removing the whitespace.
 * When a user made a reservation sometimes they were unabel to see it. This was because the page was paginated by the date and so it appeared on a different page. To solve this I removed the pagination.
 * During testing on mobile devices some buttons overlapped on the reservation page such as the update and delete buttons. This was solved by adding the inline-flex class to the buttons.
+* During exploratior testing a user found that they could forcfully update another users review but changing the number in the url. To fix this I have added a statement in the update views of the review and reservation views to compare the creators id with the current user and if not they will be redirected and shown a warning to tell them they are not authorised.
+* An error was being displayed in the console reffering to a TypeError to do with boostrap. This was occuring as javascript was trying to clear messages that were not there. To solve this I added and if statement to the script which has solved the issue.
 ### Known issues
 * The contact tab in the nav doesn't show up as active when on the page, instead the home page does, this could be down to the contact page being in the home app.
 
@@ -262,7 +264,7 @@ This project has been tested throughout its inception. Each input has been thoro
 
 ![View Menu item likes](readme_images/update-delete-menu-item.png)
 
-* The user is informed if their guess is incorrect. A list of the letters they have guessed so far will be displayed along with the number of guesses they have left and an image of the hangman position they are at.
+* The user can see how many likes the menu item has and if logged in they can like the item and if they liked the item by mistake they can unlike the item. This will increase or decrease the unmber of likes the item has.
 * This has been tested manually to ensure it works as it should.
 
 6. As a User I can Create, edit and delete a reservation so that I can manage the reservation.
@@ -355,6 +357,8 @@ Full test results can be found [here](TESTING.md)
 
 * Tester 2 - Thought the site was easy to understand and navigate. It was easy to sign up and they liked that they were informed that they had successfully signed up. Making, editing and deleting reservations was straightforward but found that the edit and delete buttons overlapped on the mobile device (This is highlighted in the bugs section and has been resolved).Leaving a review was easy but they couldn't edit or delete until after it had been approved. The menu was easily understood and moved between. They suggested maybe an extra feature to select and order the items. The contact page was nicely set out and filling out the contact form was straightforward. They liked the map feature at the bottom of the page. They liked that they were informed of all the actions.   
 
+* Tester 3 - Gave the site a thorough test. They commented that they liked the look of the site and that the CRUD functionallity worked as they expected. They also tested to see if they could access other users update reviews through typing in different numbers in the url. This was found to work and therefore I have updated the views on reservation and reviews with a statement that checks that the user is the creater of the review/reservation and if not it will redirect them and flag a warning to them saying that the action is unauthorised.
+
 ## Deployment on Heroku
 
 This project was deployed through Heroku using the following steps:
@@ -407,7 +411,7 @@ EMAIL_PASSWORD - Password from email client
 
 ## Set up Emails
 
-**I used Gmail for the email on the contact page. Others can be used but will need a few changes**
+## I used Gmail for the email on the contact page. Others can be used but will need a few changes**
 
 * Go to settings.py and change the EMAIL_HOST_USER to your chosen email address.
 * If you want to set up a new Gmail account for the site, this is the time to do so.
@@ -420,7 +424,7 @@ EMAIL_PASSWORD - Password from email client
 * (You may have to input your account password again) Set 'App' to 'Mail', 'Device' to Other, and name it Django.
 * The passcode that appears will be used in your Heroku variables.
 
-  ## Deploy
+## Deploy
 * In Heroku, once all the variables are in place, locate 'Manual Deploy' > choose the master branch and click 'Deploy Branch'.
 * Once the app is built (it may take a few minutes), click 'Open App' from the top of the page.
 * Go back to the 'Deploy' tab and you can now click 'Enable Automatic Deployment'. Changes automatically deploy when you make a git push.
