@@ -11,7 +11,6 @@
     
     {% for item in menuitem %}
     
-    
         <div class="row row-cols-1 row-cols-md-2 g-4 justify-content-center">
             <div class="col">
                 <div class="card category-selection">
@@ -30,14 +29,10 @@
                                 <p class="inline-flex"></p><a href="{% url 'like-menu-item' item.id %}"class="menu-btn like-btn" value="like">UnLike <i class="fab fa-gratipay"></i></a></p>
                             {% else %}
                                 <p class="inline-flex"><a href="{% url 'like-menu-item' item.id %}"class="menu-btn like-btn" value="like">Like <i class="fab fa-gratipay"></i></a></p>
-                         
                             {% endif %}
                         {% endif %}
-
                         <p class="inline-flex"><i class="fab fa-gratipay"> </i> - {{ item.total_likes }} Likes</p>
-                       
                     </div>
-                    
                 </div>
                 <hr>
             </div>

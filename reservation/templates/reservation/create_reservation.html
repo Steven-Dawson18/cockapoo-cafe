@@ -4,7 +4,6 @@
 
 {% block content %}
 
-
   {% if user.is_authenticated %}
     <h3>Here You Can Make A Reservation Or Just walkin to our cafe</h3>
     <p id="reviewer">Reserving as: {{ user.username }}</p>
@@ -16,6 +15,5 @@
     </form>
 
   {% endif %}
-
 
 {% endblock %}

@@ -54,8 +54,8 @@ class CategoryMenuItemListView(ListView):
         return context
 
 
-class AddCategoryCreateView(LoginRequiredMixin, UserPassesTestMixin, SuccessMessageMixin,
-                            CreateView):
+class AddCategoryCreateView(LoginRequiredMixin, UserPassesTestMixin,
+                            SuccessMessageMixin, CreateView):
     '''
     View displays the form to create a menu category to the admin.
     They must be logged in to create a category and will receive a message
@@ -71,7 +71,8 @@ class AddCategoryCreateView(LoginRequiredMixin, UserPassesTestMixin, SuccessMess
         return self.request.user.is_superuser
 
 
-class CategoryUpdateView(LoginRequiredMixin, UserPassesTestMixin, SuccessMessageMixin, UpdateView):
+class CategoryUpdateView(LoginRequiredMixin, UserPassesTestMixin,
+                         SuccessMessageMixin, UpdateView):
     '''
     View displays the form to update a category to the admin.
     They must be logged in to update a category and will receive a message
@@ -87,7 +88,8 @@ class CategoryUpdateView(LoginRequiredMixin, UserPassesTestMixin, SuccessMessage
         return self.request.user.is_superuser
 
 
-class CategoryDeleteView(LoginRequiredMixin, UserPassesTestMixin, SuccessMessageMixin, DeleteView):
+class CategoryDeleteView(LoginRequiredMixin, UserPassesTestMixin,
+                         SuccessMessageMixin, DeleteView):
     '''
     View displays the option to delete the category to the admin.
     '''
@@ -102,10 +104,10 @@ class CategoryDeleteView(LoginRequiredMixin, UserPassesTestMixin, SuccessMessage
 
     def test_func(self):
         return self.request.user.is_superuser
-        
 
 
-class MenuViewMenuListView(LoginRequiredMixin, UserPassesTestMixin, SuccessMessageMixin, ListView):
+class MenuViewMenuListView(LoginRequiredMixin, UserPassesTestMixin,
+                           SuccessMessageMixin, ListView):
     '''
     View to show all items of the menus
     Only visbale to the admin who can create, edit and delete
@@ -121,8 +123,8 @@ class MenuViewMenuListView(LoginRequiredMixin, UserPassesTestMixin, SuccessMessa
         return self.request.user.is_superuser
 
 
-class AddMenuItemCreateView(LoginRequiredMixin, UserPassesTestMixin, SuccessMessageMixin,
-                            CreateView):
+class AddMenuItemCreateView(LoginRequiredMixin, UserPassesTestMixin,
+                            SuccessMessageMixin, CreateView):
     '''
     View displays the form to create a menu Item to the admin.
     They must be logged in to create a menu Item and will receive a message
@@ -138,7 +140,8 @@ class AddMenuItemCreateView(LoginRequiredMixin, UserPassesTestMixin, SuccessMess
         return self.request.user.is_superuser
 
 
-class MenuItemUpdateView(LoginRequiredMixin, UserPassesTestMixin, SuccessMessageMixin, UpdateView):
+class MenuItemUpdateView(LoginRequiredMixin, UserPassesTestMixin,
+                         SuccessMessageMixin, UpdateView):
     '''
     View displays the form to update a menu Item to the admin.
     They must be logged in to update a menu Item and will receive a message
@@ -154,7 +157,8 @@ class MenuItemUpdateView(LoginRequiredMixin, UserPassesTestMixin, SuccessMessage
         return self.request.user.is_superuser
 
 
-class MenuItemDeleteView(LoginRequiredMixin, UserPassesTestMixin, SuccessMessageMixin, DeleteView):
+class MenuItemDeleteView(LoginRequiredMixin, UserPassesTestMixin,
+                         SuccessMessageMixin, DeleteView):
     '''
     View displays the option to delete the menu Item to the admin.
     '''
@@ -169,6 +173,7 @@ class MenuItemDeleteView(LoginRequiredMixin, UserPassesTestMixin, SuccessMessage
 
     def test_func(self):
         return self.request.user.is_superuser
+
 
 def like_view(request, pk):
     '''

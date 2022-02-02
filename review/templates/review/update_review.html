@@ -4,11 +4,6 @@
 
 {% block content %}
 
-{% if reviewed %}
-  <div class="alert alert-success" role="alert">
-      Your comment is awaiting approval
-  </div>
-  {% else %}
   {% if user.is_authenticated %}
     <h3>Update Your Review:</h3>
     <p id="reviewer">Posting as: {{ user.username }}</p>
@@ -24,6 +19,5 @@
       <p class="inline-flex"><a class="menu-btn" href="{% url 'review' %}">Back</a></p>
     </div>
   {% endif %}
-{% endif %}
 
 {% endblock %}

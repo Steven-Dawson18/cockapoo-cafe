@@ -4,11 +4,6 @@
 
 {% block content %}
 
-{% if reviewed %}
-  <div class="alert alert-success" role="alert">
-      Your comment is awaiting approval
-  </div>
-  {% else %}
   {% if user.is_authenticated %}
     <h3>Leave a Review:</h3>
     <p id="reviewer">Posting as: {{ user.username }}</p>
@@ -20,6 +15,5 @@
     </form>
 
   {% endif %}
-{% endif %}
 
 {% endblock %}

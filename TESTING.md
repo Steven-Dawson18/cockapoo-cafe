@@ -1,8 +1,7 @@
 # Full Testing
 ## Contents
 + [Validator Testing](#validator-testing)
-<!-- + [Lighthouse Testing](#lighthouse-testing) -->
-<!-- + [PowerMapper Compatibility](#powermapper-compatibility) -->
++ [Lighthouse Testing](#lighthouse-testing)
 + [Testing From User Stories](#testing-from-user-stories)
 <!-- + [Automated Testing](#automated-testing) -->
 + [Manually Testing Functionality](#manually-testing-functionality)
@@ -12,9 +11,7 @@
 ---
 ---
 
-# Test Results
-
-## Validator Results
+## Validator Results <a name="validator-testing"></a>
 
 ### HTML Results:
 #### Home
@@ -86,7 +83,19 @@
 ![Reservation Models](testing_images/reservation-models-pep8-validation.png)<br>
 ![Reservation Views](testing_images/reservation-views-pep8-validation.png)<br>
 
-### Testing User Stories
+---
+---
+
+## Lighthouse Testing <a name="lighthouse-testing"></a>
+
+After getting the bulk of the site in place, I ran it through Chrome Lighthouse.
+
+![Lighthouse score](docs/lighthouse-desktop.png)
+
+---
+---
+
+### Testing User Stories <a name="testing-from-user-stories"></a>
 
 1. As a new user I can easily register for the site so that I can interact with the site content.
 
@@ -204,7 +213,10 @@
 * The user is able to view the cafe's social networks by clicking on the icons at the bottom of the page in the footer, this will help keep them uptodate with any offers or news the cafe has. These links will open in a new tab.
 * This has been tested manually to ensure it works as it should.
 
-## Manually Testing Functionality
+---
+---
+
+## Manually Testing Functionality <a name="manually-testing-functionality"></a>
 ### **Navigation**
 
 |Element               |Action|Expected Result               |Pass/Fail|
@@ -688,13 +700,18 @@
 |Cancel Link            |Click |Redirect to home page             |Pass|
 |                       |      |                                  |    |
 
-### Testing on Devices
+---
+---
+
+### Testing on Devices <a name="responsive-testing"></a>
 
 * I have tested the deployed Heroku app on different devices such as Macbook Pro, Samsung Galaxy Tab and iphone. Any issues found have been fixed and reported in the bugs section. I no longer see issues with the site working on them.
 
 ### Testing on different browsers
-* I have tested the site on google chrome and all works well.
-* I have tested the site on Safari and all works well.
+* I have tested the site on google chrome web browser and all works well.
+* I have tested the site on Safari web browser and all works well.
+* I have tested the site on Opera web browser and all works well.
+* I have tested the site on Firefox web browser and all works well.
 
 ### Exploratory Testing
 * A session was held with a sample of testers who were asked to test the site. Testers were asked to test on mobile devices as well as their home computers and report any issues or recomendations.
@@ -705,7 +722,10 @@
 
 * Tester 3 - Gave the site a thorough test. They commented that they liked the look of the site and that the CRUD functionallity worked as they expected. They also tested to see if they could access other users update reviews through typing in different numbers in the url. This was found to work and therefore I have updated the views on reservation and reviews with a statement that checks that the user is the creater of the review/reservation and if not it will redirect them and flag a warning to them saying that the action is unauthorised.
 
-## Bugs
+---
+---
+
+## Bugs <a name="bugs-and-fixes"></a>
 
 ### Fixed
 * When I created the reservation form, it was not a good experience as a user to enter a date. To solve this I used a datepicker and implemented through the create_review view and Update_review view.
@@ -717,7 +737,8 @@
 * The pep8 validator picked up a line with whitespace on it in the reservation update view and review update view. This was resolved by removing the whitespace.
 * When a user made a reservation sometimes they were unabel to see it. This was because the page was paginated by the date and so it appeared on a different page. To solve this I removed the pagination.
 * During testing on mobile devices some buttons overlapped on the reservation page such as the update and delete buttons. This was solved by adding the inline-flex class to the buttons.
-* During exploratior testing a user found that they could forcfully update another users review but changing the number in the url. To fix this I have added a statement in the update views of the review and reservation views to compare the creators id with the current user and if not they will be redirected and shown a warning to tell them they are not authorised.
+* During exploratiory testing a user found that they could forcefully update another users review but changing the number in the url. To fix this I have added a statement in the update views of the review and reservation views to compare the creators id with the current user and if not they will be redirected and shown a warning to tell them they are not authorised.
+* During exploratiory testing a user found that they could forcefully access the create menu items page. To solve this I haveincluded a UserPassesTestMixin and test function in all views that only an admin should be able to access on the menu app. If they do they will be shown a custom 403 error page with links to redirect themselves.
 * An error was being displayed in the console reffering to a TypeError to do with boostrap. This was occuring as javascript was trying to clear messages that were not there. To solve this I added and if statement to the script which has solved the issue.
 
 ### Known issues

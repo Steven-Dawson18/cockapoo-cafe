@@ -4,18 +4,14 @@
 
 {% block content %}
 
-  <h1 class="title">What people are saying about us</h1>
-  {% if reviewed %}
-    <div class="alert alert-success" role="alert">
-        Your comment is awaiting approval
-    </div>
-  {% else %}
+  <h2 class="title">What people are saying about us</h2>
+ 
   {% if user.is_authenticated %}
     <p class="leave-review"><a class="menu-btn" href="{% url 'create_review' %}">Leave a Review</a></p>
   {% else %}
     <p class="leave-review"><a class="menu-btn" href="{% url 'account_signup' %}">Leave a Review</a></p>
   {% endif %}
-  {% endif %}
+  
   
   {% if request.user.is_superuser %}
   <!-- Only superusers can view things in here -->
