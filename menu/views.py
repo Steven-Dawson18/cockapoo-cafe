@@ -2,11 +2,16 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import ListView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib import messages
 from django.urls import reverse_lazy, reverse
 from .models import MenuItem, Category
+
+
+def error_403_view(request, exception):
+    '''403 page view'''
+    return render(request, '403.html')
 
 
 def error_404_view(request, exception):
@@ -49,7 +54,7 @@ class CategoryMenuItemListView(ListView):
         return context
 
 
-class AddCategoryCreateView(LoginRequiredMixin, SuccessMessageMixin,
+class AddCategoryCreateView(LoginRequiredMixin, UserPassesTestMixin, SuccessMessageMixin,
                             CreateView):
     '''
     View displays the form to create a menu category to the admin.
@@ -62,8 +67,11 @@ class AddCategoryCreateView(LoginRequiredMixin, SuccessMessageMixin,
     success_message = "Category created"
     success_url = reverse_lazy('menu')
 
+    def test_func(self):
+        return self.request.user.is_superuser
 
-class CategoryUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
+
+class CategoryUpdateView(LoginRequiredMixin, UserPassesTestMixin, SuccessMessageMixin, UpdateView):
     '''
     View displays the form to update a category to the admin.
     They must be logged in to update a category and will receive a message
@@ -75,8 +83,11 @@ class CategoryUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     success_message = "Category has been updated"
     success_url = reverse_lazy('menu')
 
+    def test_func(self):
+        return self.request.user.is_superuser
 
-class CategoryDeleteView(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
+
+class CategoryDeleteView(LoginRequiredMixin, UserPassesTestMixin, SuccessMessageMixin, DeleteView):
     '''
     View displays the option to delete the category to the admin.
     '''
@@ -89,8 +100,12 @@ class CategoryDeleteView(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
         messages.success(self.request, self.success_message)
         return super(CategoryDeleteView, self).delete(request, *args, **kwargs)
 
+    def test_func(self):
+        return self.request.user.is_superuser
+        
 
-class MenuViewMenuListView(SuccessMessageMixin, ListView):
+
+class MenuViewMenuListView(LoginRequiredMixin, UserPassesTestMixin, SuccessMessageMixin, ListView):
     '''
     View to show all items of the menus
     Only visbale to the admin who can create, edit and delete
@@ -102,8 +117,11 @@ class MenuViewMenuListView(SuccessMessageMixin, ListView):
     success_message = "Item created"
     success_url = reverse_lazy('menu-items')
 
+    def test_func(self):
+        return self.request.user.is_superuser
 
-class AddMenuItemCreateView(LoginRequiredMixin, SuccessMessageMixin,
+
+class AddMenuItemCreateView(LoginRequiredMixin, UserPassesTestMixin, SuccessMessageMixin,
                             CreateView):
     '''
     View displays the form to create a menu Item to the admin.
@@ -116,8 +134,11 @@ class AddMenuItemCreateView(LoginRequiredMixin, SuccessMessageMixin,
     success_message = "Menu Item Created"
     success_url = reverse_lazy('menu-items')
 
+    def test_func(self):
+        return self.request.user.is_superuser
 
-class MenuItemUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
+
+class MenuItemUpdateView(LoginRequiredMixin, UserPassesTestMixin, SuccessMessageMixin, UpdateView):
     '''
     View displays the form to update a menu Item to the admin.
     They must be logged in to update a menu Item and will receive a message
@@ -129,8 +150,11 @@ class MenuItemUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     success_message = "Menu Item has been updated"
     success_url = reverse_lazy('menu-items')
 
+    def test_func(self):
+        return self.request.user.is_superuser
 
-class MenuItemDeleteView(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
+
+class MenuItemDeleteView(LoginRequiredMixin, UserPassesTestMixin, SuccessMessageMixin, DeleteView):
     '''
     View displays the option to delete the menu Item to the admin.
     '''
@@ -143,6 +167,8 @@ class MenuItemDeleteView(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
         messages.success(self.request, self.success_message)
         return super(MenuItemDeleteView, self).delete(request, *args, **kwargs)
 
+    def test_func(self):
+        return self.request.user.is_superuser
 
 def like_view(request, pk):
     '''

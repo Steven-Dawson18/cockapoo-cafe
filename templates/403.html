@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_title %}403 Error{% endblock %}
+
+{% block content %}
+
+<div class="container mx-auto">
+    <div class="card center">
+        <h3 >403 Error</h3>
+        <hr>
+        <div class="row">
+            <div class="col-12">
+                <h3>This page is Forbidden</h3>
+                <p>But you can use one of the links below to find your way</p>
+                <div>
+                    <p class="inline-flex"><a href="{% url 'home' %}" class="menu-btn">Home</a></p>
+                    <p class="inline-flex"><a href="{% url 'contact' %}" class="menu-btn">Contact</a></p>
+                    <p class="inline-flex"><a href="{% url 'menu' %}" class="menu-btn">Menu</a></p>
+                </div>           
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

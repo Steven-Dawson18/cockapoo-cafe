@@ -25,6 +25,7 @@ urlpatterns = [
     path('reservation/', include('reservation.urls')),
 ]
 
+handler403 = 'menu.views.error_403_view'
 handler404 = 'home.views.error_404_view'
 handler404 = 'menu.views.error_404_view'
 handler404 = 'reservation.views.error_404_view'
