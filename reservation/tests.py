@@ -105,32 +105,3 @@ class TestReservationViews(TestCase):
         """
         response = self.client.get('/reservation/create_reservation/')
         self.assertNotEqual(response.status_code, 200)
-
-    # def test_edit_reservation(self, form_class=None):
-    #     """
-    #     Test that admin can edit reservation
-    #     """
-    #     form = super(ReservationUpdateView, self).get_form(form_class)
-    #     self.client.login(username=self.user_a.username,
-    #                       password='some_123_password')
-    #     reservation = get_object_or_404(Reservation, pk=self.reservation1.id)
-    #     reservation_form = form({
-    #         'first_name': 'test',
-    #         'last_name': 'testNameChange',
-    #         'email': 'cfe@invalid.com',
-    #         'phone': '07564654321',
-    #         'time': '12pm',
-    #         'datetime': '2022-02-02',
-    #         'information': 'test',
-    #         'sent_date': '2022-02-02',
-    #         'accepted': 'False',
-    #         'rejected': 'False',
-    #         'accepted_date': '2022-02-02',
-    #         'user': self.user_a
-    #     },
-    #     )
-    #     self.assertTrue(reservation_form.is_valid())
-    #     reservation_form.save()
-    #     self.client.post(f'/reservation/update_reservation/{self.reservation1.id}/')
-    #     updated_reservation = Reservation.objects.get(id=self.reservation1.id)
-    #     self.assertEqual(updated_reservation.last_name, 'testNameChange')

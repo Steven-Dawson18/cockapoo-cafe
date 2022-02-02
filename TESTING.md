@@ -3,11 +3,11 @@
 + [Validator Testing](#validator-testing)
 + [Lighthouse Testing](#lighthouse-testing)
 + [Testing From User Stories](#testing-from-user-stories)
-<!-- + [Automated Testing](#automated-testing) -->
 + [Manually Testing Functionality](#manually-testing-functionality)
 + [Responsive Testing](#responsive-testing)
 + [Bugs and Fixes](#bugs-and-fixes)
 + [Known Bugs](#known-bugs)
++ [Credentials](#kcredentials)
 ---
 ---
 
@@ -36,6 +36,8 @@
 ![Delete Menu Category](testing_images/delete-menu-category-html-validation.png)<br>
 * Menu Item Page
 ![Menu Item](testing_images/menu-item-page-html-validation.png)<br>
+* Menu Admin Item Page
+![Menu Item](testing_images/menu-admin-item-page-html-validation.png)<br>
 * Create Menu Item Page
 ![Create Menu Item](testing_images/create-menu-item-html-validation.png)<br>
 * Update Menu Item Page
@@ -90,7 +92,7 @@
 
 After getting the bulk of the site in place, I ran it through Chrome Lighthouse.
 
-![Lighthouse score](docs/lighthouse-desktop.png)
+![Lighthouse score](testing_images/lighthouse-desktop.png)
 
 ---
 ---
@@ -701,6 +703,51 @@ After getting the bulk of the site in place, I ran it through Chrome Lighthouse.
 |                       |      |                                  |    |
 
 ---
+### **Javascript messages**
+| Element               |Action| Expected Result            | Pass/Fail|
+|:-------------         |:-----|:-----                            |:---|
+|Javascript message clear|create|Upon logging in a message will be|    |
+|                       |      |shown and clear by itself         |Pass|
+|Javascript message clear|create|Upon logging out a message will be|   |
+|                       |      |shown and clear by itself         |Pass|
+|Javascript message clear|create|Upon creating review a message   |    |
+|                       |      |will be shown and clear by itself |Pass|
+|Javascript message clear|create|Upon updating review a message   |    |
+|                       |      |will be shown and clear by itself |Pass|
+|Javascript message clear|create|Upon deleting review a message   |    |
+|                       |      |will be shown and clear by itself |Pass|
+|Javascript message clear|create|Upon creating reservation a message|  |
+|                       |      |will be shown and clear by itself |Pass|
+|Javascript message clear|create|Upon updating reservation a message|  |
+|                       |      |will be shown and clear by itself |Pass|
+|Javascript message clear|create|Upon deleting reservation a message|  |
+|                       |      |will be shown and clear by itself |Pass|
+|Javascript message clear|create|Upon creating menu category a message |
+|                       |      |will be shown and clear by itself |Pass|
+|Javascript message clear|create|Upon updating menu category a message |
+|                       |      |will be shown and clear by itself |Pass|
+|Javascript message clear|create|Upon deleting menu category a message |
+|                       |      |will be shown and clear by itself |Pass|
+|Javascript message clear|create|Upon creating menu Item a message|    |
+|                       |      |will be shown and clear by itself |Pass|
+|Javascript message clear|create|Upon updating menu Item a message|    |
+|                       |      |will be shown and clear by itself |Pass|
+|Javascript message clear|create|Upon deleting menu Item a message|    |
+|                       |      |will be shown and clear by itself |Pass|
+|Javascript message clear|create|If accessing a forbidden page a message|
+|                       |      |will be shown and clear by itself |Pass|
+
+---
+### **404 page**
+| Element               |Action| Expected Result            | Pass/Fail|
+|:-------------         |:-----|:-----                            |:---|
+|404 page               |access|If user tries to access a page that|   |
+|                       |      |is not theirs they will get a 404 |Pass|
+|403 page               |access|If user tries to access a page that|   |
+|                       |      |they are not allowed they will    |Pass|
+|                       |      |get a 404 pg                      |Pass|
+
+---
 ---
 
 ### Testing on Devices <a name="responsive-testing"></a>
@@ -743,3 +790,12 @@ After getting the bulk of the site in place, I ran it through Chrome Lighthouse.
 
 ### Known issues
 * The contact tab in the nav doesn't show up as active when on the page, instead the home page does, this could be down to the contact page being in the home app.
+
+---
+---
+
+## Credentials <a name="credentials"></a>
+* In order to fully access this site the tester will need access as a superuser. The credentials are as follows:
+Username: admin
+Password: admin
+* To access the site as a normal user the tester can register for the site.
