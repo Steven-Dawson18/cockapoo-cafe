@@ -1,5 +1,5 @@
 """
-Testing models in the products app
+Testing models in the menu app
 """
 
 from django.test import TestCase

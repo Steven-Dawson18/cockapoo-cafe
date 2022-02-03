@@ -27,18 +27,19 @@ class ReviewListView(ListView):
     template_name = 'review/review.html'
     paginate_by = 4
 
-    def get_context(self):
+    def get_context(self, request, pk):
         '''
         Function gives the user the ability to like a review.
         '''
-        item = get_object_or_404(Review, id=self.pk)
+        item = get_object_or_404(Review, pk=pk)
         total_likes = item.total_likes()
         liked = False
         if item.likes.filter(id=request.user.id).exists():
             liked = True
-        context["total_likes"] = total_likes
-        context["liked"] = liked
-
+        context = {
+            'total_likes': total_likes,
+            'liked': liked
+        }
         return context
 
 
@@ -72,7 +73,7 @@ class ReviewUpdateView(LoginRequiredMixin, UpdateView):
     template_name = 'review/update_review.html'
     success_url = reverse_lazy('review')
 
-    def get(self, request, pk, *args, **kwargs):
+    def get(self, request, *args, **kwargs):
         self.object = self.get_object()
         if self.object.author == self.request.user:
             return super(ReviewUpdateView, self).get(request, *args, **kwargs)
@@ -118,13 +119,10 @@ def like_view(request, pk):
     Function gives the user the ability to like a review.
     '''
     review = get_object_or_404(Review, id=pk)
-    liked = False
     if review.likes.filter(id=request.user.id).exists():
         review.likes.remove(request.user)
-        liked = False
     else:
         review.likes.add(request.user)
-        liked = True
 
     return redirect(reverse('review'))
 

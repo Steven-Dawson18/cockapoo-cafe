@@ -40,17 +40,19 @@ class CategoryMenuItemListView(ListView):
         '''Function to show the menu item in each category list'''
         return MenuItem.objects.filter(category_id=self.kwargs['pk'])
 
-    def get_context(self):
+    def get_context(self, request, pk):
         '''
         Function gives the user the ability to like a menu item.
         '''
-        item = get_object_or_404(MenuItem, id=self.pk)
+        item = get_object_or_404(MenuItem, pk=pk)
         total_likes = item.total_likes()
         liked = False
         if item.likes.filter(id=self.request.user.id).exists():
             liked = True
-            context["total_likes"] = total_likes
-            context["liked"] = liked
+        context = {
+            'total_likes': total_likes,
+            'liked': liked
+        }
         return context
 
 
@@ -181,11 +183,8 @@ def like_view(request, pk):
     '''
     item = get_object_or_404(MenuItem, id=pk)
     category_id = item.category.id
-    liked = False
     if item.likes.filter(id=request.user.id).exists():
         item.likes.remove(request.user)
-        liked = False
     else:
         item.likes.add(request.user)
-        liked = True
     return redirect(reverse('category', args=[category_id]))

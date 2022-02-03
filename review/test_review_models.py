@@ -23,6 +23,7 @@ class TestReviewModel(TestCase):
                                           'test_reservation_surname',
                                           'cfe3@invlalid.com')
         self.user_b = user_b
+
         review = Review.objects.create(
             author=user_b,
             title="TestTitle",

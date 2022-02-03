@@ -3,6 +3,7 @@
 + [Validator Testing](#validator-testing)
 + [Lighthouse Testing](#lighthouse-testing)
 + [Testing From User Stories](#testing-from-user-stories)
++ [Testing Automated Tests](#testing-automated-tests)
 + [Manually Testing Functionality](#manually-testing-functionality)
 + [Responsive Testing](#responsive-testing)
 + [Bugs and Fixes](#bugs-and-fixes)
@@ -80,15 +81,22 @@ Because the code comes from Google itself, I don't want to touch this and am hap
 ### Python Results:
 #### Home App
 ![Home Views](testing_images/home-views-pep8-validation.png)<br>
+![Test Home Views](testing_images/home-views-test-pep8-validation.png)<br>
 #### Menu App
 ![Menu Models](testing_images/menu-model-pep8-validation.png)<br>
 ![Menu Views](testing_images/menu-views-pep8-validation.png)<br>
+![Test Menu Models](testing_images/menu-model-test-pep8-validation.png)<br>
+![Test Menu Views](testing_images/menu-views-test-pep8-validation.png)<br>
 #### Review App
 ![Review Models](testing_images/review-models-pep8-validation.png)<br>
 ![Review Views](testing_images/review-views-pep8-validation.png)<br>
+![Test Review Models](testing_images/review-model-test-pep8-validation.png)<br>
+![Test Review Views](testing_images/review-view-test-pep8-validation.png)<br>
 #### Reservation App
 ![Reservation Models](testing_images/reservation-models-pep8-validation.png)<br>
 ![Reservation Views](testing_images/reservation-views-pep8-validation.png)<br>
+![Test Reservation Models](testing_images/reservation-model-test-pep8-validation.png)<br>
+![Test Reservation Views](testing_images/reservation-views-test-pep8-validation.png)<br>
 
 ---
 ---
@@ -219,6 +227,11 @@ After getting the bulk of the site in place, I ran it through Chrome Lighthouse.
 
 * The user is able to view the cafe's social networks by clicking on the icons at the bottom of the page in the footer, this will help keep them uptodate with any offers or news the cafe has. These links will open in a new tab.
 * This has been tested manually to ensure it works as it should.
+
+---
+---
+## Automated Testing <a name="testing-automated-tests"></a>
+![Automated Tests](testing_images/automated-tests.png)
 
 ---
 ---
@@ -795,6 +808,19 @@ After getting the bulk of the site in place, I ran it through Chrome Lighthouse.
 
 ### Known issues
 * The contact tab in the nav doesn't show up as active when on the page, instead the home page does, this could be down to the contact page being in the home app.
+### Pylint & Flake8 Errors
+* line too long
+In the code that I have written, I have followed the line length rule. However, in Django generated files like migrations, I have left them as they were created. The migration files aren't generally going to be edited by humans so I feel comfortable leaving them as they are.
+* Unused argument 'exception'
+This problem is in the Review, Reservation and Menu Views.py files. it relates to the 404 and 403 error page views and is a required argument for them to work, so I am happy to leave these in as they are.
+* Attribute 'object' defined outside __init__
+This problem is in the Review and Reservations Views.py files
+* Number of parameters was 4 in 'BaseUpdateView.get' and is now 5 in overridden 'ReservationUpdateView.get' method
+This problem is in the Reservation and Review Views.
+* Attribute 'object' defined outside __init__
+This problem is in the Reservation and Review Views.
+* Argument name "pk" doesn't conform to snake_case naming style
+This problem is in the Reservation, Menu and Review Views.
 
 ---
 ---
