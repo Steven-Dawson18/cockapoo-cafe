@@ -1,6 +1,17 @@
 # Cockapoo Cafe
 
-### Aim
+## Contents
++ [Aim and Description](#aim)
++ [Wireframes](#wireframes)
++ [Databases](#database)
++ [Epics and User Stories](#user-stories)
++ [Features](#features)
++ [Technologies Used](#tech)
++ [Testing](#testing)
++ [Deployment](#deployment)
++ [Credits](#credits)
+
+### Aim <a name="aim"></a>
 The aim iof this site is to promote the Cockapoo Cafe. By giving it an online presence it will increase the number of people visiting the Cafe, making reservations and leaving positive reviews about the Cafe.
 
 ## Description
@@ -9,13 +20,13 @@ When the user has dicided to register or is a returning user, they have  means a
 
 The live game can be viewed [here](https://cockapoo-cafe.herokuapp.com/).
 
-## Wireframes
+## Wireframes <a name="wireframes"></a>
 
 ![Cockapoo Cafe](readme_images/cockapoo-cafe-mock-up.png)
 
 [Click here for the wireframe](/readme_images/cockapoo-cafe-mock-up.png)
 
-## Database Design
+## Database Design <a name="database"></a>
 
 ### Menu
 <br>
@@ -82,7 +93,7 @@ Database connection details are set up in an [env.py](https://pypi.org/project/e
 security reasons this is not uploaded to GitHub so that database and connection details are not visible to 
 users. In production these are stored in Heroku. 
 
-## Epics and User Stories
+## Epics and User Stories <a name="user-stories"></a>
 
  * EPIC: As a site admin/User I can Register/sign in to the site so that I can interact with the site.
 1. As a new user I can Easily register for the site so that I can interact with the site content.
@@ -106,7 +117,64 @@ users. In production these are stored in Heroku.
 14. As a user I can intuitively navigate the site so that I can register/ login and make a reservation.
 15. As a user I can Follow the sites social networks so that I can see events and offers.
 
-## Features
+## Features <a name="features"></a>
+
+### Features planned
+* Responsive design.
+* Website title and information on the site purpose.
+* Navigation Menu (Site Wide).
+* Postgress databases to store information and user login/profile information.
+* CRUD Functionality
+* Login functionality.
+* Logout functionality.
+* Accepted Reviews visable to all users.
+* Users Reservations visable to only to that user.
+* Administrative control over Reservations and Reviews for the admin.
+* Registered user Reservation and Review creation and management.
+* Admin creation and management of Menu.
+
+**Importance and Difficulty**
+
+|       Feature         |   Difficulty   |   Importance   |
+|:--------------------  |--------------- |--------------- |
+|Postgress databases to |       5        |       5        |
+|store information and  |                |                |
+|user login/profile     |                |                |
+|information            |                |                |
+|:--------------------  |--------------- |--------------- |
+|CRUD Functionality     |       5        |       5        |
+|:--------------------  |--------------- |--------------- |
+|Admin creation and     |       5        |       5        |
+|management of Menu     |                |                |
+|:--------------------  |--------------- |--------------- |
+|Administrative control |       5        |       5        |
+|over Reservations and  |                |                |
+|Reviews for the admin  |                |                |
+|:--------------------  |--------------- |--------------- |
+|Registered user        |       5        |       5        |
+|Reservation and Review |                |                |
+|creation and management|                |                |
+|:--------------------  |--------------- |--------------- |
+|Users Reservations     |       3        |       5        |
+|visable to only to     |                |                |
+|that user              |                |                |
+|:--------------------  |--------------- |--------------- |
+|Accepted Reviews       |       2        |       5        |
+|visable to all users   |                |                |
+|:--------------------  |--------------- |--------------- |
+|Login functionality    |       3        |       5        |
+|:--------------------  |--------------- |--------------- |
+|Navigation Menu        |       2        |       5        |
+|(Site Wide)            |                |                |
+|:--------------------  |--------------- |--------------- |
+|Responsive design      |       2        |       5        |
+|:--------------------  |--------------- |--------------- |
+|Website title and      |       1        |       5        |
+|information on the     |                |                |
+|the site purpose       |                |                |
+|:--------------------  |--------------- |--------------- |
+|Logout functionality   |       1        |       5        |
+
 
 ### Existing Features
 * Responsive design.
@@ -127,7 +195,7 @@ users. In production these are stored in Heroku.
 * Implement a reservation archive
 * Admin receive notifications in the navigation bar if a reservation has been requested.
 
-## Technologies Used
+## Technologies Used <a name="tech"></a>
 
 * [HTML](https://en.wikipedia.org/wiki/HTML)
 	* This project uses HTML as the main language used to complete the structure of the Website.
@@ -179,9 +247,9 @@ users. In production these are stored in Heroku.
 * [Am I Responsive](http://ami.responsivedesign.is/#)
     * Multi Device Website Mockup Generator was used to create the Mock up image in this README
 
-## Testing
+## Testing <a name="testing"></a>
 
-Testing is required on all features and user stories documented in this README. 
+Testing is required on all features and user stories documented in the TESTING.md file linked from this README below as the testing is a large section. 
 All clickable links must redirect to the correct pages. All forms linked to the database
 must be tested to ensure they insert all given fields into the correct collections.
 
@@ -205,7 +273,7 @@ This project has been tested throughout its inception. Each input has been thoro
 
 Full test results can be found [here](TESTING.md)
 
-## Deployment on Heroku
+## Deployment on Heroku <a name="deployment"></a>
 
 This project was deployed through Heroku using the following steps:
 
@@ -294,7 +362,7 @@ EMAIL_PASSWORD - Password from email client
 
 You will need to install all of the packages listed in the requirements file you can use the following command in the terminal ```pip install -r requirements.txt``` which will do it for you. 
 
-## Credits
+## Credits <a name="credits"></a>
 
 ### Code
 * Date picker for reservation form - https://stackoverflow.com/questions/46735767/django-1-11-createview-adding-datepicker-for-datefields

@@ -23,7 +23,7 @@ class TestReviewViews(TestCase):
         user_a_pw = 'some_123_password'
         self.user_a_pw = user_a_pw
         user_a.is_staff = True
-        user_a.is_superuser = False
+        user_a.is_superuser = True
         user_a.save()
         user_a.set_password(user_a_pw)
         user_a.save()
@@ -88,7 +88,8 @@ class TestReviewViews(TestCase):
         """
         self.client.login(username=self.user_a.username,
                           password='some_123_password')
-        response = self.client.get(f'/review/update_review/{self.review_a.id}/')
+        response = self.client.get(
+            f'/review/update_review/{self.review_a.id}/')
         self.assertNotEqual(self.review_a.author.id, self.user_a.id)
         messages = list(get_messages(response.wsgi_request))
         self.assertEqual(str(messages[0]),

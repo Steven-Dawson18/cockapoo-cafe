@@ -3,8 +3,8 @@ Testing models in the Reservation app
 """
 
 from django.test import TestCase
-from .models import Reservation
 from django.contrib.auth import get_user_model
+from .models import Reservation
 
 
 User = get_user_model()
@@ -14,13 +14,27 @@ class TestReservationModel(TestCase):
     """
     Test Reservation model returns Reservation name as string
     """
+    def setUp(self):
+        """
+        Set up users for the tests
+        """
+        user_a = User(username='cfe', email='cfe@invalid.com')
+        user_a_pw = 'some_123_password'
+        self.user_a_pw = user_a_pw
+        user_a.is_staff = True
+        user_a.is_superuser = True
+        user_a.save()
+        user_a.set_password(user_a_pw)
+        user_a.save()
+        self.user_a = user_a
+        user_b = User.objects.create_user('user_2', 'cfe3@invlalid.com',
+                                          'some_123_password')
+        self.user_b = user_b
 
     def test_string_method_returns_name(self):
         """
         Test model returns Reservation name as string
         """
-        user_b = User.objects.create_user('test_reservation_name', 'test_reservation_surname', 'cfe3@invlalid.com')
-        self.user_b = user_b
         reservation = Reservation.objects.create(
             first_name='John',
             last_name='Doe',

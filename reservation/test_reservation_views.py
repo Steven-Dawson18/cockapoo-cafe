@@ -5,10 +5,7 @@ Testing views in the Review app
 from django.contrib.auth import get_user_model
 from django.test import TestCase
 from django.contrib.messages import get_messages
-from django.shortcuts import get_object_or_404
-from django.contrib.auth import get_user_model
 from .models import Reservation
-from .views import ReservationUpdateView
 
 
 User = get_user_model()
@@ -26,7 +23,7 @@ class TestReservationViews(TestCase):
         user_a_pw = 'some_123_password'
         self.user_a_pw = user_a_pw
         user_a.is_staff = True
-        user_a.is_superuser = False
+        user_a.is_superuser = True
         user_a.save()
         user_a.set_password(user_a_pw)
         user_a.save()
@@ -105,3 +102,29 @@ class TestReservationViews(TestCase):
         """
         response = self.client.get('/reservation/create_reservation/')
         self.assertNotEqual(response.status_code, 200)
+
+    def test_edit_reservation_view(self):
+        """
+        Test that only the person who made the reservation can edit.
+        """
+        self.client.login(username=self.user_b.username,
+                          password='some_123_password')
+        response = self.client.get(
+            f'/reservation/update_reservation/{self.reservation1.id}/')
+        self.assertNotEqual(self.reservation1.user.id, self.user_b.id)
+        messages = list(get_messages(response.wsgi_request))
+        self.assertEqual(str(messages[0]),
+                         'Unauthorised!')
+        self.assertEqual(response.status_code, 302)
+
+    def test_admin_approve_reservation_access_by_admin(self):
+        """
+        Test that admin users can view the admin only approve
+        reservation page
+        """
+        self.client.login(username=self.user_a.username,
+                          password='some_123_password')
+        response = self.client.get('/reservation/approve_reservation/')
+        self.assertTemplateUsed(
+            response, 'reservation/approve-reservation.html')
+        self.assertEqual(response.status_code, 200)

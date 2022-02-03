@@ -88,6 +88,7 @@ class ReservationUpdateView(LoginRequiredMixin, UpdateView):
         return form
 
     def get(self, request, pk, *args, **kwargs):
+        '''check reservation user is current user'''
         self.object = self.get_object()
         if self.object.user == self.request.user:
             return super(ReservationUpdateView, self).get(request, pk,
@@ -97,10 +98,11 @@ class ReservationUpdateView(LoginRequiredMixin, UpdateView):
             return redirect(reverse('reservation'))
 
     def post(self, request, pk, *args, **kwargs):
+        '''changes reservation accepted back to false'''
         self.object = self.get_object()
-        reseervation = Reservation.objects.get(pk=pk)
-        reseervation.accepted = False
-        reseervation.save()
+        reservation = Reservation.objects.get(pk=pk)
+        reservation.accepted = False
+        reservation.save()
         messages.success(request,
                          'The Reservation has been sent for approval')
         return super(ReservationUpdateView,

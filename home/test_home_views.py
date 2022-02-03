@@ -1,3 +1,6 @@
+"""
+Testing views in the Home app
+"""
 from django.test import TestCase
 from django.contrib.messages import get_messages
 

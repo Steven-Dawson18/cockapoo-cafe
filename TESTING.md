@@ -8,6 +8,7 @@
 + [Bugs and Fixes](#bugs-and-fixes)
 + [Known Bugs](#known-bugs)
 + [Credentials](#kcredentials)
+
 ---
 ---
 
@@ -66,11 +67,15 @@
 ![Delete Reservation](testing_images/delete-reservation-html-validator.png)<br>
 * Approve Reservation Page
 ![Approve Reservation](testing_images/approve-reservation-html-validation.png)<br>
+Some of the validator tests show a warning. This warning resd - Consider using the h1 element as a top-level heading only (all h1 elements are treated as top-level headings by many screen readers and other tools). As these were on pages such as the login page which was created mainly by allauth I'm happy to leave this alone.
 ### CSS Results:
 ![CSS](testing_images/style-css-validation.png)<br>
+The warning on the test was because it was a direct input test where I coppied and pasted the whole code in.
 
 ### JavaScript Results:
 ![maps.js](testing_images/jshint-validation.png)<br>
+Errors that I found were in the google maps javascript file:
+Because the code comes from Google itself, I don't want to touch this and am happy to leave it alone.
 
 ### Python Results:
 #### Home App
