@@ -233,6 +233,74 @@ After getting the bulk of the site in place, I ran it through Chrome Lighthouse.
 ## Automated Testing <a name="testing-automated-tests"></a>
 ![Automated Tests](testing_images/automated-tests.png)
 
+Automated Unit Testing was carried out with Djangos testing tools and written to cover as much of the site as possible. Below is an overview of each app and what was tested:
+
+### Home App
+
++ Views
+   + test that the home view works
+   + test that the contact view works
+   + test that the email sends in contact view
+
+### Menu App
+
++ Models
+   + test that category name is returned as string
+   + test that menu item name is returned as string
+
++ Views
+   + Test that all users can view the main menu page
+   + Test that all users can view the category menu pages
+   + Test that logged in users can not view the admin only menu item page
+   + Test that admin users can view the admin only menu item page
+   + Test that logged in users can not view the admin only create
+    menu item page
+   + Test that admin users can view the admin only menu item page
+   + Test that logged in users can not view the admin only update
+    menu item page
+   + Test that admin users can view the admin only update
+    menu item page
+   + Test that logged in users can not view the admin only delete
+    menu item page
+   + Test that admin users can view the admin only delete
+    menu item page
+   + Test that logged in users can not view the admin only create
+    category page
+   + Test that admin users can view the admin only create category page
+   + Test that logged in users can not view the admin only update
+    category page
+   + Test that admin users can view the admin only update category page
+   + Test that logged in users can not view the admin only delete
+    category page
+   + Test that admin users can view the admin only delete category page
+
+### Review App
+
++ Models
+   + test that review author is returned as string
+
++ Views
+   + Test that all users can view all approved reviews page
+   + Test that a logged in user can access the create a review page
+   + Test that a logged in superuser can access the create a review page
+   + Test that a non logged in user can't access the create a review page
+   + Test that only the author can edit the review.
+   
+### Reservation App
+
++ Models
+   + test that reservation name is returned as string
+
++ Views
+   + Test that logged in users can view the reservations page
+   + Test that superuser can view the reservations page
+   + Test that logged in users can access create reservation page
+   + Test that superusers can access create reservation page
+   + Test that non logged in users can't access create reservation page
+   + Test that only the person who made the reservation can edit.
+   + Test that admin users can view the admin only approve
+    reservation page
+
 ---
 ---
 
