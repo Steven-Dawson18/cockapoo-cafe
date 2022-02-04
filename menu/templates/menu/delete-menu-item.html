@@ -5,7 +5,7 @@
 {% block content %}
 
 <form class="delete-form" method="post">{% csrf_token %}
-    <p>Are you sure you want to delete the Menu Item?</p>
+    <p>Are you sure you want to delete the Menu Item?" {{ object.name }}"?</p>
     <input class="menu-btn" type="submit" value="Confirm">
     <a class="menu-btn cancel-btn" href="{% url 'menu-items' %}">Cancel</a>
 </form>

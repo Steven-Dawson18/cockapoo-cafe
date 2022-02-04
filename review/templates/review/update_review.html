@@ -5,7 +5,7 @@
 {% block content %}
 
   {% if user.is_authenticated %}
-    <h3>Update Your Review:</h3>
+    <h3>Update Your Review: {{ review.title }}</h3>
     <p id="reviewer">Posting as: {{ user.username }}</p>
     <form method="post" enctype="multipart/form-data" class="review-form">
         {{ form.as_p }}

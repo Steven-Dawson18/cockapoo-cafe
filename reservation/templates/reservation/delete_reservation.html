@@ -5,7 +5,7 @@
 {% block content %}
 
 <form class="delete-form" method="post">{% csrf_token %}
-    <p>Are you sure you want to delete your reservation?</p>
+    <p>Are you sure you want to delete your reservation on: {{ object.datetime }} at: {{ object.time }}?</p>
     <input class="menu-btn" type="submit" value="Confirm">
     <p class="inline-flex"><a class="menu-btn cancel-btn" href="{% url 'reservation' %}">Cancel</a></p>
     

@@ -154,7 +154,7 @@ After getting the bulk of the site in place, I ran it through Chrome Lighthouse.
 
 ![View Menu item likes](readme_images/update-delete-menu-item.png)
 
-* The user can see how many likes the menu item has and if logged in they can like the item and if they liked the item by mistake they can unlike the item. This will increase or decrease the unmber of likes the item has.
+* The user can see how many likes the menu item has and if logged in they can like the item and if they liked the item by mistake they can unlike the item. This will increase or decrease the number of likes the item has.
 * This has been tested manually to ensure it works as it should.
 
 6. As a User I can Create, edit and delete a reservation so that I can manage the reservation.

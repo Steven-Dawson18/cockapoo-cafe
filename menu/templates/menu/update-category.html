@@ -5,7 +5,7 @@
 {% block content %}
 
   {% if user.is_authenticated %}
-    <h3>Update Category:</h3>
+    <h3>Update Category: "{{ object.name }}"?</h3>
     <form method="post" enctype="multipart/form-data" class="review-form">
         {{ form.as_p }}
         {% csrf_token %}
