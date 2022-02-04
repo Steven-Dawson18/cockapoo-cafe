@@ -1,6 +1,10 @@
+""" Review apps.py"""
 from django.apps import AppConfig
 
 
 class ReviewConfig(AppConfig):
+    """
+    Review config
+    """
     default_auto_field = 'django.db.models.BigAutoField'
     name = 'review'

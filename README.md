@@ -22,8 +22,6 @@ The live game can be viewed [here](https://cockapoo-cafe.herokuapp.com/).
 
 ## Wireframes <a name="wireframes"></a>
 
-![Cockapoo Cafe](readme_images/cockapoo-cafe-mock-up.png)
-
 [Click here for the wireframe](/readme_images/cockapoo-cafe-mock-up.png)
 
 ## Database Design <a name="database"></a>

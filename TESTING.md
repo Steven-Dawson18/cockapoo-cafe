@@ -810,17 +810,15 @@ After getting the bulk of the site in place, I ran it through Chrome Lighthouse.
 * The contact tab in the nav doesn't show up as active when on the page, instead the home page does, this could be down to the contact page being in the home app.
 ### Pylint & Flake8 Errors
 * line too long
-In the code that I have written, I have followed the line length rule. However, in Django generated files like migrations, I have left them as they were created. The migration files aren't generally going to be edited by humans so I feel comfortable leaving them as they are.
+In the code that I have written, I have followed the line length rule. However, in Django generated files like migrations and settings, I have left them as they were created. The migration files aren't generally going to be edited by humans so I feel comfortable leaving them as they are.
 * Unused argument 'exception'
-This problem is in the Review, Reservation and Menu Views.py files. it relates to the 404 and 403 error page views and is a required argument for them to work, so I am happy to leave these in as they are.
+This problem is in the Review, Reservation and Menu Views.py files. it relates to the 404 and 403 error page views and is a required argument for them to work, the code also passes the pep8 validator, so I am happy to leave these in as they are.
 * Attribute 'object' defined outside __init__
-This problem is in the Review and Reservations Views.py files
+This problem is in the Review and Reservations Views.py files. The code and website works as it is intended and the code also passes the pep8 validator, so I am happy to leave these in as they are.
 * Number of parameters was 4 in 'BaseUpdateView.get' and is now 5 in overridden 'ReservationUpdateView.get' method
-This problem is in the Reservation and Review Views.
-* Attribute 'object' defined outside __init__
-This problem is in the Reservation and Review Views.
+This problem is in the Reservation and Review Views. The code and website works as it is intended and the code also passes the pep8 validator, so I am happy to leave these in as they are.
 * Argument name "pk" doesn't conform to snake_case naming style
-This problem is in the Reservation, Menu and Review Views.
+This problem is in the Reservation, Menu and Review Views. The code and website works as it is intended and the code also passes the pep8 validator, so I am happy to leave these in as they are. I can remove these by adding the following code snippet: # pylint: disable=invalid-name, I don't feel that it is necessary so have left it.
 
 ---
 ---
